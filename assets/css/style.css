@@ -1,0 +1,152 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:          #0a0d12;
+  --bg-surface:  #111318;
+  --bg-raised:   #1c1f26;
+  --border:      #1c1f26;
+  --border-mid:  #2a2d36;
+  --text:        #E8F0F2;
+  --text-muted:  #607D8B;
+  --text-dim:    #aaa;
+  --teal:        #4FD1C5;
+  --teal-light:  #81E6D9;
+  --mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+html { font-size: 16px; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+
+.site { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Nav ──────────────────────────────────── */
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 0 24px;
+  border-bottom: 1px solid var(--border);
+}
+.wordmark { font-size: 14px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+.nav-links { display: flex; gap: 20px; }
+.nav-links a { color: var(--text-muted); font-size: 12px; }
+.nav-links a:hover { color: var(--teal); }
+
+/* ── Hero ─────────────────────────────────── */
+.hero { padding: 52px 0 44px; }
+.hero-handle {
+  font-family: var(--mono); font-size: 12px; color: var(--teal);
+  margin-bottom: 14px; letter-spacing: 0.5px;
+}
+.hero-name {
+  font-size: 52px; font-weight: 800; letter-spacing: -2.5px;
+  color: #fff; line-height: 1; margin-bottom: 16px;
+}
+.hero-role { font-size: 15px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; }
+.hero-role strong { color: var(--text-dim); font-weight: 500; }
+.hero-links { display: flex; gap: 10px; flex-wrap: wrap; }
+.hero-links a {
+  font-size: 12px; color: var(--text-muted);
+  border: 1px solid var(--border-mid); padding: 6px 14px; border-radius: 3px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.hero-links a:hover { color: var(--text); border-color: #4a4d56; }
+.hero-links a.primary { border-color: var(--teal); color: var(--teal); }
+.hero-links a.primary:hover { background: rgba(79, 209, 197, 0.08); }
+
+/* ── Sections ────────────────────────────── */
+.section { padding: 44px 0; border-top: 1px solid var(--border); }
+.section-label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  color: var(--text-muted); margin-bottom: 24px; font-weight: 600;
+}
+
+/* ── Projects ────────────────────────────── */
+.project { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--bg-raised); }
+.project:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.project-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+.project-name { font-family: var(--mono); font-size: 16px; color: var(--teal); font-weight: 600; }
+.project-lang { font-size: 11px; color: var(--text-muted); font-family: var(--mono); }
+.project-desc { font-size: 14px; color: var(--text-dim); line-height: 1.7; margin-bottom: 10px; }
+.project-link { font-size: 11px; color: var(--text-muted); font-family: var(--mono); }
+.project-link:hover { color: var(--teal); }
+
+/* ── Contributing To ─────────────────────── */
+.contrib-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.contrib-item {
+  display: block; background: var(--bg-surface);
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 12px 14px; transition: border-color 0.15s;
+}
+.contrib-item:hover { border-color: var(--teal); }
+.contrib-org { font-size: 10px; color: var(--text-muted); margin-bottom: 2px; font-family: var(--mono); }
+.contrib-name { font-size: 13px; color: var(--text); font-family: var(--mono); }
+
+/* ── Post list ───────────────────────────── */
+.post-list { list-style: none; }
+.post-item {
+  display: flex; align-items: baseline; gap: 20px;
+  padding: 12px 0; border-bottom: 1px solid var(--bg-raised);
+}
+.post-item:last-child { border-bottom: none; }
+.post-date { font-size: 11px; color: var(--text-muted); font-family: var(--mono); white-space: nowrap; min-width: 85px; }
+.post-title-link { font-size: 14px; color: var(--text); }
+.post-title-link:hover { color: var(--teal); }
+.post-placeholder { color: var(--border-mid); font-size: 13px; font-style: italic; }
+.view-all {
+  display: inline-block; margin-top: 16px;
+  font-size: 12px; color: var(--text-muted); font-family: var(--mono);
+}
+.view-all:hover { color: var(--teal); }
+
+/* ── Blog post page ──────────────────────── */
+.post { padding: 44px 0; }
+.post-title-large {
+  font-size: 32px; font-weight: 800; letter-spacing: -1px;
+  color: #fff; margin-top: 10px; margin-bottom: 32px;
+}
+.post-content { font-size: 15px; line-height: 1.75; color: var(--text-dim); }
+.post-content p { margin-bottom: 20px; }
+.post-content h2 { color: var(--text); font-size: 20px; margin: 32px 0 12px; }
+.post-content h3 { color: var(--text-dim); font-size: 16px; margin: 24px 0 8px; }
+.post-content a { color: var(--teal); }
+.post-content code {
+  font-family: var(--mono); font-size: 13px;
+  background: var(--bg-surface); padding: 1px 5px;
+  border-radius: 3px; color: var(--teal-light);
+}
+.post-content pre {
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: 4px; padding: 16px; overflow-x: auto; margin-bottom: 20px;
+}
+.post-content pre code { background: none; padding: 0; }
+.post-content blockquote {
+  border-left: 2px solid var(--teal); padding-left: 16px;
+  color: var(--text-muted); margin-bottom: 20px;
+}
+
+/* ── Writing archive page header ─────────── */
+.page-header { padding: 44px 0 0; }
+
+/* ── Footer ──────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0 48px;
+  margin-top: 8px;
+}
+.footer-left { font-size: 12px; color: var(--text-muted); line-height: 2; }
+.footer-left a { color: var(--text-muted); }
+.footer-left a:hover { color: var(--teal); }
+.footer-episod { margin-top: 12px; }
+.footer-episod a { font-size: 11px; color: var(--border-mid); }
+.footer-episod a:hover { color: var(--text-muted); }
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 480px) {
+  .hero-name { font-size: 36px; letter-spacing: -1.5px; }
+  .contrib-grid { grid-template-columns: 1fr; }
+  .post-item { flex-direction: column; gap: 4px; }
+  .post-date { min-width: auto; }
+}
