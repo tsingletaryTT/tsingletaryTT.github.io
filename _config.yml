@@ -5,10 +5,12 @@ baseurl: ""
 author:
   name: Taylor Singletary
   github: tsingletaryTT
+timezone: America/Los_Angeles
 permalink: /writing/:year/:month/:day/:title/
 markdown: kramdown
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 exclude:
   - Gemfile
   - Gemfile.lock
