@@ -1,0 +1,16 @@
+title: Taylor Singletary
+description: Developer Relations at Tenstorrent
+url: "https://tsingletarytt.github.io"
+baseurl: ""
+author:
+  name: Taylor Singletary
+  github: tsingletaryTT
+permalink: /writing/:year/:month/:day/:title/
+markdown: kramdown
+plugins:
+  - jekyll-feed
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - docs/
+  - vendor/
