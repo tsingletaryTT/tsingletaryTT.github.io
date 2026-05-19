@@ -4,7 +4,7 @@
   --bg:          #0a0d12;
   --bg-surface:  #111318;
   --bg-raised:   #1c1f26;
-  --border:      #1c1f26;
+  --border:      #232730;
   --border-mid:  #2a2d36;
   --text:        #E8F0F2;
   --text-muted:  #607D8B;
@@ -18,6 +18,12 @@
 html { font-size: 16px; }
 body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; }
 a { color: inherit; text-decoration: none; }
+a:focus-visible,
+.contrib-item:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
 
 .site { max-width: 680px; margin: 0 auto; padding: 0 24px; }
 
@@ -64,7 +70,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ── Projects ────────────────────────────── */
-.project { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--bg-raised); }
+.project { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
 .project:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 .project-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
 .project-name { font-family: var(--mono); font-size: 16px; color: var(--teal); font-weight: 600; }
@@ -88,7 +94,7 @@ a { color: inherit; text-decoration: none; }
 .post-list { list-style: none; }
 .post-item {
   display: flex; align-items: baseline; gap: 20px;
-  padding: 12px 0; border-bottom: 1px solid var(--bg-raised);
+  padding: 12px 0; border-bottom: 1px solid var(--border);
 }
 .post-item:last-child { border-bottom: none; }
 .post-date { font-size: 11px; color: var(--text-muted); font-family: var(--mono); white-space: nowrap; min-width: 85px; }
