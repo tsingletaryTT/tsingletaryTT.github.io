@@ -1,0 +1,29 @@
+- name: tt-midi-maker
+  lang: Python · MCP server
+  desc: >
+    Multi-track MIDI generation from text prompts, running on Tenstorrent hardware.
+    Exposes generation as a fully-featured MCP server — meaning any MCP-compatible
+    client can compose music through it.
+  url: https://github.com/tsingletaryTT/tt-midi-maker
+
+- name: tensix-viz
+  lang: JavaScript
+  desc: >
+    Hardware topology visualizer — from individual Tensix chips up to full
+    multi-chip clusters. Makes the physical architecture of Tenstorrent hardware
+    legible at a glance.
+  url: https://github.com/tsingletaryTT/tensix-viz
+
+- name: tt-warp
+  lang: Python · Warp plugin
+  desc: >
+    A Warp terminal plugin for Tenstorrent — hardware status, model runner
+    shortcuts, and workflow automation built into the terminal experience.
+  url: https://github.com/tsingletaryTT/tt-warp
+
+- name: tt-model-runner
+  lang: Python · GUI + TUI
+  desc: >
+    Discover, load, and benchmark models with a GUI and a TUI for
+    tt-inference-server. The friendly face on top of raw hardware inference.
+  url: https://github.com/tsingletaryTT/tt-model-runner

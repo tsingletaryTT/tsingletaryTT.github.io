@@ -1,0 +1,4 @@
+- repo: tenstorrent/tt-inference-server
+- repo: tenstorrent/tt-metal
+- repo: tenstorrent/tt-awesome
+- repo: tenstorrent/tt-forge
