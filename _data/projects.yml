@@ -14,6 +14,13 @@
     legible at a glance.
   url: https://github.com/tsingletaryTT/tensix-viz
 
+- name: tt-forge-compiletron
+  lang: Python
+  desc: >
+    Compile more than 100 models on tt-forge and display the results in a format
+    built for demos. A fast way to show off the breadth of the Tenstorrent software stack.
+  url: https://github.com/tsingletaryTT/tt-forge-compiletron
+
 - name: tt-warp
   lang: Python · Warp plugin
   desc: >
@@ -27,3 +34,38 @@
     Discover, load, and benchmark models with a GUI and a TUI for
     tt-inference-server. The friendly face on top of raw hardware inference.
   url: https://github.com/tsingletaryTT/tt-model-runner
+
+- name: tt-qb-lights
+  lang: Rust
+  desc: >
+    Sync your Quietbox's LED lighting to the live status of its accelerator chips.
+    Real-time visual feedback from the hardware, written in Rust.
+  url: https://github.com/tsingletaryTT/tt-qb-lights
+
+- name: tt-cli
+  lang: Python · CLI
+  desc: >
+    A unified command-line tool for Tenstorrent development and model operations —
+    hardware introspection, model management, and workflow shortcuts in one place.
+  url: https://github.com/tsingletaryTT/tt-cli
+
+- name: tt-developer-image
+  lang: Dockerfile
+  desc: >
+    A developer-focused container image for Tenstorrent work. Batteries included:
+    the full stack, tooling, and a development experience worth having.
+  url: https://github.com/tsingletaryTT/tt-developer-image
+
+- name: tt-claw
+  lang: Shell
+  desc: >
+    Allow the claw machine to reward you with experience. A playful hardware
+    integration that turns physical arcade interaction into something meaningful.
+  url: https://github.com/tsingletaryTT/tt-claw
+
+- name: tt-lang-freeciv
+  lang: C
+  desc: >
+    Defer FreeCiv AI and generative work to Tenstorrent hardware via TT-Lang-based
+    kernels. An experiment in offloading game intelligence to real accelerator silicon.
+  url: https://github.com/tsingletaryTT/tt-lang-freeciv
