@@ -5,6 +5,15 @@
     Exposes generation as a fully-featured MCP server — meaning any MCP-compatible
     client can compose music through it.
   url: https://github.com/tsingletaryTT/tt-midi-maker
+  site: https://tsingletarytt.github.io/tt-midi-maker/
+
+- name: tt-station
+  lang: Rust · Swift · macOS
+  desc: >
+    Use your Tenstorrent hardware from a Mac with ease — a native bridge between
+    macOS and TT accelerators. "Such is the stuff, from where dreams are woven."
+  url: https://github.com/tsingletaryTT/tt-station
+  site: https://tsingletarytt.github.io/tt-station/
 
 - name: tensix-viz
   lang: JavaScript
@@ -13,6 +22,7 @@
     multi-chip clusters. Makes the physical architecture of Tenstorrent hardware
     legible at a glance.
   url: https://github.com/tsingletaryTT/tensix-viz
+  site: https://tsingletarytt.github.io/tensix-viz/
 
 - name: tt-forge-compiletron
   lang: Python
@@ -20,6 +30,7 @@
     Compile more than 100 models on tt-forge and display the results in a format
     built for demos. A fast way to show off the breadth of the Tenstorrent software stack.
   url: https://github.com/tsingletaryTT/tt-forge-compiletron
+  site: https://tsingletarytt.github.io/tt-forge-compiletron/
 
 - name: tt-warp
   lang: Python · Warp plugin
@@ -62,6 +73,16 @@
     Allow the claw machine to reward you with experience. A playful hardware
     integration that turns physical arcade interaction into something meaningful.
   url: https://github.com/tsingletaryTT/tt-claw
+
+- name: tt-agents
+  lang: Python
+  desc: >
+    Six local-agent demos that run entirely on a Tenstorrent QuietBox 2 — no cloud,
+    no API keys: a web-research agent, a codebase explorer, a multi-agent writing
+    pipeline, a stateful dungeon master, and storyboard-to-pixelart and landscape-SVG
+    generative pipelines. A working argument that 32B+ models make agentic tool-calling
+    reliable where 7B models fall apart.
+  url: https://github.com/tsingletaryTT/tt-agents
 
 - name: tt-lang-freeciv
   lang: C

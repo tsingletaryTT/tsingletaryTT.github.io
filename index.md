@@ -26,6 +26,7 @@ layout: default
     </div>
     <div class="project-desc">{{ project.desc }}</div>
     <a href="{{ project.url }}" class="project-link">{{ project.url | remove: "https://" }} ↗</a>
+    {% if project.site %}<a href="{{ project.site }}" class="project-link">Live site ↗</a>{% endif %}
   </div>
   {% endfor %}
 </section>
