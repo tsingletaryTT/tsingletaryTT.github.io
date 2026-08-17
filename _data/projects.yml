@@ -1,3 +1,47 @@
+- name: tt-tnt
+  lang: Python · ttml / tt-train
+  desc: >
+    A small Llama-3-style language model built Tenstorrent-first — trained from random
+    initialization on Blackhole hardware with ttml, packaged with tt-kernel, and served
+    through the Tenstorrent vLLM plugin. The point isn't capability; it's showing end to
+    end, without gaps, what a model designed for Tenstorrent from the first line looks
+    like when it's trained, published, and served entirely on Tenstorrent tooling.
+    Weights and the corpus recipe are public on Hugging Face.
+  url: https://github.com/tsingletaryTT/tt-tnt
+  site: https://tsingletarytt.github.io/tt-tnt/
+
+- name: tt-bio-demo
+  lang: Python · GTK4 + OpenGL
+  desc: >
+    A turnkey conference demo built on top of moritztng/tt-bio — the project that brings
+    protein structure prediction to Tenstorrent hardware, running Boltz-2 and friends on
+    Blackhole. This is the booth wrapped around it: watch a protein condense out of noise
+    into its folded structure in real time, on the chips a few feet away. Four chips fold
+    four molecules at once in a quad view, streaming the model's actual denoising
+    trajectory a step at a time. Built to run unattended on a show floor all day.
+  url: https://github.com/tsingletaryTT/tt-bio-demo
+  site: https://tsingletarytt.github.io/tt-bio-demo/
+
+- name: tt-gozer
+  lang: Python · stdlib only
+  desc: >
+    Cooperative chip leasing for Tenstorrent boxes, so several agents — Claude Code
+    sessions, aider, shell scripts, cron jobs — can share one machine without corrupting
+    each other's runs. A lease says who is using which chips and why; the kernel says
+    whether that's actually true, and when the two disagree the kernel wins. Let go and
+    let Gozer.
+  url: https://github.com/tsingletaryTT/tt-gozer
+
+- name: tt-demo-maker
+  lang: Rust · tmux + asciinema
+  desc: >
+    A project-agnostic toolkit for authoring demo recordings and draft posts from inside
+    any project. Point it at a TUI or CLI, describe the scenes in YAML, and it produces
+    recorded footage (asciicast, GIF, MP4) alongside a first-draft Markdown post pairing
+    each directive with the reaction it caused — so the recording machinery isn't
+    reinvented per project.
+  url: https://github.com/tsingletaryTT/tt-demo-maker
+
 - name: tt-midi-maker
   lang: Python · MCP server
   desc: >
@@ -6,6 +50,18 @@
     client can compose music through it.
   url: https://github.com/tsingletaryTT/tt-midi-maker
   site: https://tsingletarytt.github.io/tt-midi-maker/
+
+- name: tt-zork-and-more
+  lang: Python · C++ · TT-Lang
+  desc: >
+    Zork I (and II, III, Hitchhiker's, Planetfall, Colossal Cave) running on a Blackhole
+    accelerator across three hardware stages: a host-CPU Z-machine, the same interpreter
+    with the game binary living in Blackhole DRAM, and finally a Z-machine kernel executing
+    on the chip's RISC-V management cores. An optional remix layer has Llama-3.3-70B on
+    Tensix rewrite every response as you play. 1977 interactive fiction as a way to explore
+    what's actually programmable on the silicon.
+  url: https://github.com/tsingletaryTT/tt-zork-and-more
+  site: https://tsingletarytt.github.io/tt-zork-and-more/
 
 - name: tt-station
   lang: Rust · Swift · macOS
@@ -52,13 +108,6 @@
     Sync your Quietbox's LED lighting to the live status of its accelerator chips.
     Real-time visual feedback from the hardware, written in Rust.
   url: https://github.com/tsingletaryTT/tt-qb-lights
-
-- name: tt-cli
-  lang: Python · CLI
-  desc: >
-    A unified command-line tool for Tenstorrent development and model operations —
-    hardware introspection, model management, and workflow shortcuts in one place.
-  url: https://github.com/tsingletaryTT/tt-cli
 
 - name: tt-developer-image
   lang: Dockerfile
