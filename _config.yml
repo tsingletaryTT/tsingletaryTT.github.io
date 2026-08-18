@@ -17,3 +17,9 @@ exclude:
   - Gemfile.lock
   - docs/
   - vendor/
+  # CLAUDE.md must stay excluded. jekyll-optional-front-matter turns every .md file into
+  # a page and renders Liquid in it, and CLAUDE.md quotes Liquid tags while documenting the
+  # local-preview trick. A fenced code block does NOT stop Liquid from parsing them, so
+  # including this file fails the build with a for-loop syntax error.
+  - CLAUDE.md
+  - .claude/

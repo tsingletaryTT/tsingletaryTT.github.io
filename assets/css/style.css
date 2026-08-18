@@ -158,3 +158,34 @@ a:focus-visible,
   .post-item { flex-direction: column; gap: 4px; }
   .post-date { min-width: auto; }
 }
+
+/* ── Project media ───────────────────────── */
+.project-media { margin: 16px 0 14px; }
+.project-media img,
+.project-media video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  background: var(--bg-surface);
+}
+/* Clips and screenshots fill the column and carry their own frame. */
+.project-media--clip video,
+.project-media--shot img,
+.project-media--chart img { border: 1px solid var(--border); }
+/* Terminal cards draw their own border and set their own type size — showing
+   them at natural width keeps the monospace crisp instead of scaling it up. */
+.project-media--card img {
+  width: auto;
+  max-width: 100%;
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+.project-media figcaption {
+  margin-top: 9px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}

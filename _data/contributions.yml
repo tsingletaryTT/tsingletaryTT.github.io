@@ -1,4 +1,9 @@
-- repo: tenstorrent/tt-awesome
-- repo: tenstorrent/tt-vscode-toolkit
-- repo: tenstorrent/tt-local-generator
-- repo: tenstorrent/tt-toplike
+# Repos Taylor contributes to but does NOT effectively author. Currently none — the section on
+# the homepage is hidden while this file is empty, and reappears as soon as an entry is added:
+#
+#   - repo: org/name
+#
+# Ownership follows authorship, not the GitHub org: his own projects belong in projects.yml even
+# when they live under tenstorrent/. That is why tt-vscode-toolkit, tt-toplike, tt-local-generator,
+# tt-animatediff, tt-quietbox2-guide and tt-awesome are all listed there instead (105/109, 54/57,
+# 291/293, 9/10, 112/114 and 95 commits his).

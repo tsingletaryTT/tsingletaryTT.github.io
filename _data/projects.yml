@@ -1,3 +1,191 @@
+- name: tt-vscode-toolkit
+  lang: TypeScript · Python · VS Code extension
+  desc: >
+    A complete learning and development environment for Tenstorrent hardware, shipped on the
+    VS Code Marketplace: 53 interactive lessons from hardware detection through custom
+    training, click-to-run commands instead of copy-paste, production-ready templates, live
+    device telemetry in the status bar, and hardware auto-detection that tailors the guidance
+    to whatever accelerator you actually have. Covers vLLM, TT-Forge, TT-XLA and TT-Metalium.
+  url: https://github.com/tenstorrent/tt-vscode-toolkit
+  site: https://docs.tenstorrent.com/tt-vscode-toolkit/
+  media: assets/img/projects/tt-vscode-toolkit.webp
+  media_kind: shot
+  media_alt: >-
+    VS Code with the toolkit open: a lesson tree on the left, a particle-life lesson with code
+    in the middle, its rendered output top-right, and simulation results in the terminal.
+  media_note: >-
+    A lesson mid-run — tree of 53 on the left, the code, its output, and live device telemetry
+    in the status bar.
+
+- name: tt-toplike
+  lang: Rust
+  desc: >
+    Real-time hardware monitoring for Grayskull, Wormhole and Blackhole silicon — top(1) if it
+    had been designed to be looked at. The visualizations aren't decorative: every particle,
+    star and colour shift maps to a real signal off the chip, read from the driver's sysfs
+    attributes (power, die temperature, current, three clock domains, DDR training state, ECC
+    counters, PCIe throughput, the ARC firmware heartbeat). An adaptive baseline learns your
+    chip's idle state, so a 20 W card and an 80 W card read the same at the same fraction above
+    idle.
+  url: https://github.com/tenstorrent/tt-toplike
+  site: https://docs.tenstorrent.com/tt-toplike/
+  media: assets/img/projects/tt-toplike.mp4
+  poster: assets/img/projects/tt-toplike.webp
+  media_kind: clip
+  media_alt: >-
+    Arcade mode: a starfield of Tensix cores, a Memory Castle panel and a memory-flow lane, all
+    pulsing in colour across four Blackhole chips under load.
+  media_note: >-
+    Arcade mode, four Blackhole chips under LLM inference. Hue tracks temperature, drifts with
+    time, and offsets per core — so the grid shows a wave instead of flipping all at once.
+
+- name: tt-quietbox2-guide
+  lang: JavaScript · Nunjucks · docs site
+  desc: >
+    The handbook for the Tenstorrent QuietBox 2 — first boot to confident daily use, organised
+    as four paths (explore, run & build, tinker, customize) across 23 chapters. Unboxing and
+    power-on, system access and administration, workloads and development flows,
+    troubleshooting and recovery, then command and configuration reference.
+  url: https://github.com/tenstorrent/tt-quietbox2-guide
+  site: https://docs.tenstorrent.com/tt-quietbox2-guide/
+  media: assets/img/projects/tt-quietbox2-guide.webp
+  media_kind: shot
+  media_alt: >-
+    The guide's landing page: a four-circle Venn diagram of learning paths beside cards for
+    Explore, Run & build, Tinker and Customize, each with a chapter count and reading time.
+  media_note: >-
+    The landing page — four overlapping paths through the machine, each with its chapter count
+    and how long it takes.
+
+- name: tt-local-generator
+  lang: Python · GTK4
+  desc: >
+    A desktop UI for generating video, images and generative art entirely on your own
+    Tenstorrent hardware — Wan2.2 and SkyReels for text- and image-to-video, FLUX.1 and
+    Z-Image for stills, AnimateDiff for looping GIFs, plus a local LLM that writes the
+    imaginative prompts to feed them. Nothing leaves the box. TT-TV turns the whole thing into
+    an endless channel that queues its own prompts and plays the results.
+  url: https://github.com/tenstorrent/tt-local-generator
+  site: https://docs.tenstorrent.com/tt-local-generator/
+  media: assets/img/projects/tt-local-generator.mp4
+  poster: assets/img/projects/tt-local-generator.webp
+  media_kind: clip
+  media_alt: >-
+    TT-TV playing a generated video full-screen, with a sidebar of queued upcoming prompts and
+    the current prompt printed underneath.
+  media_note: >-
+    TT-TV — the machine writing its own prompts, generating the video, and playing it back as a
+    channel that never runs out.
+
+- name: tt-awesome
+  lang: JavaScript · Eleventy · curated directory
+  desc: >
+    The community directory for the Tenstorrent ecosystem — over 150 projects, tools, models
+    and papers across 13 categories, each tagged community, affiliated or official. Taylor
+    built and maintains the thing: entries are JSON files, the README and the site are both
+    generated from them, and anyone can submit one through an issue template. The content is
+    the ecosystem's; the machinery is his.
+  url: https://github.com/tenstorrent/tt-awesome
+  site: https://docs.tenstorrent.com/tt-awesome/
+  media: assets/img/projects/tt-awesome.webp
+  media_kind: shot
+  media_alt: >-
+    The tt-awesome site: a category sidebar, a search box over 151 entries, headline counts of
+    151 projects and 13 categories, and a grid of category cards each previewing an entry.
+  media_note: >-
+    The directory itself — 151 entries, 13 categories, searchable, with a submit button that
+    opens an issue template.
+
+- name: tt-tnt
+  lang: Python · ttml / tt-train
+  desc: >
+    A small Llama-3-style language model built Tenstorrent-first — trained from random
+    initialization on Blackhole hardware with ttml, packaged with tt-kernel, and served
+    through the Tenstorrent vLLM plugin. The point isn't capability; it's showing end to
+    end, without gaps, what a model designed for Tenstorrent from the first line looks
+    like when it's trained, published, and served entirely on Tenstorrent tooling.
+    Weights and the corpus recipe are public on Hugging Face.
+  url: https://github.com/tsingletaryTT/tt-tnt
+  site: https://tsingletarytt.github.io/tt-tnt/
+  media: assets/img/projects/tt-tnt.svg
+  media_kind: chart
+  media_alt: >-
+    Bar chart of mean loss for each of the nine corpus sources at step 10,787: TinyStories lowest at 1.82, poetry highest at 5.01.
+  media_note: >-
+    Built from the repo's own docs/measurements. TinyStories is a third of the blend and the easiest text in it; poetry is 1% and the hardest.
+
+- name: tt-bio-demo
+  lang: Python · GTK4 + OpenGL
+  desc: >
+    A turnkey conference demo built on top of moritztng/tt-bio — the project that brings
+    protein structure prediction to Tenstorrent hardware, running Boltz-2 and friends on
+    Blackhole. This is the booth wrapped around it: watch a protein condense out of noise
+    into its folded structure in real time, on the chips a few feet away. Four chips fold
+    four molecules at once in a quad view, streaming the model's actual denoising
+    trajectory a step at a time. Built to run unattended on a show floor all day.
+  url: https://github.com/tsingletaryTT/tt-bio-demo
+  site: https://tsingletarytt.github.io/tt-bio-demo/
+  media: assets/img/projects/tt-bio-demo.mp4
+  poster: assets/img/projects/tt-bio-demo.webp
+  media_kind: clip
+  media_alt: >-
+    Four Blackhole chips each folding a different protein in a 2x2 quad view, structures condensing out of point clouds.
+  media_note: >-
+    Four chips, four molecules, real denoising trajectories — trimmed from the repo's own 30-second booth capture.
+
+- name: tt-gozer
+  lang: Python · stdlib only
+  desc: >
+    Cooperative chip leasing for Tenstorrent boxes, so several agents — Claude Code
+    sessions, aider, shell scripts, cron jobs — can share one machine without corrupting
+    each other's runs. A lease says who is using which chips and why; the kernel says
+    whether that's actually true, and when the two disagree the kernel wins. Let go and
+    let Gozer.
+  url: https://github.com/tsingletaryTT/tt-gozer
+  media: assets/img/projects/tt-gozer.svg
+  media_kind: card
+  media_alt: >-
+    Terminal output of gozer status: two chips HELD by a lease, two BUSY-UNTRACKED with no lease, and one queued request.
+  media_note: >-
+    Two chips leased, two in use without one. BUSY-UNTRACKED is the state gozer exists to make visible.
+
+- name: tt-demo-maker
+  lang: Rust · tmux + asciinema
+  desc: >
+    A project-agnostic toolkit for authoring demo recordings and draft posts from inside
+    any project. Point it at a TUI or CLI, describe the scenes in YAML, and it produces
+    recorded footage (asciicast, GIF, MP4) alongside a first-draft Markdown post pairing
+    each directive with the reaction it caused — so the recording machinery isn't
+    reinvented per project.
+  url: https://github.com/tsingletaryTT/tt-demo-maker
+  media: assets/img/projects/tt-demo-maker.mp4
+  poster: assets/img/projects/tt-demo-maker.webp
+  media_kind: clip
+  media_alt: >-
+    Split terminal: a matmul burst running on the left, live board telemetry climbing on the right.
+  media_note: >-
+    Ouroboros — tt-demo recording tt-demo. Left pane drives a real matmul burst; right pane watches the board react to its own filming.
+
+- name: tt-animatediff
+  lang: Python · TTNN
+  desc: >
+    AnimateDiff on Blackhole, in three phases: temporally coherent video on CPU with the full
+    MotionAdapter, then spatial denoising accelerated by the TTNN UNet, then MotionAdapter
+    temporal attention injected directly into the Blackhole denoising loop — no distillation,
+    weights loaded straight from the upstream adapter. Eight frames at 25 steps, about 15
+    seconds a frame.
+  url: https://github.com/tenstorrent/tt-animatediff
+  site: https://docs.tenstorrent.com/tt-animatediff/
+  media: assets/img/projects/tt-animatediff.mp4
+  poster: assets/img/projects/tt-animatediff.webp
+  media_kind: clip
+  media_alt: >-
+    A short looping animation of a cathedral interior, light and structure shifting frame to
+    frame.
+  media_note: >-
+    Eight frames of "cathedral," denoised on a Blackhole P300C with temporal attention injected
+    into the loop.
+
 - name: tt-midi-maker
   lang: Python · MCP server
   desc: >
@@ -6,6 +194,31 @@
     client can compose music through it.
   url: https://github.com/tsingletaryTT/tt-midi-maker
   site: https://tsingletarytt.github.io/tt-midi-maker/
+  media: assets/img/projects/tt-midi-maker.svg
+  media_kind: shot
+  media_alt: >-
+    Piano-roll notation for the groove section of a generated piece, notes laid out across several tracks.
+  media_note: >-
+    A generated piano roll: the groove section of "midnight blues."
+
+- name: tt-zork-and-more
+  lang: Python · C++ · TT-Lang
+  desc: >
+    Zork I (and II, III, Hitchhiker's, Planetfall, Colossal Cave) running on a Blackhole
+    accelerator across three hardware stages: a host-CPU Z-machine, the same interpreter
+    with the game binary living in Blackhole DRAM, and finally a Z-machine kernel executing
+    on the chip's RISC-V management cores. An optional remix layer has Llama-3.3-70B on
+    Tensix rewrite every response as you play. 1977 interactive fiction as a way to explore
+    what's actually programmable on the silicon.
+  url: https://github.com/tsingletaryTT/tt-zork-and-more
+  site: https://tsingletarytt.github.io/tt-zork-and-more/
+  media: assets/img/projects/tt-zork-and-more.mp4
+  poster: assets/img/projects/tt-zork-and-more.webp
+  media_kind: clip
+  media_alt: >-
+    Zork session in a terminal where each stock game response is replaced by a longer rewritten passage.
+  media_note: >-
+    Hybrid mode: a human plays, Llama-3.3-70B on Tensix rewrites every response the game gives back.
 
 - name: tt-station
   lang: Rust · Swift · macOS
@@ -14,6 +227,12 @@
     macOS and TT accelerators. "Such is the stuff, from where dreams are woven."
   url: https://github.com/tsingletaryTT/tt-station
   site: https://tsingletarytt.github.io/tt-station/
+  media: assets/img/projects/tt-station.webp
+  media_kind: shot
+  media_alt: >-
+    The tt-station macOS app showing a list of models available on a remote Tenstorrent machine.
+  media_note: >-
+    The native macOS app browsing models on a Tenstorrent box.
 
 - name: tensix-viz
   lang: JavaScript
@@ -23,6 +242,13 @@
     legible at a glance.
   url: https://github.com/tsingletaryTT/tensix-viz
   site: https://tsingletarytt.github.io/tensix-viz/
+  media: assets/img/projects/tensix-viz.mp4
+  poster: assets/img/projects/tensix-viz.webp
+  media_kind: clip
+  media_alt: >-
+    Animated cluster topology diagram showing chips and the links between them.
+  media_note: >-
+    The cluster view — chip up to full multi-chip topology.
 
 - name: tt-forge-compiletron
   lang: Python
@@ -31,6 +257,13 @@
     built for demos. A fast way to show off the breadth of the Tenstorrent software stack.
   url: https://github.com/tsingletaryTT/tt-forge-compiletron
   site: https://tsingletarytt.github.io/tt-forge-compiletron/
+  media: assets/img/projects/tt-forge-compiletron.mp4
+  poster: assets/img/projects/tt-forge-compiletron.webp
+  media_kind: clip
+  media_alt: >-
+    Dashboard of many model names filling in compile results as they finish.
+  media_note: >-
+    Models compiling on tt-forge, results landing live.
 
 - name: tt-warp
   lang: Python · Warp plugin
@@ -38,6 +271,12 @@
     A Warp terminal plugin for Tenstorrent — hardware status, model runner
     shortcuts, and workflow automation built into the terminal experience.
   url: https://github.com/tsingletaryTT/tt-warp
+  media: assets/img/projects/tt-warp.svg
+  media_kind: card
+  media_alt: >-
+    Four shell commands: pip install tt-warp, tt-warp install, tt-warp sync, and adding the rc file to bashrc.
+  media_note: >-
+    The entire install: four commands and the terminal knows about your hardware.
 
 - name: tt-model-runner
   lang: Python · GUI + TUI
@@ -45,6 +284,12 @@
     Discover, load, and benchmark models with a GUI and a TUI for
     tt-inference-server. The friendly face on top of raw hardware inference.
   url: https://github.com/tsingletaryTT/tt-model-runner
+  media: assets/img/projects/tt-model-runner.svg
+  media_kind: card
+  media_alt: >-
+    Tree diagram of AppController and its seven components, with GTK and Textual views underneath.
+  media_note: >-
+    One controller, seven workers, two front-ends — no widget ever touched from a background thread.
 
 - name: tt-qb-lights
   lang: Rust
@@ -52,13 +297,12 @@
     Sync your Quietbox's LED lighting to the live status of its accelerator chips.
     Real-time visual feedback from the hardware, written in Rust.
   url: https://github.com/tsingletaryTT/tt-qb-lights
-
-- name: tt-cli
-  lang: Python · CLI
-  desc: >
-    A unified command-line tool for Tenstorrent development and model operations —
-    hardware introspection, model management, and workflow shortcuts in one place.
-  url: https://github.com/tsingletaryTT/tt-cli
+  media: assets/img/projects/tt-qb-lights.svg
+  media_kind: card
+  media_alt: >-
+    Flow diagram: hardware sensors polled at 1Hz feed a Rust service that drives an OpenRGB server and 240 LEDs.
+  media_note: >-
+    hwmon at 1 Hz, into a Rust service, out to 240 LEDs.
 
 - name: tt-developer-image
   lang: Dockerfile
@@ -66,6 +310,12 @@
     A developer-focused container image for Tenstorrent work. Batteries included:
     the full stack, tooling, and a development experience worth having.
   url: https://github.com/tsingletaryTT/tt-developer-image
+  media: assets/img/projects/tt-developer-image.svg
+  media_kind: card
+  media_alt: >-
+    Nested-box diagram of the image: code-server containing the tt-vscode-toolkit extension, over three venvs, branching to real hardware or simulator.
+  media_note: >-
+    code-server, the toolkit extension, and three venvs — the same image on real silicon or on the simulator.
 
 - name: tt-claw
   lang: Shell
@@ -73,6 +323,12 @@
     Allow the claw machine to reward you with experience. A playful hardware
     integration that turns physical arcade interaction into something meaningful.
   url: https://github.com/tsingletaryTT/tt-claw
+  media: assets/img/projects/tt-claw.svg
+  media_kind: card
+  media_alt: >-
+    Flow diagram from a user question through the gateway and memory search to a vector database, an LLM, and a cited answer.
+  media_note: >-
+    Question, to a vector DB of 46+ hard-won lessons, to vLLM on TT hardware, back as a cited answer.
 
 - name: tt-agents
   lang: Python
@@ -83,6 +339,13 @@
     generative pipelines. A working argument that 32B+ models make agentic tool-calling
     reliable where 7B models fall apart.
   url: https://github.com/tsingletaryTT/tt-agents
+  media: assets/img/projects/tt-agents.svg
+  media_kind: shot
+  media_alt: >-
+    Generated vector landscape: a yellow sun over layered purple mountain ridges against a
+    magenta-to-indigo gradient sky.
+  media_note: >-
+    Output of the landscape-SVG pipeline — composed entirely on a QuietBox 2, no cloud, no API keys.
 
 - name: tt-lang-freeciv
   lang: C
@@ -90,3 +353,9 @@
     Defer FreeCiv AI and generative work to Tenstorrent hardware via TT-Lang-based
     kernels. An experiment in offloading game intelligence to real accelerator silicon.
   url: https://github.com/tsingletaryTT/tt-lang-freeciv
+  media: assets/img/projects/tt-lang-freeciv.webp
+  media_kind: shot
+  media_alt: >-
+    A 256 by 256 greyscale terrain height map produced by the generator.
+  media_note: >-
+    A height map generated through TT-Lang kernels.

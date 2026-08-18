@@ -25,12 +25,31 @@ layout: default
       <span class="project-lang">{{ project.lang }}</span>
     </div>
     <div class="project-desc">{{ project.desc }}</div>
+    {% if project.media %}
+    <figure class="project-media project-media--{{ project.media_kind }}">
+      {% if project.media_kind == 'clip' %}
+      <video src="{{ project.media | relative_url }}"
+             poster="{{ project.poster | relative_url }}"
+             autoplay loop muted playsinline preload="metadata"
+             aria-label="{{ project.media_alt }}"></video>
+      {% else %}
+      <img src="{{ project.media | relative_url }}" alt="{{ project.media_alt }}"
+           loading="lazy" decoding="async">
+      {% endif %}
+      {% if project.media_note %}<figcaption>{{ project.media_note }}</figcaption>{% endif %}
+    </figure>
+    {% endif %}
     <a href="{{ project.url }}" class="project-link">{{ project.url | remove: "https://" }} ↗</a>
     {% if project.site %}<a href="{{ project.site }}" class="project-link">Live site ↗</a>{% endif %}
   </div>
   {% endfor %}
 </section>
 
+{% comment %}
+  Hidden while _data/contributions.yml is empty — a section label with an empty grid under it
+  reads as a bug. Add an entry to that file and this comes back on its own.
+{% endcomment %}
+{% if site.data.contributions and site.data.contributions.size > 0 %}
 <section class="section">
   <div class="section-label">Contributing To</div>
   <div class="contrib-grid">
@@ -42,6 +61,7 @@ layout: default
     {% endfor %}
   </div>
 </section>
+{% endif %}
 
 <section class="section" id="writing">
   <div class="section-label">Writing</div>
@@ -60,3 +80,15 @@ layout: default
   <p class="post-placeholder">Posts will appear here.</p>
   {% endif %}
 </section>
+
+<script>
+  (function () {
+    if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.querySelectorAll('.project-media video').forEach(function (v) {
+      v.autoplay = false;
+      v.loop = false;
+      v.controls = true;
+      v.pause();
+    });
+  })();
+</script>
