@@ -25,6 +25,20 @@ layout: default
       <span class="project-lang">{{ project.lang }}</span>
     </div>
     <div class="project-desc">{{ project.desc }}</div>
+    {% if project.media %}
+    <figure class="project-media project-media--{{ project.media_kind }}">
+      {% if project.media_kind == 'clip' %}
+      <video src="{{ project.media | relative_url }}"
+             poster="{{ project.poster | relative_url }}"
+             autoplay loop muted playsinline preload="metadata"
+             aria-label="{{ project.media_alt }}"></video>
+      {% else %}
+      <img src="{{ project.media | relative_url }}" alt="{{ project.media_alt }}"
+           loading="lazy" decoding="async">
+      {% endif %}
+      {% if project.media_note %}<figcaption>{{ project.media_note }}</figcaption>{% endif %}
+    </figure>
+    {% endif %}
     <a href="{{ project.url }}" class="project-link">{{ project.url | remove: "https://" }} ↗</a>
     {% if project.site %}<a href="{{ project.site }}" class="project-link">Live site ↗</a>{% endif %}
   </div>
@@ -60,3 +74,15 @@ layout: default
   <p class="post-placeholder">Posts will appear here.</p>
   {% endif %}
 </section>
+
+<script>
+  (function () {
+    if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.querySelectorAll('.project-media video').forEach(function (v) {
+      v.autoplay = false;
+      v.loop = false;
+      v.controls = true;
+      v.pause();
+    });
+  })();
+</script>

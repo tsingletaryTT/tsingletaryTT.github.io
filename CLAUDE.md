@@ -12,6 +12,9 @@ Jekyll on GitHub Pages, served at https://tsingletarytt.github.io.
   `name`, `lang` (free-text, e.g. `Python · MCP server`), `desc` (folded block scalar),
   `url` (GitHub), and optional `site` (a live GitHub Pages demo → renders a "Live site" link).
   **Order is editorial, not chronological** — newest/most substantial first.
+  Every entry also carries a figure: `media` (path under `assets/img/projects/`),
+  `media_kind` (`clip` · `shot` · `card` · `chart`), `media_alt`, `media_note`, and
+  `poster` for clips. Generators for the `card` and `chart` kinds are described below.
 * `_data/contributions.yml` — the Contributing To grid; `repo: org/name` only, rendered by
   splitting on `/`.
 * `_layouts/{default,post}.html`, `assets/css/style.css` — dark editorial hybrid design.
@@ -42,6 +45,61 @@ removed in Ruby 3.2+, and every variable renders as `Liquid error: internal`.)
 Installing a real Ruby 3.x would fix the build properly; nobody has done it yet.
 
 ## What happened
+
+**2026-08-17 — the CLAUDE.md in this repo broke the Pages build once.** Worth knowing before
+you add any markdown here. `github-pages` loads **jekyll-optional-front-matter**, which makes
+every `.md` file a page and renders Liquid inside it — **fenced code blocks do not protect
+Liquid tags**. Because the local-preview recipe above quotes a `for` tag, adding CLAUDE.md
+failed the remote build with `Syntax Error in 'for loop'`, and the site silently kept serving
+the previous deploy.
+
+Two things now guard against it:
+
+* `_config.yml` **excludes `CLAUDE.md` and `.claude/`** — internal notes were never meant to
+  be published pages anyway. Don't remove those lines.
+* **`script/preflight.rb`** parses every file Jekyll would render and fails on Liquid syntax
+  errors, which is the one class of breakage that can't be caught locally (Jekyll 3.9 doesn't
+  run on this Mac). Run it before pushing:
+
+      GEM_HOME=/tmp/gems gem install liquid --no-document
+      GEM_HOME=/tmp/gems ruby script/preflight.rb
+
+**Also: the Pages API lies about failures.** `gh api .../pages/builds/latest` reported
+`status: building` for seven hours after the build had already failed in 32 seconds. Trust the
+Actions run instead — `gh run list` and `gh run view <id> --log-failed`.
+
+**2026-08-17 — a visual for every project.** Prompt: *"include something visual from each repo
+mentioned. there are goodies with all of them to highlight here."*
+
+Every one of the 16 entries now carries a figure. `projects.yml` gained five optional keys —
+`media`, `poster` (clips only), `media_kind`, `media_alt`, `media_note` — and `index.md`
+renders them as a `<figure>`. Four kinds, because the repos have four kinds of goodie:
+
+* **`clip`** (5) — `<video autoplay loop muted playsinline>`. Source GIFs/MP4s were
+  transcoded to H.264, which is *far* smaller than a GIF: tt-demo-maker's 5.5 MB ouroboros
+  GIF became a 1.8 MB MP4. Posters are pulled from **mid-clip**, not frame 1 — several
+  first frames are an empty terminal.
+* **`shot`** (4) — screenshots as WebP, plus two SVGs that were already vector.
+* **`card`** (6) — for the CLI/TUI repos that ship **no images at all** (tt-gozer, tt-warp,
+  tt-model-runner, tt-qb-lights, tt-developer-image, tt-claw). Generated SVG "terminal
+  cards" from output and diagrams lifted **verbatim** out of each README. Two gotchas:
+  leading must be ~1.23× the font size or box-drawing verticals render as dashes, and
+  several READMEs' box art is off by a character, so the generator pads before the trailing
+  border to square up the right edge (text untouched).
+* **`chart`** (1) — tt-tnt has no images but does have `docs/measurements/`, so its figure is
+  a per-source loss chart built from its own JSON. Colour went through the `dataviz` skill's
+  validator: the site's `--teal` (#4FD1C5) **fails** the dark-mode lightness band at L 0.786,
+  so the bars use **#00A99D**, which passes all six checks against the #111318 surface.
+
+Cards render at natural width (`width:auto`) — upscaling monospace to fill the column blurs
+it. Clips honour `prefers-reduced-motion` via a small script in `index.md` that swaps autoplay
+for controls. Total media weight: **~6.4 MB** across 21 files.
+
+**Verifying this without a Jekyll build:** the Liquid-render trick above was extended into a
+real preview — render the Selected Work loop, inline `style.css`, write one HTML file, then
+`chrome --headless --screenshot` it and *look*. That is how the unreadable
+tt-forge-compiletron frame (a 2204px-wide TUI crushed into a 632px column) was caught; it is
+now cropped to `crop=1010:540:0:180`, the pane that actually has content.
 
 **2026-08-17 — add latest public repos.** Prompt: *"Let's update this repo to include my
 latest public repos on tsingletaryTT, tt-tnt, tt-boltz-demo, tt-gozer — missing any others?"*
