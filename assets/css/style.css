@@ -135,6 +135,32 @@ a:focus-visible,
   color: var(--text-muted); margin-bottom: 20px;
 }
 
+/* Long-form posts need element styles the homepage never did. The global reset zeroes
+   list padding (markers hang outside the column) and browsers draw <hr> as a bright 3D
+   groove, which reads as a hard white bar on this dark surface. Tables come from kramdown
+   with no classes, so they have to be styled by element. */
+.post-content ul,
+.post-content ol { margin: 0 0 20px 22px; }
+.post-content li { margin-bottom: 6px; }
+.post-content hr { border: none; border-top: 1px solid var(--border); margin: 34px 0; }
+.post-content img { max-width: 100%; height: auto; }
+.post-content small { color: var(--text-muted); font-size: 11px; }
+.post-content table {
+  width: 100%; border-collapse: collapse; margin-bottom: 20px;
+  font-size: 13px; line-height: 1.5;
+}
+.post-content th,
+.post-content td {
+  padding: 8px 14px 8px 0; text-align: left; vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+.post-content th {
+  color: var(--text); font-weight: 600;
+  font-size: 11px; letter-spacing: 0.4px; text-transform: uppercase;
+  border-bottom-color: var(--border-mid);
+}
+.post-content tr:last-child td { border-bottom: none; }
+
 /* ── Writing archive page header ─────────── */
 .page-header { padding: 44px 0 0; }
 

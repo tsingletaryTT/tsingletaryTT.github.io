@@ -13,9 +13,9 @@ This started as a tutorial. It turned into something longer — a genuine engine
 ---
 
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin:2rem 0">
-  <img src="/assets/animatediff/demo_world_of_tomorrow.gif" alt="World of Tomorrow" style="max-width:280px;border-radius:4px">
-  <img src="/assets/animatediff/demo_phosphor_horizon.gif" alt="Phosphor Horizon" style="max-width:280px;border-radius:4px">
-  <img src="/assets/animatediff/p4-chip-city.gif" alt="Chip City" style="max-width:280px;border-radius:4px">
+  <img src="/assets/animatediff/demo_world_of_tomorrow.gif" alt="World of Tomorrow" style="max-width:200px;border-radius:4px">
+  <img src="/assets/animatediff/demo_phosphor_horizon.gif" alt="Phosphor Horizon" style="max-width:200px;border-radius:4px">
+  <img src="/assets/animatediff/p4-chip-city.gif" alt="Chip City" style="max-width:200px;border-radius:4px">
 </div>
 
 *Generated on Blackhole P300C. 8 frames, 512×512, 25 steps PNDM. These exist because of everything that follows.*
@@ -141,9 +141,9 @@ This is cross-frame self-attention on 4-channel latent space, not on the 320-dim
 The `--temporal-alpha` parameter controls the blend weight. At 0.35 (default) you get coherent structure with visible per-frame variation. At 0.6+ the background stabilizes strongly; fine detail starts to flatten.
 
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin:2rem 0">
-  <img src="/assets/animatediff/ocean.gif" alt="Ocean waves" style="max-width:220px;border-radius:4px">
-  <img src="/assets/animatediff/neon_dystopia.gif" alt="Neon Dystopia" style="max-width:220px;border-radius:4px">
-  <img src="/assets/animatediff/mayan_temple.gif" alt="Mayan Temple" style="max-width:220px;border-radius:4px">
+  <img src="/assets/animatediff/ocean.gif" alt="Ocean waves" style="max-width:200px;border-radius:4px">
+  <img src="/assets/animatediff/neon_dystopia.gif" alt="Neon Dystopia" style="max-width:200px;border-radius:4px">
+  <img src="/assets/animatediff/mayan_temple.gif" alt="Mayan Temple" style="max-width:200px;border-radius:4px">
 </div>
 
 *Phase 2.5: cross-frame attention on noise predictions. The hardware does the spatial denoising; the CPU does the inter-frame coordination.*
@@ -164,15 +164,15 @@ Euler scheduling — used by AnimateDiff-Lightning — covers the same total sig
 
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin:2rem 0">
   <div style="text-align:center">
-    <img src="/assets/animatediff/lcm-aurora.gif" alt="LCM attempt — aurora" style="max-width:220px;border-radius:4px"><br>
+    <img src="/assets/animatediff/lcm-aurora.gif" alt="LCM attempt — aurora" style="max-width:200px;border-radius:4px"><br>
     <small style="color:#888">LCM attempt (failed)</small>
   </div>
   <div style="text-align:center">
-    <img src="/assets/animatediff/lightning-aurora.gif" alt="Lightning — aurora" style="max-width:220px;border-radius:4px"><br>
+    <img src="/assets/animatediff/lightning-aurora.gif" alt="Lightning — aurora" style="max-width:200px;border-radius:4px"><br>
     <small style="color:#888">Lightning / Euler (25 steps, CFG=7.5)</small>
   </div>
   <div style="text-align:center">
-    <img src="/assets/animatediff/lightning-mandala.gif" alt="Lightning — mandala" style="max-width:220px;border-radius:4px"><br>
+    <img src="/assets/animatediff/lightning-mandala.gif" alt="Lightning — mandala" style="max-width:200px;border-radius:4px"><br>
     <small style="color:#888">Lightning / Euler — mandala</small>
   </div>
 </div>
@@ -181,19 +181,19 @@ Lightning mode on the TTNN path also required updating the cross-frame attention
 
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin:2rem 0">
   <div style="text-align:center">
-    <img src="/assets/animatediff/arctic-wave-standard.gif" alt="Arctic wave standard" style="max-width:220px;border-radius:4px"><br>
+    <img src="/assets/animatediff/arctic-wave-standard.gif" alt="Arctic wave standard" style="max-width:200px;border-radius:4px"><br>
     <small style="color:#888">PNDM 25 steps</small>
   </div>
   <div style="text-align:center">
-    <img src="/assets/animatediff/arctic-wave-lightning.gif" alt="Arctic wave lightning" style="max-width:220px;border-radius:4px"><br>
+    <img src="/assets/animatediff/arctic-wave-lightning.gif" alt="Arctic wave lightning" style="max-width:200px;border-radius:4px"><br>
     <small style="color:#888">Euler 25 steps</small>
   </div>
   <div style="text-align:center">
-    <img src="/assets/animatediff/supernova-standard.gif" alt="Supernova standard" style="max-width:220px;border-radius:4px"><br>
+    <img src="/assets/animatediff/supernova-standard.gif" alt="Supernova standard" style="max-width:200px;border-radius:4px"><br>
     <small style="color:#888">PNDM — supernova</small>
   </div>
   <div style="text-align:center">
-    <img src="/assets/animatediff/supernova-lightning.gif" alt="Supernova lightning" style="max-width:220px;border-radius:4px"><br>
+    <img src="/assets/animatediff/supernova-lightning.gif" alt="Supernova lightning" style="max-width:200px;border-radius:4px"><br>
     <small style="color:#888">Euler — supernova</small>
   </div>
 </div>
@@ -368,10 +368,10 @@ result = mixed / mixed_std                            # renormalize
 A key invariant discovered during development: the blended latents must be renormalized before use. An earlier version normalized per-channel before the frame average, which reduced signal standard deviation from ~0.28 to ~0.03 — less than 2% of the final variance. The chain signal was perceptually invisible. Without per-channel normalization, alpha=0.35 produces detectable (~15%) correlation with the previous layout.
 
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin:2rem 0">
-  <img src="/assets/animatediff/unisphere-1964.gif" alt="Unisphere 1964" style="max-width:180px;border-radius:4px">
-  <img src="/assets/animatediff/unisphere-2000.gif" alt="Unisphere 2000" style="max-width:180px;border-radius:4px">
-  <img src="/assets/animatediff/unisphere-2026.gif" alt="Unisphere 2026" style="max-width:180px;border-radius:4px">
-  <img src="/assets/animatediff/unisphere-2064.gif" alt="Unisphere 2064" style="max-width:180px;border-radius:4px">
+  <img src="/assets/animatediff/unisphere-1964.gif" alt="Unisphere 1964" style="max-width:200px;border-radius:4px">
+  <img src="/assets/animatediff/unisphere-2000.gif" alt="Unisphere 2000" style="max-width:200px;border-radius:4px">
+  <img src="/assets/animatediff/unisphere-2026.gif" alt="Unisphere 2026" style="max-width:200px;border-radius:4px">
+  <img src="/assets/animatediff/unisphere-2064.gif" alt="Unisphere 2064" style="max-width:200px;border-radius:4px">
 </div>
 
 *The Unisphere chain: 4 independent generations across 100 years of imagined World's Fairs. Each run inherits the coarse spatial layout of the previous one via latent blending. No explicit conditioning — just latent continuity.*
