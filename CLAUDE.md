@@ -137,6 +137,42 @@ real preview — render the Selected Work loop, inline `style.css`, write one HT
 tt-forge-compiletron frame (a 2204px-wide TUI crushed into a 632px column) was caught; it is
 now cropped to `crop=1010:540:0:180`, the pane that actually has content.
 
+**2026-08-18 — the AnimateDiff post went live; only one of the five drafts is indexed.**
+Prompt: *"how ready is the animatediff blog post here to just be part of the blog interface
+of this site."* → *"let's just have the 06-23 post indexed or made live."*
+
+`_posts/` held five AnimateDiff files: the committed 2026-06-23 "Full Story" plus four
+untracked drafts it supersedes. Two of those drafts —
+`2026-05-28-animatediff-model-bringup-tutorial.md` and
+`2026-05-28-animatediff-ttlang-bringup.md` — were **byte-identical except for one link**,
+same title, same date, and they cross-linked a permalink that never existed
+(`.../animatediff-model-bringup-tutorial-deep/`). All four moved to **`_drafts/`**, which
+Jekyll does not build without `--drafts`. They were left **untracked on purpose**: this
+repo is public, so committing superseded drafts would publish claims the Full Story
+corrects, even unbuilt.
+
+**The post was the first long-form piece here, and `style.css` had no body-element rules.**
+Verified by rendering it with kramdown into the real stylesheet and screenshotting
+(the same Liquid/headless-Chrome trick as the project figures). Three things were broken:
+
+* kramdown tables carry no classes and had **zero cell padding** — adjacent columns ran
+  together as `Phase 3 skip up1+up21 chip, 8fr`. Now styled by element, with uppercase
+  `th` and a `--border` row rule; checked at 760px and 380px.
+* the global `* { padding: 0 }` reset left list markers hanging outside the column, and the
+  default `<hr>` renders as a **bright 3D groove** — a hard white bar across a `#0a0d12`
+  page, **18 times** in this one post.
+* figure grids: the content column is **632px** (680 − 2×24), so the `280px` and `220px`
+  three-up rows wrapped 2+1 and orphaned the third clip. All widths normalised to
+  **200px** (3×200 + 2×12 gap = 624).
+
+**Known, and shipped anyway at Taylor's call: the page is ~51 MB** — 28 embeds over 27 GIFs
+in `assets/animatediff/`. Transcoding to H.264 would land it near 5 MB (the homepage figures
+already do this), and that offer was declined for now. If you revisit it, the reduced-motion
+script in `index.md` only targets `.project-media video` and would need to cover post videos.
+
+Live at `/writing/2026/06/23/animatediff-on-tt-hardware-the-full-story/`; `/writing/` lists it.
+Pages run 32157149988 succeeded — checked via `gh run view`, not the lying Pages API.
+
 **2026-08-17 — add latest public repos.** Prompt: *"Let's update this repo to include my
 latest public repos on tsingletaryTT, tt-tnt, tt-boltz-demo, tt-gozer — missing any others?"*
 
