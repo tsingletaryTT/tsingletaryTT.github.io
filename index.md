@@ -76,6 +76,7 @@ layout: default
     {% endfor %}
   </ul>
   <a href="{{ '/writing' | relative_url }}" class="view-all">View all writing ↗</a>
+  <a href="{{ '/feed.xml' | relative_url }}" class="view-all" type="application/atom+xml">RSS ↗</a>
   {% else %}
   <p class="post-placeholder">Posts will appear here.</p>
   {% endif %}

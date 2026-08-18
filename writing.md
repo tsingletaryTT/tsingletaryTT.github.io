@@ -21,4 +21,5 @@ permalink: /writing/
   {% else %}
   <p class="post-placeholder">No posts yet.</p>
   {% endif %}
+  <a href="{{ '/feed.xml' | relative_url }}" class="view-all" type="application/atom+xml">Subscribe · RSS ↗</a>
 </section>

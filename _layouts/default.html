@@ -6,6 +6,12 @@
   <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
   {% seo %}
+  {%- comment -%}
+    jekyll-seo-tag does NOT emit a feed link — that is jekyll-feed's job, and the two
+    plugins are independent. Without feed_meta the Atom feed at /feed.xml exists but no
+    reader or browser extension can discover it from a page.
+  {%- endcomment -%}
+  {% feed_meta %}
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
@@ -25,6 +31,8 @@
       <div class="footer-left">
         <a href="https://github.com/tsingletaryTT">github.com/tsingletaryTT</a><br>
         <a href="http://realitytechnicians.com">realitytechnicians.com</a>
+        <br>
+        <a href="{{ '/feed.xml' | relative_url }}" type="application/atom+xml">rss / atom feed</a>
         <div class="footer-episod">also <a href="https://github.com/episod">github.com/episod</a></div>
       </div>
     </footer>
