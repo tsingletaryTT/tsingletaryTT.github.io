@@ -62,9 +62,15 @@ the GitHub org. A repo under `tenstorrent/` still belongs in `projects.yml` when
 effectively wrote it. `tt-awesome` moved across on a follow-up prompt — *"put tt-awesome here
 too, but not tt-kernel-package-manager"* — and it belongs in Selected Work for exactly the same
 reason: the 151 entries are the community's, but the JSON schema, the generator, the Eleventy
-site and the submission flow are all his. **Contributing To is therefore down to a single
-entry** (`tt-kernel-package-manager`), which leaves that grid holding one half-width card. Left
-as-is deliberately; if it should go away or grow, that is Taylor's call, not a silent redesign.
+site and the submission flow are all his.
+
+**Contributing To is now empty and hidden.** `tt-kernel-package-manager` was the last entry and
+Taylor asked for it gone, so `contributions.yml` holds only comments. Removing the entry alone
+would have left a section label above an empty grid, so `index.md` wraps that section in
+`{% raw %}{% if site.data.contributions and site.data.contributions.size > 0 %}{% endraw %}` —
+it disappears while the file is empty and returns by itself when an entry is added. A
+comments-only YAML file loads as `false` under this Psych, and the guard is tested against
+`false`, `nil` and `[]`.
 
 Ordering: the four largest org projects lead Selected Work, with `tt-animatediff` slotted
 beside the other generative work rather than at the top. That is an editorial call, easy to

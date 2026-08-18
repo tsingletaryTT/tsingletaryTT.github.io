@@ -45,6 +45,11 @@ layout: default
   {% endfor %}
 </section>
 
+{% comment %}
+  Hidden while _data/contributions.yml is empty — a section label with an empty grid under it
+  reads as a bug. Add an entry to that file and this comes back on its own.
+{% endcomment %}
+{% if site.data.contributions and site.data.contributions.size > 0 %}
 <section class="section">
   <div class="section-label">Contributing To</div>
   <div class="contrib-grid">
@@ -56,6 +61,7 @@ layout: default
     {% endfor %}
   </div>
 </section>
+{% endif %}
 
 <section class="section" id="writing">
   <div class="section-label">Writing</div>

@@ -10,7 +10,18 @@
 #   GEM_HOME=/tmp/gems gem install liquid --no-document
 #   GEM_HOME=/tmp/gems ruby script/preflight.rb
 require "yaml"
-require "liquid"
+begin
+  require "liquid"
+rescue LoadError
+  abort "preflight: the liquid gem is missing. Install it, then re-run:\n" \
+        "  GEM_HOME=/tmp/gems gem install liquid --no-document\n" \
+        "  GEM_HOME=/tmp/gems ruby script/preflight.rb"
+end
+
+if Liquid::VERSION.split(".").first.to_i < 5
+  abort "preflight: liquid #{Liquid::VERSION} is too old — it calls String#tainted?, removed " \
+        "in Ruby 3.2+. Install a current liquid into a scratch GEM_HOME (see the header)."
+end
 
 # Plain Liquid doesn't know Jekyll's own tags or the plugin tags github-pages loads, so
 # register no-op stubs. Without these, a perfectly valid {% seo %} reads as a syntax error
@@ -19,10 +30,10 @@ NOOP_TAGS  = %w[seo feed_meta gist highlight endhighlight avatar]
 BLOCK_TAGS = %w[highlight]
 ENVIRONMENT = Liquid::Environment.build do |env|
   (NOOP_TAGS - BLOCK_TAGS).each do |name|
-    env.register_tag(name, Class.new(Liquid::Tag) { def render(_ctx) = "" })
+    env.register_tag(name, Class.new(Liquid::Tag) { def render(_ctx); ""; end })
   end
   BLOCK_TAGS.each do |name|
-    env.register_tag(name, Class.new(Liquid::Block) { def render(_ctx) = "" })
+    env.register_tag(name, Class.new(Liquid::Block) { def render(_ctx); ""; end })
   end
 end
 
