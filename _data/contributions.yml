@@ -1,4 +1,6 @@
+# Repos Taylor contributes to but does NOT effectively author. His own projects belong in
+# projects.yml even when they live under the tenstorrent org — tt-vscode-toolkit, tt-toplike,
+# tt-local-generator, tt-animatediff and tt-quietbox2-guide moved there on 2026-08-17 because
+# they are one-person projects (105/109, 54/57, 291/293, 9/10 and 112/114 commits his).
 - repo: tenstorrent/tt-awesome
-- repo: tenstorrent/tt-vscode-toolkit
-- repo: tenstorrent/tt-local-generator
-- repo: tenstorrent/tt-toplike
+- repo: tenstorrent/tt-kernel-package-manager

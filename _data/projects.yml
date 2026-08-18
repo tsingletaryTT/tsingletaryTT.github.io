@@ -1,3 +1,82 @@
+- name: tt-vscode-toolkit
+  lang: TypeScript · Python · VS Code extension
+  desc: >
+    A complete learning and development environment for Tenstorrent hardware, shipped on the
+    VS Code Marketplace: 53 interactive lessons from hardware detection through custom
+    training, click-to-run commands instead of copy-paste, production-ready templates, live
+    device telemetry in the status bar, and hardware auto-detection that tailors the guidance
+    to whatever accelerator you actually have. Covers vLLM, TT-Forge, TT-XLA and TT-Metalium.
+  url: https://github.com/tenstorrent/tt-vscode-toolkit
+  site: https://docs.tenstorrent.com/tt-vscode-toolkit/
+  media: assets/img/projects/tt-vscode-toolkit.webp
+  media_kind: shot
+  media_alt: >-
+    VS Code with the toolkit open: a lesson tree on the left, a particle-life lesson with code
+    in the middle, its rendered output top-right, and simulation results in the terminal.
+  media_note: >-
+    A lesson mid-run — tree of 53 on the left, the code, its output, and live device telemetry
+    in the status bar.
+
+- name: tt-toplike
+  lang: Rust
+  desc: >
+    Real-time hardware monitoring for Grayskull, Wormhole and Blackhole silicon — top(1) if it
+    had been designed to be looked at. The visualizations aren't decorative: every particle,
+    star and colour shift maps to a real signal off the chip, read from the driver's sysfs
+    attributes (power, die temperature, current, three clock domains, DDR training state, ECC
+    counters, PCIe throughput, the ARC firmware heartbeat). An adaptive baseline learns your
+    chip's idle state, so a 20 W card and an 80 W card read the same at the same fraction above
+    idle.
+  url: https://github.com/tenstorrent/tt-toplike
+  site: https://docs.tenstorrent.com/tt-toplike/
+  media: assets/img/projects/tt-toplike.mp4
+  poster: assets/img/projects/tt-toplike.webp
+  media_kind: clip
+  media_alt: >-
+    Arcade mode: a starfield of Tensix cores, a Memory Castle panel and a memory-flow lane, all
+    pulsing in colour across four Blackhole chips under load.
+  media_note: >-
+    Arcade mode, four Blackhole chips under LLM inference. Hue tracks temperature, drifts with
+    time, and offsets per core — so the grid shows a wave instead of flipping all at once.
+
+- name: tt-quietbox2-guide
+  lang: JavaScript · Nunjucks · docs site
+  desc: >
+    The handbook for the Tenstorrent QuietBox 2 — first boot to confident daily use, organised
+    as four paths (explore, run & build, tinker, customize) across 23 chapters. Unboxing and
+    power-on, system access and administration, workloads and development flows,
+    troubleshooting and recovery, then command and configuration reference.
+  url: https://github.com/tenstorrent/tt-quietbox2-guide
+  site: https://docs.tenstorrent.com/tt-quietbox2-guide/
+  media: assets/img/projects/tt-quietbox2-guide.webp
+  media_kind: shot
+  media_alt: >-
+    The guide's landing page: a four-circle Venn diagram of learning paths beside cards for
+    Explore, Run & build, Tinker and Customize, each with a chapter count and reading time.
+  media_note: >-
+    The landing page — four overlapping paths through the machine, each with its chapter count
+    and how long it takes.
+
+- name: tt-local-generator
+  lang: Python · GTK4
+  desc: >
+    A desktop UI for generating video, images and generative art entirely on your own
+    Tenstorrent hardware — Wan2.2 and SkyReels for text- and image-to-video, FLUX.1 and
+    Z-Image for stills, AnimateDiff for looping GIFs, plus a local LLM that writes the
+    imaginative prompts to feed them. Nothing leaves the box. TT-TV turns the whole thing into
+    an endless channel that queues its own prompts and plays the results.
+  url: https://github.com/tenstorrent/tt-local-generator
+  site: https://docs.tenstorrent.com/tt-local-generator/
+  media: assets/img/projects/tt-local-generator.mp4
+  poster: assets/img/projects/tt-local-generator.webp
+  media_kind: clip
+  media_alt: >-
+    TT-TV playing a generated video full-screen, with a sidebar of queued upcoming prompts and
+    the current prompt printed underneath.
+  media_note: >-
+    TT-TV — the machine writing its own prompts, generating the video, and playing it back as a
+    channel that never runs out.
+
 - name: tt-tnt
   lang: Python · ttml / tt-train
   desc: >
@@ -67,6 +146,26 @@
     Split terminal: a matmul burst running on the left, live board telemetry climbing on the right.
   media_note: >-
     Ouroboros — tt-demo recording tt-demo. Left pane drives a real matmul burst; right pane watches the board react to its own filming.
+
+- name: tt-animatediff
+  lang: Python · TTNN
+  desc: >
+    AnimateDiff on Blackhole, in three phases: temporally coherent video on CPU with the full
+    MotionAdapter, then spatial denoising accelerated by the TTNN UNet, then MotionAdapter
+    temporal attention injected directly into the Blackhole denoising loop — no distillation,
+    weights loaded straight from the upstream adapter. Eight frames at 25 steps, about 15
+    seconds a frame.
+  url: https://github.com/tenstorrent/tt-animatediff
+  site: https://docs.tenstorrent.com/tt-animatediff/
+  media: assets/img/projects/tt-animatediff.mp4
+  poster: assets/img/projects/tt-animatediff.webp
+  media_kind: clip
+  media_alt: >-
+    A short looping animation of a cathedral interior, light and structure shifting frame to
+    frame.
+  media_note: >-
+    Eight frames of "cathedral," denoised on a Blackhole P300C with temporal attention injected
+    into the loop.
 
 - name: tt-midi-maker
   lang: Python · MCP server

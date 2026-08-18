@@ -46,6 +46,33 @@ Installing a real Ruby 3.x would fix the build properly; nobody has done it yet.
 
 ## What happened
 
+**2026-08-17 — the tenstorrent-org projects are Taylor's work, not "contributions."** Prompt:
+*"include the repos I contribute heavily to from tenstorrent too. tt-vscode-toolkit,
+tt-local-generator, tt-toplike, tt-animatediff, tt-quietbox2-guide are all essentially
+one-person-projects: me."*
+
+Verified before moving them, via `repos/tenstorrent/<repo>/contributors` — he is
+**105/109, 291/293, 54/57, 9/10 and 112/114** commits respectively; everything else is
+drive-by commits, Copilot, and bots. So all five became full `projects.yml` entries with
+figures, and the three that had been sitting under **Contributing To were removed from
+`contributions.yml`** — listing them there framed his own projects as somebody else's.
+
+**The rule now written at the top of `contributions.yml`:** ownership follows authorship, not
+the GitHub org. A repo under `tenstorrent/` still belongs in `projects.yml` when Taylor
+effectively wrote it. Contributing To is only for repos he genuinely contributes to without
+authoring — which leaves `tt-awesome` (95 human commits but a curated list with outside
+contributors) and `tt-kernel-package-manager` (1 commit).
+
+Ordering: the four largest org projects lead Selected Work, with `tt-animatediff` slotted
+beside the other generative work rather than at the top. That is an editorial call, easy to
+change by reordering the file.
+
+For `tt-quietbox2-guide` there was no usable asset in the repo — it *is* a website — so its
+figure is a headless-Chrome screenshot of the published guide at docs.tenstorrent.com. Also
+note `<video loop>` already repeats a clip, so don't `-stream_loop` a short GIF when
+transcoding: doing that to tt-animatediff's 1.9-second loop made a 3.7 MB file where 422 KB
+does the same job.
+
 **2026-08-17 — the CLAUDE.md in this repo broke the Pages build once.** Worth knowing before
 you add any markdown here. `github-pages` loads **jekyll-optional-front-matter**, which makes
 every `.md` file a page and renders Liquid inside it — **fenced code blocks do not protect
