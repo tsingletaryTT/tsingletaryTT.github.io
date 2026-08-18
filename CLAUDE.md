@@ -137,6 +137,27 @@ real preview — render the Selected Work loop, inline `style.css`, write one HT
 tt-forge-compiletron frame (a 2204px-wide TUI crushed into a 632px column) was caught; it is
 now cropped to `crop=1010:540:0:180`, the pane that actually has content.
 
+**2026-08-18 — the Atom feed existed but was undiscoverable.** Prompt: *"is the rss or atom
+feed for this blog present?"* → *"yes add them, and include feed discovery on the home page
+of the site too."*
+
+`jekyll-feed` has been in `_config.yml` all along, so `/feed.xml` was already being generated
+and served (valid Atom 1.0, full post content, correct author/subtitle). What was missing is
+the pointer: **`{% raw %}{% seo %}{% endraw %}` does not emit a feed link.** `jekyll-seo-tag`
+and `jekyll-feed` are independent plugins, and `{% raw %}{% feed_meta %}{% endraw %}` — the
+tag that writes `<link rel="alternate" type="application/atom+xml">` — had never been added.
+The feed was reachable only by typing the URL.
+
+`feed_meta` now sits in `_layouts/default.html`, which covers the homepage, `/writing/` and
+every post in one place. Visible links for humans as well as readers: **`rss / atom feed`** in
+the layout footer (so it shows on the homepage), **`RSS ↗`** next to *View all writing* on the
+homepage, and **`Subscribe · RSS ↗`** under the archive list. Two `.view-all` links now sit
+side by side, hence `.view-all + .view-all { margin-left: 18px }`.
+
+Verified against the deployed site, not the source: `curl | grep atom` on all three page types
+returns the link tag. Only `/feed.xml` exists — `/atom.xml`, `/rss.xml` and `/feed/` 404, which
+is normal jekyll-feed behavior; don't "fix" it.
+
 **2026-08-18 — the AnimateDiff post went live; only one of the five drafts is indexed.**
 Prompt: *"how ready is the animatediff blog post here to just be part of the blog interface
 of this site."* → *"let's just have the 06-23 post indexed or made live."*
