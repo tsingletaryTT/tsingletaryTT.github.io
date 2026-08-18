@@ -59,9 +59,12 @@ figures, and the three that had been sitting under **Contributing To were remove
 
 **The rule now written at the top of `contributions.yml`:** ownership follows authorship, not
 the GitHub org. A repo under `tenstorrent/` still belongs in `projects.yml` when Taylor
-effectively wrote it. Contributing To is only for repos he genuinely contributes to without
-authoring — which leaves `tt-awesome` (95 human commits but a curated list with outside
-contributors) and `tt-kernel-package-manager` (1 commit).
+effectively wrote it. `tt-awesome` moved across on a follow-up prompt — *"put tt-awesome here
+too, but not tt-kernel-package-manager"* — and it belongs in Selected Work for exactly the same
+reason: the 151 entries are the community's, but the JSON schema, the generator, the Eleventy
+site and the submission flow are all his. **Contributing To is therefore down to a single
+entry** (`tt-kernel-package-manager`), which leaves that grid holding one half-width card. Left
+as-is deliberately; if it should go away or grow, that is Taylor's call, not a silent redesign.
 
 Ordering: the four largest org projects lead Selected Work, with `tt-animatediff` slotted
 beside the other generative work rather than at the top. That is an editorial call, easy to

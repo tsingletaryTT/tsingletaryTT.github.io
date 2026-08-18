@@ -77,6 +77,25 @@
     TT-TV — the machine writing its own prompts, generating the video, and playing it back as a
     channel that never runs out.
 
+- name: tt-awesome
+  lang: JavaScript · Eleventy · curated directory
+  desc: >
+    The community directory for the Tenstorrent ecosystem — over 150 projects, tools, models
+    and papers across 13 categories, each tagged community, affiliated or official. Taylor
+    built and maintains the thing: entries are JSON files, the README and the site are both
+    generated from them, and anyone can submit one through an issue template. The content is
+    the ecosystem's; the machinery is his.
+  url: https://github.com/tenstorrent/tt-awesome
+  site: https://docs.tenstorrent.com/tt-awesome/
+  media: assets/img/projects/tt-awesome.webp
+  media_kind: shot
+  media_alt: >-
+    The tt-awesome site: a category sidebar, a search box over 151 entries, headline counts of
+    151 projects and 13 categories, and a grid of category cards each previewing an entry.
+  media_note: >-
+    The directory itself — 151 entries, 13 categories, searchable, with a submit button that
+    opens an issue template.
+
 - name: tt-tnt
   lang: Python · ttml / tt-train
   desc: >
