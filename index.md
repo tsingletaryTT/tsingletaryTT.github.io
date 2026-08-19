@@ -27,13 +27,19 @@ layout: default
     <div class="project-desc">{{ project.desc }}</div>
     {% if project.media %}
     <figure class="project-media project-media--{{ project.media_kind }}">
+      {%- comment -%}
+        media_alt lands inside an HTML attribute, so it MUST be escaped. An unescaped double
+        quote in a figure's alt text closes the attribute early, kramdown then fails to parse
+        the tag and ships it to the page as escaped text — a visible "&lt;img src=..." string
+        where the figure should be. media_note and desc are element text and need no filter.
+      {%- endcomment -%}
       {% if project.media_kind == 'clip' %}
       <video src="{{ project.media | relative_url }}"
              poster="{{ project.poster | relative_url }}"
              autoplay loop muted playsinline preload="metadata"
-             aria-label="{{ project.media_alt }}"></video>
+             aria-label="{{ project.media_alt | escape }}"></video>
       {% else %}
-      <img src="{{ project.media | relative_url }}" alt="{{ project.media_alt }}"
+      <img src="{{ project.media | relative_url }}" alt="{{ project.media_alt | escape }}"
            loading="lazy" decoding="async">
       {% endif %}
       {% if project.media_note %}<figcaption>{{ project.media_note }}</figcaption>{% endif %}

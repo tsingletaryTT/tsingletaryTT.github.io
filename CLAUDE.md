@@ -153,6 +153,16 @@ img` therefore caps at **300px** with `width:auto` and applies **`filter: bright
 the same dim tt-tnt's own site uses on it, per that repo's brand README. Verified by rendering
 the entry through the Liquid trick and screenshotting it, not by reading the CSS.
 
+**A bug this shipped and then fixed, worth knowing before you write any `media_alt`:** that
+alt text was the first to contain a **double quote** (`hand-lettered "Tenstorrent"`), and
+`index.md` interpolated it into the attribute raw. The quote closed `alt=` early, kramdown then
+could not parse the tag, and it **escaped the whole `<img>` onto the page** — visible
+`&lt;img src="…"` text where the figure belongs, with nothing failing the build and the
+preflight passing. `media_alt` and the clip `aria-label` now go through **`| escape`**.
+`media_note` and `desc` are element text, so they can keep their quotes (tt-animatediff and
+tt-midi-maker both do). Caught only by grepping the deployed HTML — the local Liquid render
+does not run kramdown, so it cannot reproduce this class of breakage.
+
 `assets/img/projects/tt-tnt.svg` (the loss chart) was **deleted**, so nothing on the site is
 `media_kind: chart` any more. The `.project-media--chart` rule stays — the kind still works, it
 just has no users. There was never a committed generator for that SVG, so if you want it back,
