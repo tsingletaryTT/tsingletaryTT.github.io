@@ -13,7 +13,7 @@ Jekyll on GitHub Pages, served at https://tsingletarytt.github.io.
   `url` (GitHub), and optional `site` (a live GitHub Pages demo → renders a "Live site" link).
   **Order is editorial, not chronological** — newest/most substantial first.
   Every entry also carries a figure: `media` (path under `assets/img/projects/`),
-  `media_kind` (`clip` · `shot` · `card` · `chart`), `media_alt`, `media_note`, and
+  `media_kind` (`clip` · `shot` · `card` · `chart` · `logo`), `media_alt`, `media_note`, and
   `poster` for clips. Generators for the `card` and `chart` kinds are described below.
 * `_data/contributions.yml` — the Contributing To grid; `repo: org/name` only, rendered by
   splitting on `/`.
@@ -122,10 +122,11 @@ renders them as a `<figure>`. Four kinds, because the repos have four kinds of g
   leading must be ~1.23× the font size or box-drawing verticals render as dashes, and
   several READMEs' box art is off by a character, so the generator pads before the trailing
   border to square up the right edge (text untouched).
-* **`chart`** (1) — tt-tnt has no images but does have `docs/measurements/`, so its figure is
-  a per-source loss chart built from its own JSON. Colour went through the `dataviz` skill's
-  validator: the site's `--teal` (#4FD1C5) **fails** the dark-mode lightness band at L 0.786,
-  so the bars use **#00A99D**, which passes all six checks against the #111318 surface.
+* **`chart`** (1, since replaced — see 2026-08-19 below) — tt-tnt had no images but does have
+  `docs/measurements/`, so its figure was a per-source loss chart built from its own JSON.
+  Colour went through the `dataviz` skill's validator: the site's `--teal` (#4FD1C5) **fails**
+  the dark-mode lightness band at L 0.786, so the bars used **#00A99D**, which passes all six
+  checks against the #111318 surface.
 
 Cards render at natural width (`width:auto`) — upscaling monospace to fill the column blurs
 it. Clips honour `prefers-reduced-motion` via a small script in `index.md` that swaps autoplay
@@ -136,6 +137,27 @@ real preview — render the Selected Work loop, inline `style.css`, write one HT
 `chrome --headless --screenshot` it and *look*. That is how the unreadable
 tt-forge-compiletron frame (a 2204px-wide TUI crushed into a 632px column) was caught; it is
 now cropped to `crop=1010:540:0:180`, the pane that actually has content.
+
+**2026-08-19 — tt-tnt's figure is now its logo, and `logo` is a fifth `media_kind`.**
+Prompt: *"tt-tnt now has its own logo that could be used on our microsite"* — asked whether to
+replace the loss chart or keep both, answer was **replace**.
+
+The source of truth is `tt-tnt/docs/brand/`, which ships five sizes plus a `README.md`
+explaining them. The site's copy is `assets/img/projects/tt-tnt-logo.webp` — **600px**,
+derived from the 1400px `tt-tnt-logo.jpg` master (the one that repo designates as its hero /
+`og:image`), 52 KB. 600 because the figure renders at 300px, so this is the 2× asset.
+
+**The drawing is light-on-pale, which is the whole reason `logo` needed its own kind.** At the
+column's full 632px it reads as a lit panel floating over a `#0a0d12` page. `.project-media--logo
+img` therefore caps at **300px** with `width:auto` and applies **`filter: brightness(.9)`** —
+the same dim tt-tnt's own site uses on it, per that repo's brand README. Verified by rendering
+the entry through the Liquid trick and screenshotting it, not by reading the CSS.
+
+`assets/img/projects/tt-tnt.svg` (the loss chart) was **deleted**, so nothing on the site is
+`media_kind: chart` any more. The `.project-media--chart` rule stays — the kind still works, it
+just has no users. There was never a committed generator for that SVG, so if you want it back,
+take it out of git history (`git show 8e53930:assets/img/projects/tt-tnt.svg`) rather than
+trying to rebuild it.
 
 **2026-08-18 — the Atom feed existed but was undiscoverable.** Prompt: *"is the rss or atom
 feed for this blog present?"* → *"yes add them, and include feed discovery on the home page

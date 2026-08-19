@@ -107,12 +107,12 @@
     Weights and the corpus recipe are public on Hugging Face.
   url: https://github.com/tsingletaryTT/tt-tnt
   site: https://tsingletarytt.github.io/tt-tnt/
-  media: assets/img/projects/tt-tnt.svg
-  media_kind: chart
+  media: assets/img/projects/tt-tnt-logo.webp
+  media_kind: logo
   media_alt: >-
-    Bar chart of mean loss for each of the nine corpus sources at step 10,787: TinyStories lowest at 1.82, poetry highest at 5.01.
+    tt-tnt's logo: a hand-drawn figure with TT-TNT lettered on its chest, standing on a grid of Tensix cores, SRAM and NoC routers, beside a hand-lettered "Tenstorrent".
   media_note: >-
-    Built from the repo's own docs/measurements. TinyStories is a third of the blend and the easiest text in it; poetry is 1% and the hardest.
+    The project's own mark, drawn by hand rather than generated. The figure's skull is open at the back, and there is a die in it.
 
 - name: tt-bio-demo
   lang: Python · GTK4 + OpenGL

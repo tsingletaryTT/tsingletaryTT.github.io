@@ -209,6 +209,15 @@ a:focus-visible,
   border-radius: 0;
   background: none;
 }
+/* The one hand-drawn mark in the list. It is a light drawing on a pale ground, so at full
+   column width it reads as a lit panel floating over a dark page — hence the 300px cap and
+   the same brightness(.9) dim that tt-tnt's own site applies to it. */
+.project-media--logo img {
+  width: auto;
+  max-width: 300px;
+  border: 1px solid var(--border);
+  filter: brightness(.9);
+}
 .project-media figcaption {
   margin-top: 9px;
   font-family: var(--mono);
