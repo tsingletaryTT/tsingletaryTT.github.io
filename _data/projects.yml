@@ -114,6 +114,28 @@
   media_note: >-
     The project's own mark, drawn by hand rather than generated. The figure's skull is open at the back, and there is a die in it.
 
+- name: tt-vjepa2
+  lang: Python · TTNN
+  desc: >
+    A TTNN bring-up of Meta's V-JEPA 2-AC — a self-supervised video encoder plus an
+    action-conditioned, frame-causal predictor — running end to end on Blackhole: the
+    ViT-giant encoder's 40 blocks and the predictor's 24, at PCC 0.997 against the
+    reference implementation. 120.7 ms per forward pass traced-replay, against 4.3
+    seconds for the unmodified reference on the same machine's CPU. Ships a Gradio show
+    that proves it works without ever generating a pixel: the model predicts embeddings,
+    so a robot arm dances to a chained choreography of imagined rollouts, and a real port
+    of Meta's CEM planner searches for the action that was actually taken.
+  url: https://github.com/tsingletaryTT/tt-vjepa2
+  site: https://tsingletarytt.github.io/tt-vjepa2/
+  media: assets/img/projects/tt-vjepa2.webp
+  media_kind: shot
+  media_alt: >-
+    The tt-vjepa2 microsite hero: "A world model that predicts what happens next — never
+    what it looks like", over a dark teal gradient.
+  media_note: >-
+    The project's own microsite — the bring-up written up as a story, from the RoPE bug
+    to the dancing arm.
+
 - name: tt-bio-demo
   lang: Python · GTK4 + OpenGL
   desc: >
@@ -148,6 +170,25 @@
     Terminal output of gozer status: two chips HELD by a lease, two BUSY-UNTRACKED with no lease, and one queued request.
   media_note: >-
     Two chips leased, two in use without one. BUSY-UNTRACKED is the state gozer exists to make visible.
+
+- name: tt-discolike
+  lang: Python · FastAPI + htmx
+  desc: >
+    A local catalog and launcher for the one-off Gradio demos that pile up around scarce
+    hardware. Tenstorrent chips are contended, so demos get built, shown once, and
+    forgotten — there's no way to bring one back up later. Any repo joins the catalog by
+    committing a small manifest; the page starts and stops each app as a systemd --user
+    unit and hands off to gozer for chip leasing when it's installed. Named after Disco,
+    the self-hosted PaaS, but deliberately not built on it: Docker Swarm's execution
+    model fights chip passthrough, and gozer tracks leases by host PID.
+  url: https://github.com/tsingletaryTT/tt-discolike
+  media: assets/img/projects/tt-discolike.webp
+  media_kind: shot
+  media_alt: >-
+    The tt-discolike catalog page: animatediff and vjepa2 as cards, each with an INACTIVE
+    status badge and Start/Stop buttons.
+  media_note: >-
+    Two demos in the catalog, both idle — including the vjepa2 one listed just above.
 
 - name: tt-demo-maker
   lang: Rust · tmux + asciinema

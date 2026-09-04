@@ -42,9 +42,63 @@ GEM_HOME=/tmp/gems ruby -ryaml -rliquid -e '
 (Use a current `liquid` — the 4.0.3 that ships with Homebrew Ruby calls `String#tainted?`,
 removed in Ruby 3.2+, and every variable renders as `Liquid error: internal`.)
 
+**Both recipes need Homebrew's Ruby spelled out.** A bare `ruby` on this Mac is system
+Ruby 2.6, and `gem install liquid` under it fails outright — liquid requires >= 3.0. Use
+`/opt/homebrew/Cellar/ruby/4.0.1/bin/{gem,ruby}` for the install *and* the run; `/tmp/gems`
+also gets cleared, so expect to reinstall liquid in a fresh session.
+
 Installing a real Ruby 3.x would fix the build properly; nobody has done it yet.
 
 ## What happened
+
+**2026-09-04 — tt-vjepa2 and tt-discolike, and the private-repo trap in a repo diff.**
+Prompt: *"Look for new projects in tsingletaryTT and let's propose adding them in like the
+other entries; should be a model and a tt-discolike and maybe something else new?"*
+
+Answer to "maybe something else new?": **no** — those two were the only additions.
+`projects.yml` is now 24 entries. Everything else unlisted is a fork whose work isn't
+Taylor's, this site's own repo, or already-deliberate omissions (`tt-cli`, `tt-jukebox`).
+
+**`gh repo list` shows your own private repos, and the first sweep here nearly published
+one.** `tt-home` looked like a legitimate third candidate — it's a real one-person project
+and it was sitting right there in the listing — but it is **private**, and its own README
+opens with "contains SSH keys, API tokens, and personal config." Same trap in the org:
+`devrel-internal-analysis` is 100/100 Taylor's commits and also private. **Always pass
+`--visibility public`** when diffing for this site; the fork/archive filters alone are not
+enough. (`tt_transformers` and `tt-cli-internal-prototype`, both new in the org, are
+`internal`, and the latter is knauth's at 62 commits.)
+
+**Figures: both `shot`, and in both cases the obvious asset was the wrong one.**
+
+* **tt-vjepa2** ships four PNGs in `docs/assets/`, but they are all sparse 3D plotly
+  stages on near-black — a tiny arm in a wireframe box, which at 632px reads as an empty
+  rectangle. Its figure is instead a headless-Chrome capture of the published microsite
+  hero at 1264×680 (2× the column), the same move `tt-quietbox2-guide` makes. 43 KB.
+* **tt-discolike**'s README screenshot was already right — 900×340, dark teal, on-palette
+  — but a third of its height was empty page below the cards. Cropped to 900×258, 10 KB.
+  **Crop with `ffmpeg -vf crop=w:h:0:0`, not `sips -c`:** `sips -c` crops *centered*, which
+  silently ate the `tt-discolike` header bar, and its `--cropOffset` is measured from that
+  center in a way that isn't worth reverse-engineering.
+
+Nice accident: the discolike figure's catalog lists `vjepa2` as an entry, so the two new
+figures point at each other, and `media_note` says so.
+
+**tt-vjepa2's `media_alt` is the second one to contain a double quote** (the microsite's
+own headline). The `| escape` fix from 2026-08-19 held — verified by grepping the rendered
+HTML for `&quot;`, which is the check to run, not eyeballing the page.
+
+**Three harness bugs, all in the preview trick rather than the site — worth knowing before
+you trust one of its screenshots.** Rendering `index.md`'s loop into a standalone file only
+reproduces the real page if the wrapper matches, and twice it didn't:
+
+* the container class is **`.site`** (`max-width: 680px; padding: 0 24px`), not `.wrap`.
+  With the wrong class there is no max-width at all and every line runs off-frame.
+* the harness needs **`<meta name="viewport">`**, which `_layouts/default.html` has.
+* **headless Chrome clamps its window to a ~500px minimum.** `--window-size=380` renders a
+  **500px** layout and then crops the screenshot to 380, which looks exactly like content
+  overflowing its column. Don't chase that as a CSS bug — 500px is the narrowest layout
+  this method can actually test. Measure before believing a screenshot:
+  `--dump-dom` with a script that reports `window.innerWidth` and any element wider than it.
 
 **2026-08-17 — the tenstorrent-org projects are Taylor's work, not "contributions."** Prompt:
 *"include the repos I contribute heavily to from tenstorrent too. tt-vscode-toolkit,
