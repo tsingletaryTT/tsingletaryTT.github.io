@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 557 241" width="557" height="241" role="img" aria-label="Output of tt-cv-agency's roundtrip test: five MIDI CC values written to a live VCV Rack patch, each with the audio RMS measured back from it, rising evenly from 0.00 to 9042.26.">
+<rect x="0.5" y="0.5" width="556" height="240" rx="6" fill="#111318" stroke="#232730"/>
+<circle cx="28" cy="24" r="4" fill="#4FD1C5"/>
+<text x="42" y="28" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="11.5" fill="#607D8B">roundtrip_test.py — Phase 1, no ML in the loop yet</text>
+<line x1="0" y1="36" x2="557" y2="36" stroke="#232730"/>
+<text y="59" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">$</tspan><tspan x="31.83" fill="#4FD1C5"> python roundtrip_test.py</tspan></text>
+<text y="91" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">CC value    measured RMS</tspan></text>
+<text y="107" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">       0            </tspan><tspan x="180.57" fill="#4FD1C5">0.00</tspan></text>
+<text y="123" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">      32            </tspan><tspan x="180.57" fill="#4FD1C5">0.00</tspan><tspan x="211.89" fill="#607D8B">   near-silent at low VCA level, expected</tspan></text>
+<text y="139" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">      64         </tspan><tspan x="157.09" fill="#4FD1C5">3014.12</tspan></text>
+<text y="155" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">      96         </tspan><tspan x="157.09" fill="#4FD1C5">6029.75</tspan></text>
+<text y="171" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">     127         </tspan><tspan x="157.09" fill="#4FD1C5">9042.26</tspan></text>
+<text y="203" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">evenly-spaced control values produce evenly-spaced audio</tspan></text>
+<text y="219" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">response — a real closed loop, not a coincidence</tspan></text>
+</svg>

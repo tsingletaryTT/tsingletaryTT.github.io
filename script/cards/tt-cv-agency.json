@@ -1,0 +1,17 @@
+{
+  "title": "roundtrip_test.py — Phase 1, no ML in the loop yet",
+  "aria": "Output of tt-cv-agency's roundtrip test: five MIDI CC values written to a live VCV Rack patch, each with the audio RMS measured back from it, rising evenly from 0.00 to 9042.26.",
+  "lines": [
+    [{"t": "$", "c": "muted"}, {"t": " python roundtrip_test.py", "c": "teal"}],
+    [],
+    [{"t": "CC value    measured RMS", "c": "muted"}],
+    [{"t": "       0            ", "c": "body"}, {"t": "0.00", "c": "teal"}],
+    [{"t": "      32            ", "c": "body"}, {"t": "0.00", "c": "teal"}, {"t": "   near-silent at low VCA level, expected", "c": "muted"}],
+    [{"t": "      64         ", "c": "body"}, {"t": "3014.12", "c": "teal"}],
+    [{"t": "      96         ", "c": "body"}, {"t": "6029.75", "c": "teal"}],
+    [{"t": "     127         ", "c": "body"}, {"t": "9042.26", "c": "teal"}],
+    [],
+    [{"t": "evenly-spaced control values produce evenly-spaced audio", "c": "muted"}],
+    [{"t": "response — a real closed loop, not a coincidence", "c": "muted"}]
+  ]
+}

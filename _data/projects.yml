@@ -136,6 +136,28 @@
     The project's own microsite — the bring-up written up as a story, from the RoPE bug
     to the dancing arm.
 
+- name: tt-cv-agency
+  lang: Python · TTNN · VCV Rack
+  desc: >
+    A model running on Tenstorrent hardware placed inside a synthesizer's control loop:
+    listen to the live audio, decide a control-voltage adjustment toward a goal, write it
+    back, repeat. A small inverse-regression model trained on CV sweeps against a live
+    patch runs its forward pass on a Blackhole chip via ttnn, and the CV backend is kept
+    behind an interface so the same loop should carry over from VCV Rack to real Eurorack
+    through Expert Sleepers hardware. Work in progress, and the write-up says so: one of
+    three target features converges reliably, and a review that caught the pitch estimator
+    silently returning a clipped constant is why the other two are honestly reported rather
+    than quietly dropped.
+  url: https://github.com/tsingletaryTT/tt-cv-agency
+  media: assets/img/projects/tt-cv-agency.svg
+  media_kind: card
+  media_alt: >-
+    Output of tt-cv-agency's roundtrip test: five MIDI CC values written to a live VCV Rack
+    patch, each with the audio RMS measured back from it, rising evenly from 0.00 to 9042.26.
+  media_note: >-
+    Phase 1, before any model: evenly-spaced control values produce evenly-spaced audio.
+    Proof the loop is really closed.
+
 - name: tt-bio-demo
   lang: Python · GTK4 + OpenGL
   desc: >
@@ -164,12 +186,16 @@
     whether that's actually true, and when the two disagree the kernel wins. Let go and
     let Gozer.
   url: https://github.com/tsingletaryTT/tt-gozer
-  media: assets/img/projects/tt-gozer.svg
-  media_kind: card
+  site: https://tsingletarytt.github.io/tt-gozer/
+  media: assets/img/projects/tt-gozer.webp
+  media_kind: shot
   media_alt: >-
-    Terminal output of gozer status: two chips HELD by a lease, two BUSY-UNTRACKED with no lease, and one queued request.
+    The Gozer Containment Log microsite: a green phosphor GOZER wordmark over a report
+    header, and headline counts reading 7 entities on the line, 27 leases granted, 8 ghosts
+    exorcised, 22.7 hours of containment time reclaimed.
   media_note: >-
-    Two chips leased, two in use without one. BUSY-UNTRACKED is the state gozer exists to make visible.
+    Its own containment log, generated from the lease ledger — 47 hours in which seven
+    unrelated sessions took turns on two boards with nobody refereeing.
 
 - name: tt-discolike
   lang: Python · FastAPI + htmx
@@ -189,6 +215,28 @@
     status badge and Start/Stop buttons.
   media_note: >-
     Two demos in the catalog, both idle — including the vjepa2 one listed just above.
+
+- name: ttsim-blackhole
+  lang: Python · Docker · ttsim
+  desc: >
+    A public playground that runs real ttnn code against a simulated Tenstorrent Blackhole
+    chip, with no Tenstorrent hardware anywhere in the container — type a kernel, pick a
+    backend, and it streams back output from a real device driver talking to a virtual
+    chip. Built on Tenstorrent's own ttnn wheel plus ttsim from source, pinned to v1.10.1
+    because a later tag has a reproduced Blackhole regression on wide matmuls. The point is
+    the missing first step: anyone can try the actual API before they have the actual
+    silicon.
+  url: https://huggingface.co/spaces/episod/ttsim-blackhole
+  site: https://episod-ttsim-blackhole.hf.space
+  media: assets/img/projects/ttsim-blackhole.webp
+  media_kind: shot
+  media_alt: >-
+    The ttsim-blackhole playground: "Run real ttnn code on a simulated Blackhole chip",
+    with a kernel picker, a ttsim-bh Blackhole emulation backend, a Run button, and a
+    tensor-addition kernel in the editor.
+  media_note: >-
+    Real ttnn, no silicon. That kernel returns exit code 0 against the emulated chip in
+    about two simulated seconds.
 
 - name: tt-demo-maker
   lang: Rust · tmux + asciinema
