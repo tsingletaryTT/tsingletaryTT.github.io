@@ -27,7 +27,12 @@ a:focus-visible,
   border-radius: 2px;
 }
 
-.site { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+.site { max-width: 1440px; margin: 0 auto; padding: 0 32px; }
+/* Prose sections (hero, Writing, Contributing To) stay a readable column even
+   though .site itself now spans the full viewport — only Selected Work's card
+   grid is meant to use the width. Left-aligned, not centered, so it reads as
+   the start of the wide page rather than an island. */
+.prose { max-width: 680px; }
 
 /* ── Nav ──────────────────────────────────── */
 .site-nav {
@@ -71,14 +76,41 @@ a:focus-visible,
   color: var(--text-muted); margin-bottom: 24px; font-weight: 600;
 }
 
+/* ── Work filter + categories ────────────── */
+.work-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+.filter-pill {
+  font-family: var(--mono); font-size: 11px; color: var(--text-muted);
+  background: none; border: 1px solid var(--border-mid); border-radius: 999px;
+  padding: 7px 16px; cursor: pointer; transition: color 0.15s, border-color 0.15s;
+}
+.filter-pill:hover { color: var(--text); border-color: #4a4d56; }
+.filter-pill.active { color: var(--teal); border-color: var(--teal); background: rgba(79, 209, 197, 0.08); }
+
+.category-block { margin-bottom: 44px; }
+.category-block:last-child { margin-bottom: 0; }
+.category-label {
+  font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--text-muted); font-weight: 600;
+  margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--border);
+}
+
 /* ── Projects ────────────────────────────── */
-.project { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
-.project:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.project-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+.project {
+  display: flex; flex-direction: column;
+  background: var(--bg-surface);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 20px;
+}
+.project-header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 12px; margin-bottom: 10px; }
 .project-name { font-family: var(--mono); font-size: 16px; color: var(--teal); font-weight: 600; }
 .project-lang { font-size: 11px; color: var(--text-muted); font-family: var(--mono); }
 .project-desc { font-size: 14px; color: var(--text-dim); line-height: 1.7; margin-bottom: 10px; }
-.project-link { font-size: 11px; color: var(--text-muted); font-family: var(--mono); }
+.project-link { font-size: 11px; color: var(--text-muted); font-family: var(--mono); margin-right: 14px; }
 .project-link:hover { color: var(--teal); }
 
 /* ── Contributing To ─────────────────────── */
@@ -180,10 +212,12 @@ a:focus-visible,
 
 /* ── Responsive ──────────────────────────── */
 @media (max-width: 480px) {
+  .site { padding: 0 16px; }
   .hero-name { font-size: 36px; letter-spacing: -1.5px; }
   .contrib-grid { grid-template-columns: 1fr; }
   .post-item { flex-direction: column; gap: 4px; }
   .post-date { min-width: auto; }
+  .project-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Project media ───────────────────────── */
