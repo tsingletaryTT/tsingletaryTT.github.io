@@ -1,14 +1,15 @@
 ---
 layout: post
-title: "AnimateDiff on Tenstorrent Hardware: The Full Story"
+title: "Generating spooky loops with AnimateDiff on Tenstorrent Blackhole"
 date: 2026-06-23
 description: >
-  From wrong architecture to working video on Blackhole P300C — a complete account
-  of bringing AnimateDiff to TT hardware: what broke, what we tried, what the
-  hardware forced us to do differently, and what it looks like now.
+  How we brought the venerable AnimateDiff model to Tenstorrent hardware and
+  made mistakes along the way.
 ---
 
-This started as a tutorial. It turned into something longer — a genuine engineering journey with a wrong turn that ran for weeks, a distillation attempt that failed in an interesting way, and a set of TT-hardware-specific patterns that only emerged under pressure from the silicon. The tutorial parts are still here. So is everything else.
+You really don't need the most recent, most efficient, or most clever  tool to make great art. Rediscovering old devices and making them your own is all part of the process.  
+
+I wanted to teach people how to generate engaging video using whatever Tenstorrent hardware they had. This is the story of working through illusory wins and experimentation on the road to including tt-animatediff in  [`tt-local-generator`](https://docs.tenstorrent.com/tt-local-generator) today.
 
 ---
 
@@ -18,35 +19,41 @@ This started as a tutorial. It turned into something longer — a genuine engine
   <img src="/assets/animatediff/p4-chip-city.gif" alt="Chip City" style="max-width:200px;border-radius:4px">
 </div>
 
-*Generated on Blackhole P300C. 8 frames, 512×512, 25 steps PNDM. These exist because of everything that follows.*
+*I generated these loops on a Blackhole p300c. 8 frames, 512×512, 25 steps PNDM (_Pseudo Numerical Methods for Diffusion Models_).*
 
 ---
 
 ## How AnimateDiff models work
 
-AnimateDiff makes images move by adding temporal attention to Stable Diffusion. The standard SD UNet processes spatial positions within a single image. AnimateDiff inserts `TemporalTransformer` blocks — `AnimateDiffTransformer3D` in the diffusers implementation — at multiple points in the UNet. These blocks reshape the hidden states from `(batch×frames, channels, H, W)` to `(batch, frames, channels, H, W)` and run self-attention across the frame dimension instead of the spatial one. The result: each spatial position agrees with its counterpart in adjacent frames before the final image is committed.
+AnimateDiff makes images move. You give it a prompt, it "chooses" images and imagery in response and then it makes that image _move_ in a pleasant (some even say sometimes "spooky") loop. Your words made artful in moments.
 
-The motion weights live in `motion_module.py`. They're trained separately from the image model and loaded on top of any SD 1.x UNet. The checkpoint is `guoyww/animatediff-motion-adapter-v1-5-2`.
+AnimateDiff is based on Stable Diffusion, a common text-to-image model. When you add _temporal attention_, its UNet processes spatial positions within a single image. AnimateDiff inserts `TemporalTransformer` blocks — `AnimateDiffTransformer3D` in the diffusers implementation — at multiple points in the UNet. These blocks reshape the hidden states from `(batch×frames, channels, H, W)` to `(batch, frames, channels, H, W)` and run self-attention across the frame dimension instead of the spatial one. The result: each spatial position agrees with its counterpart in adjacent frames before the final image is committed. 
 
-That's the scope. Everything else is about making it work on the hardware.
+This agreement gives us a sense of motion and consistency in the generated loops. Arms can wave, hands can signal, worlds can spin. Animated moments of brilliance.
+
+Our [tt-animatediff port](https://github.com/tenstorrent/tt-animatediff), published on [Hugging Face](https://huggingface.co/episod/tt-animatediff), is a weights-free implementation for Tenstorrent hardware. If you run it on the CPU path our use the CLI,  it uses the full MotionAdapter. 
+
+Serving on Blackhole, however, runs a Stable Diffusion 1.4 UNet and VAE through TT-NN and _approximates_ AnimateDiff motion with cross-frame temporal attention, without loading the upstream MotionAdapter checkpoint. We do it our own way.
+
+
 
 ---
 
 ## AnimateDiff on other hardware: the landscape
 
-AnimateDiff has a healthy ecosystem on conventional GPU hardware, primarily through [ComfyUI](https://github.com/comfyanonymous/ComfyUI) and [sd-webui-animatediff](https://github.com/continue-revolution/sd-webui-animatediff). Understanding that landscape gives the Blackhole numbers context.
+AnimateDiff has a healthy, joyful ecosystem on conventional GPU hardware, with artists primarily using it through [ComfyUI](https://github.com/comfyanonymous/ComfyUI) and [sd-webui-animatediff](https://github.com/continue-revolution/sd-webui-animatediff).
 
-**RTX 4090 (24 GB GDDR6X)** is the current consumer reference point. Community benchmarks for 8–16 frames at 512×512 with SD 1.5 + MotionAdapter at 25 steps report 30 seconds to roughly 2 minutes end-to-end, depending on scheduler, xformers/torch.compile usage, and whether the VAE is fp16 or full precision. At ~75 it/s for a single SD 1.5 image, the spatial denoising alone per frame takes under a second; the overhead is motion module injection, VAE decode, and pipeline orchestration.
+**RTX 4090 (24 GB GDDR6X)** is a common consumer reference point. Community benchmarks for 8–16 frames at 512×512 with SD 1.5 + MotionAdapter at 25 steps report 30 seconds to roughly 2 minutes end-to-end, depending on the employed scheduler, xformers/torch.compile usage, and whether the VAE is fp16 or full precision.
 
 **RTX 3090 (24 GB GDDR6X)** runs roughly 25–35% slower than the 4090 at the same resolution and step count. For the same 8-frame, 512×512, 25-step workload, expect 45 seconds to 3 minutes. The 3090 remains viable because AnimateDiff's SD 1.5 base fits comfortably in 24 GB even with the MotionAdapter loaded.
 
-**A100 (40/80 GB HBM2e)** is the cloud datacenter reference. HBM memory bandwidth (~2 TB/s on the 80 GB variant) versus GDDR6X (~1 TB/s on the 4090) gives it a meaningful bandwidth advantage for attention-heavy workloads. SD 1.5 + AnimateDiff at 512×512 runs in roughly 15–30 seconds per 8-frame clip on an A100 80 GB. The 4090 comes close in practice because AnimateDiff's small feature dimensions mean it's less bandwidth-constrained than larger models.
+**A100 (40/80 GB HBM2e)** is the cloud datacenter reference. HBM memory bandwidth (~2 TB/s on the 80 GB variant) versus GDDR6X (~1 TB/s on the 4090) gives it a meaningful bandwidth advantage for attention-heavy workloads. SD 1.5 + AnimateDiff at 512×512 runs in roughly 15–30 seconds per 8-frame clip on an A100 80 GB. The 4090 comes close in practice because AnimateDiff's small feature dimensions make it less bandwidth-constrained than larger models.
 
 **H100 (80 GB HBM3)** — the current datacenter ceiling for this class of model — brings peak HBM bandwidth to ~3.35 TB/s. For SD 1.5-scale AnimateDiff, the practical speedup over an A100 is modest because the model is small enough that you hit compute saturation before bandwidth limits at 512×512. The H100's advantages show most clearly in higher-resolution or larger-batch workloads.
 
 **Cloud inference APIs** (Replicate, RunPod, Modal) serving AnimateDiff on A100 or H100 instances typically quote 15–45 seconds for an 8-frame, 512×512 clip at 20–25 steps, depending on cold-start and queue time. These numbers mix hardware generation and framework overhead making direct comparison difficult.
 
-**Blackhole P300C — this implementation:**
+**Blackhole p300c — this implementation:**
 
 | Mode | Config | s/frame | Notes |
 |---|---|---|---|
@@ -56,27 +63,58 @@ AnimateDiff has a healthy ecosystem on conventional GPU hardware, primarily thro
 | Phase 2.5 PNDM | 4 chip (QB2), 16fr | **~5.4** | in-process sharding, 2.3× per-frame gain |
 | 4-clip parallel | 4 chip (QB2), 4×8fr | ~26s/clip | one process per chip, ~105s/batch |
 
-The Phase 3 skip-path result (~62s for 8 frames with real MotionAdapter temporal attention) sits in the same range as A100 cloud inference. The 4-chip 16-frame sharded path at ~5.4 s/frame is faster than most community RTX 4090 benchmarks for the same frame count. Phase 2.5 at 8 frames (~100s) is slower than a tuned 4090 pipeline, though the comparison is apple-to-oranges: the TTNN pipeline runs unoptimized SD 1.4 without xformers or CUDA kernel fusion.
+Before I regale you with word salad about perf, let me show you this table that tells the story clearest for just the facts types.
 
-The more relevant frame is not raw speed — it's full AnimateDiff quality on non-NVIDIA silicon, running against unmodified motion adapter weights, without patching the accelerator runtime.
+Here's a comprehensive comparison table of the different reference tiers and Blackhole implementation:
+
+#### Comparison table
+| Hardware | Config | s/frame | 8-frame Total | Notes |
+|---|---|---|---|---|
+| **RTX 4090** | 24 GB GDDR6X, 8-16fr, 512×512, 25 steps | 30-120s | 240-960s | Consumer reference point |
+| **RTX 3090** | 24 GB GDDR6X, 8fr, 512×512, 25 steps | 45-180s | 360-1440s | 25-35% slower than 4090 |
+| **A100** | 40/80 GB HBM2e, datacenter, 8fr, 512×512, 20-25 steps | 15-45s | 120-360s | Cloud inference APIs (Replicate, RunPod, Modal) |
+| **H100** | 80 GB HBM3, datacenter ceiling, 8fr, 512×512, 20-25 steps | 15-45s | 120-360s | Modest improvement over A100 on SD 1.5-scale |
+| **Blackhole p300c — Phase 2.5** | 1 chip, 8fr, 512×512, 25 steps PNDM | ~12.5 | ~100s | Cross-frame blend at noise level |
+| **Blackhole p300c — Phase 3 skip** | 1 chip, 8fr, 512×512, 25 steps (skip up1+up2) | **~7.7** | **~62s** | Real MotionAdapter, 5 injection points, **fastest single-chip option** |
+| **Blackhole p300c — Phase 3 full** | 1 chip, 8fr, 512×512, 25 steps (all 7 injection pts) | ~52 | ~416s | Full temporal attention, same range as A100 cloud |
+| **Blackhole QB2 (4-chip)** | 4 chips, 16fr, 512×512, 25 steps PNDM | **~5.4** | **~86s** | In-process sharding, 2.3× per-frame gain over single chip |
+| **Blackhole QB2 parallel** | 4 chips, 4×8fr parallel | ~26s/clip | ~105s/batch | Multi-process throughput (one process per chip) |
+
+**Key insights:**
+- **Blackhole Phase 3 skip** (~7.7 s/frame) matches consumer GPU speed with full real temporal attention on non-NVIDIA silicon
+- **Blackhole QB2 16-frame sharding** (~5.4 s/frame) is faster than any reviewed cloud inference API option
+- Full Phase 3 on single chip (~52 s/frame) achieves A100-class performance without runtime patching
+- All Blackhole results run unmodified motion adapter weights with no accelerator runtime modifications
+
+The Phase 3 skip-path result (~62s for 8 frames with real MotionAdapter temporal attention) sits in the same range as A100 cloud inference. The 4-chip 16-frame sharded path at ~5.4 s/frame is faster than most community RTX 4090 benchmarks for the same frame count. Phase 2.5 at 8 frames (~100s) is slower than a tuned 4090 pipeline, though the comparison is apple-to-oranges: the TT-NN pipeline runs unoptimized SD 1.4 without xformers or CUDA kernel fusion.
+
+While we don't always beat CUDA implementations in raw speed — you still get full quality on our silicon, running against unmodified motion adapter weights, and all without patching the accelerator runtime.
 
 ---
 
 ## The wrong turn
 
+Full disclosure: I don't know all that much about the guts of models. I knew even less a few months ago. I wanted this to work and I wanted it to flow through our silicon.
+
 The original implementation applied `mm_sd_v15_v2.ckpt` motion weights to SD 3.5's DiT transformer.
 
-SD 3.5's DiT operates on 2432-dimensional features. The AnimateDiff motion weights were trained for SD 1.5's UNet, which operates on 320-dimensional features. The dimensions don't match. No temporal attention was applied — the transformer accepted the weight tensors, the shapes didn't align in the intended way, and the generation appeared to work because shared noise initialization across frames already produces some visual consistency. The "temporal coherence" was a mirage.
+SD 3.5's DiT (_diffiusion transformer_) operates on 2,432-dimensional features. The AnimateDiff motion weights were trained for SD 1.5's UNet, which operates on 320-dimensional features. The dimensions don't match. 
 
-This ran for weeks without triggering an obvious error. The outputs looked reasonable. The bug was only caught by switching to a matching architecture and comparing the results directly.
+The math didn't work. No temporal attention was applied — the transformer accepted the weight tensors, the shapes didn't align in the intended way, and the generation appeared to work because shared noise initialization across frames already produces some visual consistency. 
 
-The fix: use SD 1.4 UNet + MotionAdapter throughout. SD 1.4's UNet operates on 320-dim features — the same as the motion adapter's expectation. Once the architecture matched, the difference between "temporal coherence from shared noise" and "temporal coherence from trained attention" became visible immediately.
+The "temporal coherence" I experienced was a mirage. Art is funny like that. If it looks good, who cares?
+
+I generated loops for weeks without triggering an obvious error. The outputs looked reasonable to me. I only caught the bug by switching to an architecture that matched the original math and experiencing the difference.
+
+The fix: use SD 1.4 UNet + MotionAdapter throughout. SD 1.4's UNet operates on 320-dim features — the same the motion adapter expected. Once the architecture matched, the difference between "temporal coherence from shared noise" and "temporal coherence from trained attention" became visible immediately. Of course, since both approaches are artful in their own ways, you can lean in to the broken path still if you'd rather.
+
+Let's go deeper into the process of bring a model like this to Blackhole.
 
 ---
 
 ## Phase 1: CPU baseline
 
-With the architecture correct, Phase 1 is the simplest possible thing: wrap `diffusers.AnimateDiffPipeline` with the MotionAdapter checkpoint and run it on CPU.
+With the architecture correct, I started with the most logical thing: wrap `diffusers.AnimateDiffPipeline` with the MotionAdapter checkpoint and run it on CPU. We all need comparators.
 
 ```python
 from diffusers import AnimateDiffPipeline, MotionAdapter, DDIMScheduler
@@ -93,7 +131,7 @@ The CPU path remains in the repo. It's the easiest way to validate that a given 
 
 ## Phase 2: TTNN UNet on Blackhole
 
-The TTNN UNet for SD 1.4 lives in `tt-metal`. It's already compiled and tested for Blackhole via `TT_METAL_ARCH_NAME=blackhole`. Phase 2 loads it instead of the CPU UNet and runs frame generation on the Blackhole P300C.
+The TTNN UNet for SD 1.4 lives in `tt-metal`. It's already compiled and tested for Blackhole via `TT_METAL_ARCH_NAME=blackhole`. Phase 2 loads it instead of the CPU UNet and runs frame generation on the Blackhole p300c.
 
 ```python
 device = setup_blackhole()   # open_mesh_device across all available chips
@@ -102,7 +140,7 @@ ttnn_model, ttnn_vae = load_sd14_ttnn(device)
 frames = generate_frames_temporal(device, ttnn_model, ttnn_vae, ...)
 ```
 
-Speed on P300C: ~12.5 seconds per frame at 25 steps. Roughly 10× faster than CPU for the spatial denoising step.
+Speed on p300c: ~12.5 seconds per frame at 25 steps. Roughly 10× faster than CPU for the spatial denoising step.
 
 Two things worth noting about the setup code.
 
@@ -118,9 +156,11 @@ if any(read_hwmon_temp(p) > 1000 for p in hwmon_paths):
 
 ---
 
-## Phase 2.5: temporal coherence from the outside
+## Phase 2.5: the temporal coherence is coming from outside
 
 The TTNN UNet is a compiled monolith. You call `ttnn_model(latent, timestep, ...)` and get a noise prediction back. You cannot add TemporalTransformer blocks to its internals without modifying the `tt-metal` source.
+
+I don't modify `tt-metal` to get things done. [I monkey patch it](https://docs.tenstorrent.com/tt-vscode-toolkit/lessons/monkeypatch-ttnn/).
 
 The workaround: temporal attention at the latent noise-prediction level.
 
@@ -150,17 +190,17 @@ The `--temporal-alpha` parameter controls the blend weight. At 0.35 (default) yo
 
 ---
 
-## The distillation attempt
+## An ill-advised distillation attempt
 
-At this point the pipeline worked: real hardware, ~12.5 s/frame, decent coherence. The obvious next target was fewer steps — if you could distill a 4-step model, you'd be at ~2 s/frame.
+At this point the pipeline worked: real hardware, ~12.5 s/frame, decent coherence. The obvious next target was fewer steps — if we could distill a 4-step model, we'd get ~2 s/frame.
 
 LCM (Latent Consistency Model) distillation trains a student UNet to match the teacher's output in far fewer steps by learning the denoising trajectory directly. Four attempts were made, across different learning rates and distillation configurations.
 
-All four failed to converge. The loss landscape for distillation is sharp — the student has to match a highly structured multi-step trajectory, and the gradient signal is sensitive to LR in a range that's hard to bracket. At each attempted LR, the result was either flat (no learning) or divergence. The broken weights are archived in `weights/*.broken`.
+All four failed to converge. The loss landscape for distillation is sharp — the student has to match a highly structured multi-step trajectory, and the gradient signal is sensitive to LR (_learning rate_) in a range that's hard to bracket. At each attempted LR, the result was either flat (no actual learning occurred) or diverged wildly. We archived our broken weights in `weights/*.broken`.
 
-The lesson from this failure wasn't immediately obvious. It turned out the wrong question was being asked: "how do we make each step cheaper?" The right question was "how do we change the step trajectory?"
+The lesson from this failure wasn't immediately obvious. It turned out I asked the wrong question: "how do we make each step cheaper?" The right question was "how do we change the step trajectory?"
 
-Euler scheduling — used by AnimateDiff-Lightning — covers the same total sigma range as PNDM but with different step spacing. With 25 steps and `EulerDiscreteScheduler(timestep_spacing="trailing", beta_schedule="linear")`, you get a different quality/structure tradeoff without needing distilled weights. The CFG=1.0 constraint that AnimateDiff-Lightning CPU requires (because the distilled adapter bakes it in) doesn't apply to the TTNN path — the base SD 1.4 UNet benefits from full CFG=7.5 guidance regardless of scheduler.
+So we started to investigate "Euler scheduling," used by [AnimateDiff-Lightning](https://huggingface.co/ByteDance/AnimateDiff-Lightning). It covers the same total sigma range as PNDM but with different step spacing. This brings another different quality/structure tradeoff without needing distilled weights.
 
 <div style="display:flex;gap:12px;flex-wrap:wrap;margin:2rem 0">
   <div style="text-align:center">
@@ -200,7 +240,7 @@ Lightning mode on the TTNN path also required updating the cross-frame attention
 
 ---
 
-## Phase 3: real MotionAdapter on Blackhole
+## Phase 3: a real MotionAdapter for Blackhole
 
 Phase 2.5 cross-frame attention is real temporal coherence but it's approximate — it operates on 4-channel latent noise predictions rather than on the 320-dim UNet intermediate features where AnimateDiff was designed to work. Phase 3 brings the full MotionAdapter to Blackhole.
 
@@ -215,7 +255,7 @@ for block_idx, (block_type, down_block) in enumerate(zip(...)):
         hidden_samples = _apply_temporal(hidden_samples, temporal_kernels[key], ...)
 ```
 
-The 7 injection points are: down0, down1, down2 (encoder), mid (bottleneck), up0, up1, up2 (decoder). At each point, all N frame tensors are pulled from device to CPU, passed through `AnimateDiffTransformer3D.forward()` with the real pretrained motion weights, then pushed back. The spatial convolution and attention runs on Blackhole; the temporal attention runs on CPU with the full diffusers module — GroupNorm, `proj_in/out`, LayerNorm×3, positional embedding, GEGLU feedforward, all of it. No weight was modified or replaced.
+The 7 injection points are: down0, down1, down2 (encoder), mid (bottleneck), up0, up1, up2 (decoder). At each point, all N frame tensors are pulled from device to CPU, passed through `AnimateDiffTransformer3D.forward()` with the real pretrained motion weights, then pushed back. The spatial convolution and attention runs on Blackhole; the temporal attention runs on CPU with the full diffusers module — GroupNorm, `proj_in/out`, LayerNorm×3, positional embedding, GEGLU feedforward, all of it. No tampered weights.
 
 **The energy explosion bug.** The first Phase 3 attempt produced pure noise — every output was entirely incoherent. Two root causes:
 
@@ -267,7 +307,7 @@ raw_batch = ttnn.to_torch(batched).float()    # one PCIe transfer
 batched.deallocate(True)
 ```
 
-This eliminated N-1 PCIe round-trips per injection point. Measured speedup: **1.94×** — from ~101 to ~52 seconds per frame on QB2 (4×P300C, 8 frames, 25 steps).
+This eliminated N-1 PCIe round-trips per injection point. Measured speedup: **1.94×** — from ~101 to ~52 seconds per frame on QB2 (4×p300c, 8 frames, 25 steps).
 
 The H→D direction can't be batched the same way. The approach — push a single `[N, ...]` tensor to device and use `ttnn.split` to distribute it — fails because `ttnn.split` produces parent-buffer views. The downstream resnet reshard kernel can't reroute those views to the expected shard grid. Per-frame `to_device()` is the safe path.
 
@@ -302,13 +342,13 @@ Lightning mode doesn't help here: combining `--lightning` with `--motion-adapter
 | **Phase 3 skip up1+up2** | **~7.7** | **~62s** | skip 2 decoder pts, faster than 2.5 |
 | Phase 3 + Lightning | ~50.6 | ~405s | CPU bridge cost dominates |
 
-*All timings on QB2 (4×P300C), 8 frames, 512×512, warm kernels.*
+*All timings on QB2 (4×p300c), 8 frames, 512×512, warm kernels.*
 
 ---
 
 ## 4-chip parallelism on the QB2
 
-The QB2 board carries four P300C Blackhole chips. The pipeline uses them in two distinct ways.
+The QB2 board carries four Blackhole chips across two p300c boards. The pipeline uses them in two distinct ways.
 
 **In-process frame sharding (Phase 2.5).** Within a single generation run, the TTNN UNet denoising loop shards frames across all four chips in the same process. The compiled TTNN UNet expects exactly `batch_size=2` (CFG uncond+cond) per chip, so the mechanism is one CFG-doubled frame per chip per pass, in chunks of 4:
 
