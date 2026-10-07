@@ -443,9 +443,7 @@ With the full pipeline working, a batch generation script produced a "World's Fa
   </div>
 </div>
 
-Full gallery at [tenstorrent.github.io/tt-animatediff/worlds-fair.html](https://tenstorrent.github.io/tt-animatediff/worlds-fair.html).
-
----
+Find the full gallery at [tenstorrent.github.io/tt-animatediff/worlds-fair.html](https://tenstorrent.github.io/tt-animatediff/worlds-fair.html).
 
 ---
 
