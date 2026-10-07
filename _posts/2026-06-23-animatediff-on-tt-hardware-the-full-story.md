@@ -9,7 +9,9 @@ description: >
 
 You really don't need the most recent, most efficient, or most clever  tool to make great art. Rediscovering old devices and making them your own is all part of the process.  
 
-I wanted to teach people how to generate engaging video using whatever Tenstorrent hardware they had. This is the story of working through illusory wins and experimentation on the road to including tt-animatediff in  [`tt-local-generator`](https://docs.tenstorrent.com/tt-local-generator) today.
+I wanted to teach people how to generate engaging video using whatever Tenstorrent hardware they had. I didn't expect to find something magical. Whatever you might think about generative art, it's fascinating how behavior and outputs change depending on the silicon and stacks you run them on.
+
+This is the story of working through illusory wins and earnest experimentation on the road to bringing up tt-animatediff on Blackhole and including it in  [`tt-local-generator`](https://docs.tenstorrent.com/tt-local-generator).
 
 ---
 
@@ -261,7 +263,11 @@ The 7 injection points are: down0, down1, down2 (encoder), mid (bottleneck), up0
 
 1. `nn.Linear` stores weights as `[out_channels, in_channels]` but the projection needs `x @ w` where `w` is `[in_channels, out_channels]`. The weight loader wasn't transposing. Square `[C, C]` matrices concealed this because a square matrix transposed still has the right shape — the projection runs without error but computes wrong values. The energy ratio (output energy / input energy) going into the temporal modules was above 2.0. After adding `.T.contiguous()` to the weight load, it dropped below 1.25.
 
-2. The initial `_apply_temporal` only implemented QKV + residual — not the full `AnimateDiffTransformer3D`. The real module runs GroupNorm, `proj_in`, LayerNorm×3, positional embedding, GEGLU feedforward, and `proj_out`. Replacing the partial implementation with a direct `module.forward()` call fixed the remaining energy divergence.
+Again, wrong values.. errors even can make beautiful art.
+
+2. The initial `_apply_temporal` only implemented QKV (query, key, value) + residual — not the full `AnimateDiffTransformer3D`. The real module runs GroupNorm, `proj_in`, LayerNorm×3, positional embedding, GEGLU feedforward, and `proj_out`.
+
+I had to replace the partial implementation with a direct `module.forward()` call to fix the remaining energy divergence, a  metric that assesses the quality of outputs.
 
 **The L1 circular buffer constraint.** Running N frames sequentially through the same TTNN cross-attention block revealed a constraint: the kernel allocates static circular buffers in L1. If a previous frame's output tensor is still resident in L1 when the same program dispatches for the next frame, the CB allocations overlap with the live buffer and the dispatch fails with an error at `program.cpp:1476`.
 
@@ -395,7 +401,7 @@ This is a different axis of parallelism from in-process sharding — throughput 
 
 ## Chain mode: continuity across prompts
 
-One of the later additions was `--chain` — a way to carry visual continuity from one generation to the next without any explicit conditioning.
+One of the later features we added was `--chain` — a way to carry visual continuity from one generation to the next without any explicit conditioning. It's a unique usage of Blackhole architecture. I think it's one of the spookier features and could be implemented in different ways to achieve different results.
 
 At the end of a run, the final denoised latents are saved (`--chain-save`). At the start of the next run, those latents are blended into the base seed noise before denoising begins (`--chain-from`). The blend is frame-averaged (preserving coarse spatial layout), then renormalized to unit standard deviation so the scheduler's sigma scaling sees the expected noise distribution:
 
@@ -441,23 +447,9 @@ Full gallery at [tenstorrent.github.io/tt-animatediff/worlds-fair.html](https://
 
 ---
 
-## What the TT hardware specifically required
-
-Five things about this implementation are directly shaped by the hardware:
-
-**1. `open_mesh_device` over `open_device`.** On multi-chip boards, opening a single device by ID leaves other chips unmanaged. The sentinel check for dead-ARC before TTNN initialization avoids a 5-minute timeout that looked like a software hang.
-
-**2. The orchestration replication pattern.** The TTNN UNet is a compiled monolith. When you can't inject hooks into it, you replicate the orchestration outside it — call the same block objects in the same order from your own code, inserting temporal attention between them. `forward_unet_staged()` is ~250 lines of this. Nothing in `tt-metal` was modified.
-
-**3. Per-frame DRAM eviction between sequential UNet calls.** A compiled cross-attention kernel allocates static circular buffers in L1. Running N frames sequentially through the same kernel requires evicting each frame's output to DRAM before dispatching the next, or the static CB allocations conflict with live L1 tensors.
-
-**4. Asymmetric transfer batching.** Pulling all N frame tensors from device to CPU can be batched (concatenate → single `ttnn.to_torch`). Pushing them back cannot — `ttnn.split` produces views incompatible with the downstream reshard kernel. Measure both directions independently before assuming a batching optimization is symmetric.
-
-**5. Injection point cost is not uniform.** The two large-spatial-dimension decoder blocks dominate the CPU bridge cost. Profiling before deciding how much of a staged forward pass to use is not optional.
-
 ---
 
-## What's here now
+## How to use tt-animatediff
 
 The code is at [github.com/tenstorrent/tt-animatediff](https://github.com/tenstorrent/tt-animatediff). The full benchmark breakdown is at [tenstorrent.github.io/tt-animatediff/benchmarks.html](https://tenstorrent.github.io/tt-animatediff/benchmarks.html).
 
@@ -475,4 +467,8 @@ python examples/generate.py --motion-adapter --motion-adapter-skip up1 up2 \
 python app.py
 ```
 
-The architecture mismatch, the distillation failure, the L1 circular buffer, the asymmetric transfer constraint — none of these are in the happy-path documentation. They're in the changelogs and the source comments. This post is the rest of the story.
+If you have a QuietBox 2 and want to explore a more complete generative art experience, [tt-local-generator](https://docs.tenstorrent.com/tt-local-generator) supports tt-animatediff out of the box.
+
+The story with tt-animatediff is not over. Support for LoRA adapters is quickly on the horizon, and there are still optimizations and peculair quirks to realize. 
+
+Open models on open hardware lead to open possibilities. You don't know what a model is going to do or what you'll have to do to the model to make it work on novel architecture. The more _you_ put into the tools you generate with, the more unique those generations will be. Your hardware, your models, your art.
