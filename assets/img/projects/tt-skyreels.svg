@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 479 193" width="479" height="193" role="img" aria-label="Terminal output pulling and serving tt-skyreels via tt-model-manager, then a curl request generating a video from a text prompt.">
+<rect x="0.5" y="0.5" width="478" height="192" rx="6" fill="#111318" stroke="#232730"/>
+<circle cx="28" cy="24" r="4" fill="#4FD1C5"/>
+<text x="42" y="28" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="11.5" fill="#607D8B">tt-skyreels — packaged, no host tt-metal install required</text>
+<line x1="0" y1="36" x2="479" y2="36" stroke="#232730"/>
+<text y="59" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">$</tspan><tspan x="31.83" fill="#4FD1C5"> tt-model pull episod/tt-skyreels --with-weights</tspan></text>
+<text y="75" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">$</tspan><tspan x="31.83" fill="#4FD1C5"> tt-model serve episod/tt-skyreels</tspan></text>
+<text y="107" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">$</tspan><tspan x="31.83" fill="#4FD1C5"> curl localhost:20000/v1/videos/generations \</tspan></text>
+<text y="123" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">    -d '{"prompt": "a red bicycle leaning against a</tspan></text>
+<text y="139" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">         brick wall in soft morning light"}'</tspan></text>
+<text y="171" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">pytest tests/ -q</tspan><tspan x="149.26" fill="#4FD1C5">   48 passed</tspan><tspan x="243.20" fill="#607D8B">   pure CPU, no card needed</tspan></text>
+</svg>

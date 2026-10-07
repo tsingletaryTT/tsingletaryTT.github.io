@@ -1,0 +1,14 @@
+{
+  "title": "tt-skyreels — packaged, no host tt-metal install required",
+  "aria": "Terminal output pulling and serving tt-skyreels via tt-model-manager, then a curl request generating a video from a text prompt.",
+  "lines": [
+    [{"t": "$", "c": "muted"}, {"t": " tt-model pull episod/tt-skyreels --with-weights", "c": "teal"}],
+    [{"t": "$", "c": "muted"}, {"t": " tt-model serve episod/tt-skyreels", "c": "teal"}],
+    [],
+    [{"t": "$", "c": "muted"}, {"t": " curl localhost:20000/v1/videos/generations \\", "c": "teal"}],
+    [{"t": "    -d '{\"prompt\": \"a red bicycle leaning against a", "c": "body"}],
+    [{"t": "         brick wall in soft morning light\"}'", "c": "body"}],
+    [],
+    [{"t": "pytest tests/ -q", "c": "muted"}, {"t": "   48 passed", "c": "teal"}, {"t": "   pure CPU, no card needed", "c": "muted"}]
+  ]
+}

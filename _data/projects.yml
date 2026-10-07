@@ -1,4 +1,5 @@
 - name: tt-vscode-toolkit
+  category: education
   lang: TypeScript · Python · VS Code extension
   desc: >
     A complete learning and development environment for Tenstorrent hardware, shipped on the
@@ -18,6 +19,7 @@
     in the status bar.
 
 - name: tt-toplike
+  category: tools
   lang: Rust
   desc: >
     Real-time hardware monitoring for Grayskull, Wormhole and Blackhole silicon — top(1) if it
@@ -40,6 +42,7 @@
     time, and offsets per core — so the grid shows a wave instead of flipping all at once.
 
 - name: tt-quietbox2-guide
+  category: education
   lang: JavaScript · Nunjucks · docs site
   desc: >
     The handbook for the Tenstorrent QuietBox 2 — first boot to confident daily use, organised
@@ -58,6 +61,7 @@
     and how long it takes.
 
 - name: tt-local-generator
+  category: applied
   lang: Python · GTK4
   desc: >
     A desktop UI for generating video, images and generative art entirely on your own
@@ -78,6 +82,7 @@
     channel that never runs out.
 
 - name: tt-awesome
+  category: tools
   lang: JavaScript · Eleventy · curated directory
   desc: >
     The community directory for the Tenstorrent ecosystem — over 150 projects, tools, models
@@ -97,6 +102,7 @@
     opens an issue template.
 
 - name: tt-tnt
+  category: bringup
   lang: Python · ttml / tt-train
   desc: >
     A small Llama-3-style language model built Tenstorrent-first — trained from random
@@ -115,6 +121,7 @@
     The project's own mark, drawn by hand rather than generated. The figure's skull is open at the back, and there is a die in it.
 
 - name: tt-vjepa2
+  category: bringup
   lang: Python · TTNN
   desc: >
     A TTNN bring-up of Meta's V-JEPA 2-AC — a self-supervised video encoder plus an
@@ -137,6 +144,7 @@
     to the dancing arm.
 
 - name: tt-cv-agency
+  category: applied
   lang: Python · TTNN · VCV Rack
   desc: >
     A model running on Tenstorrent hardware placed inside a synthesizer's control loop:
@@ -159,6 +167,7 @@
     Proof the loop is really closed.
 
 - name: tt-bio-demo
+  category: demos
   lang: Python · GTK4 + OpenGL
   desc: >
     A turnkey conference demo built on top of moritztng/tt-bio — the project that brings
@@ -178,6 +187,7 @@
     Four chips, four molecules, real denoising trajectories — trimmed from the repo's own 30-second booth capture.
 
 - name: tt-gozer
+  category: tools
   lang: Python · stdlib only
   desc: >
     Cooperative chip leasing for Tenstorrent boxes, so several agents — Claude Code
@@ -198,6 +208,7 @@
     unrelated sessions took turns on two boards with nobody refereeing.
 
 - name: tt-discolike
+  category: tools
   lang: Python · FastAPI + htmx
   desc: >
     A local catalog and launcher for the one-off Gradio demos that pile up around scarce
@@ -217,6 +228,7 @@
     Two demos in the catalog, both idle — including the vjepa2 one listed just above.
 
 - name: ttsim-blackhole
+  category: education
   lang: Python · Docker · ttsim
   desc: >
     A public playground that runs real ttnn code against a simulated Tenstorrent Blackhole
@@ -239,6 +251,7 @@
     about two simulated seconds.
 
 - name: tt-demo-maker
+  category: tools
   lang: Rust · tmux + asciinema
   desc: >
     A project-agnostic toolkit for authoring demo recordings and draft posts from inside
@@ -256,6 +269,7 @@
     Ouroboros — tt-demo recording tt-demo. Left pane drives a real matmul burst; right pane watches the board react to its own filming.
 
 - name: tt-animatediff
+  category: bringup
   lang: Python · TTNN
   desc: >
     AnimateDiff on Blackhole, in three phases: temporally coherent video on CPU with the full
@@ -276,6 +290,7 @@
     into the loop.
 
 - name: tt-midi-maker
+  category: applied
   lang: Python · MCP server
   desc: >
     Multi-track MIDI generation from text prompts, running on Tenstorrent hardware.
@@ -291,6 +306,7 @@
     A generated piano roll: the groove section of "midnight blues."
 
 - name: tt-zork-and-more
+  category: demos
   lang: Python · C++ · TT-Lang
   desc: >
     Zork I (and II, III, Hitchhiker's, Planetfall, Colossal Cave) running on a Blackhole
@@ -310,6 +326,7 @@
     Hybrid mode: a human plays, Llama-3.3-70B on Tensix rewrites every response the game gives back.
 
 - name: tt-station
+  category: tools
   lang: Rust · Swift · macOS
   desc: >
     Use your Tenstorrent hardware from a Mac with ease — a native bridge between
@@ -324,6 +341,7 @@
     The native macOS app browsing models on a Tenstorrent box.
 
 - name: tensix-viz
+  category: tools
   lang: JavaScript
   desc: >
     Hardware topology visualizer — from individual Tensix chips up to full
@@ -340,6 +358,7 @@
     The cluster view — chip up to full multi-chip topology.
 
 - name: tt-forge-compiletron
+  category: demos
   lang: Python
   desc: >
     Compile more than 100 models on tt-forge and display the results in a format
@@ -355,6 +374,7 @@
     Models compiling on tt-forge, results landing live.
 
 - name: tt-warp
+  category: tools
   lang: Python · Warp plugin
   desc: >
     A Warp terminal plugin for Tenstorrent — hardware status, model runner
@@ -368,6 +388,7 @@
     The entire install: four commands and the terminal knows about your hardware.
 
 - name: tt-model-runner
+  category: tools
   lang: Python · GUI + TUI
   desc: >
     Discover, load, and benchmark models with a GUI and a TUI for
@@ -381,6 +402,7 @@
     One controller, seven workers, two front-ends — no widget ever touched from a background thread.
 
 - name: tt-qb-lights
+  category: tools
   lang: Rust
   desc: >
     Sync your Quietbox's LED lighting to the live status of its accelerator chips.
@@ -394,6 +416,7 @@
     hwmon at 1 Hz, into a Rust service, out to 240 LEDs.
 
 - name: tt-developer-image
+  category: tools
   lang: Dockerfile
   desc: >
     A developer-focused container image for Tenstorrent work. Batteries included:
@@ -407,6 +430,7 @@
     code-server, the toolkit extension, and three venvs — the same image on real silicon or on the simulator.
 
 - name: tt-claw
+  category: demos
   lang: Shell
   desc: >
     Allow the claw machine to reward you with experience. A playful hardware
@@ -420,6 +444,7 @@
     Question, to a vector DB of 46+ hard-won lessons, to vLLM on TT hardware, back as a cited answer.
 
 - name: tt-agents
+  category: applied
   lang: Python
   desc: >
     Six local-agent demos that run entirely on a Tenstorrent QuietBox 2 — no cloud,
@@ -437,6 +462,7 @@
     Output of the landscape-SVG pipeline — composed entirely on a QuietBox 2, no cloud, no API keys.
 
 - name: tt-lang-freeciv
+  category: demos
   lang: C
   desc: >
     Defer FreeCiv AI and generative work to Tenstorrent hardware via TT-Lang-based
@@ -448,3 +474,71 @@
     A 256 by 256 greyscale terrain height map produced by the generator.
   media_note: >-
     A height map generated through TT-Lang kernels.
+
+- name: tt-openvla
+  category: bringup
+  lang: Python · TTNN
+  desc: >
+    A TTNN bring-up of OpenVLA — a fused DINOv2 + SigLIP vision backbone driving a
+    LLaMA-2-7B language model, fine-tuned on the Open X-Embodiment dataset to predict
+    robot manipulation actions. Given an image and a natural-language instruction, it
+    generates a 7-DoF end-effector action autoregressively, as extra tokens appended to
+    the tokenizer's vocabulary and decoded back to continuous values. Every stage
+    validated end to end against real checkpoint weights at ≥0.995 PCC, vision through
+    all 32 LLaMA-2-7B layers to decoded action, on a real 2-device mesh. Reuses
+    tt-vjepa2's Gradio backend pattern rather than its architecture — the two share no
+    weights or code, only the bring-up conventions.
+  url: https://github.com/tsingletaryTT/tt-openvla
+  media: assets/img/projects/tt-openvla.webp
+  media_kind: shot
+  media_alt: >-
+    The demo's bundled example photo: two tabby cats sprawled on a pink couch beside
+    two TV remotes.
+  media_note: >-
+    The demo's own bundled example image: upload it (or your own) with an instruction
+    like "pick up the remote," and get back a real decoded 7-DoF action from a real
+    forward pass.
+
+- name: tt-skyreels
+  category: bringup
+  lang: Python · TTNN
+  desc: >
+    SkyReels-V2-DF-1.3B-540P text-to-video on Blackhole, packaged as a
+    tt-model-manager v5.1 container — pull it with Docker and a TT card, no host
+    tt-metal install required. The transformer is weight-compatible with tt-metal's
+    own WanTransformer3DModel, so this repo reuses that TTNN model wholesale rather
+    than shipping new kernels; what it adds is the serving glue, an ASGI app wrapping
+    the pipeline behind an HTTP surface, plus the fixes needed to run a real
+    generation end to end. 48 CPU-only tests need no card to run.
+  url: https://github.com/tsingletaryTT/tt-skyreels
+  media: assets/img/projects/tt-skyreels.svg
+  media_kind: card
+  media_alt: >-
+    Terminal output pulling and serving tt-skyreels via tt-model-manager, then a curl
+    request generating a video from a text prompt.
+  media_note: >-
+    The whole path from pull to a generated video: three commands, no host tt-metal
+    install.
+
+- name: tt-waypoint
+  category: bringup
+  lang: Python · TTNN
+  desc: >
+    A from-scratch TTNN bring-up of Overworld/Waypoint-1.5-1B, a custom autoregressive
+    causal diffusion transformer — a "world model" generating interactive video
+    conditioned on keyboard/mouse input, one full frame per step against a per-layer
+    ring-buffer cache of previous frames rather than a token-by-token KV cache. Unlike
+    tt-skyreels' reused transformer, nothing in tt-metal's model library already
+    covers this shape, so the attention/cache scheme, conditioning heads, and CNN VAE
+    were all ported and hardware-verified from scratch against the real HF reference.
+    Bring-up in progress, not yet packaged or served — the timestamped log of every
+    stage and bug is public in the repo.
+  url: https://github.com/tsingletaryTT/tt-waypoint
+  media: assets/img/projects/tt-waypoint.webp
+  media_kind: shot
+  media_alt: >-
+    The reference seed frame captured from the real HF model, used to validate this
+    port's own generation loop against.
+  media_note: >-
+    The captured reference seed frame this port's interactive loop starts a session
+    from — the ground truth its own output is checked against.
