@@ -112,6 +112,10 @@ existing tt-skyreels card. Natural-size SVGs are crisp; the preview harness belo
 against the filesystem root (the first screenshot this session showed alt text for all 13
 figures for exactly that reason).
 
+**Project titles are links** (follow-up prompt: *"make all titles of projects be links to the
+main project page"*): `.project-name` is now an `<a href="{{ project.url }}">`. The global
+`a { color: inherit; text-decoration: none }` keeps it teal and bare; hover underlines it.
+
 **Skipped on purpose:** `tt-cli` (intentional absence, see 2026-08-17), `tt-cli-upstream-fork`
 and `tt-studio` (forks), `tt-jukebox` (excluded before), `card-of-the-day-generator`
 (offered, not chosen; two agents' GTK apps from one prompt, has two screenshots if wanted).

@@ -43,7 +43,7 @@ layout: default
       {% for project in items %}
       <div class="project">
         <div class="project-header">
-          <span class="project-name">{{ project.name }}</span>
+          <a href="{{ project.url }}" class="project-name">{{ project.name }}</a>
           <span class="project-lang">{{ project.lang }}</span>
         </div>
         <div class="project-desc">{{ project.desc }}</div>

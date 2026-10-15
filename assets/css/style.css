@@ -107,7 +107,10 @@ a:focus-visible,
   padding: 20px;
 }
 .project-header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 12px; margin-bottom: 10px; }
+/* The title is a link to the project's `url` (its canonical home). Global `a` inherits colour
+   and drops the underline, so the teal stays; hover adds an underline so it reads as a link. */
 .project-name { font-family: var(--mono); font-size: 16px; color: var(--teal); font-weight: 600; }
+.project-name:hover { text-decoration: underline; text-underline-offset: 3px; }
 .project-lang { font-size: 11px; color: var(--text-muted); font-family: var(--mono); }
 .project-desc { font-size: 14px; color: var(--text-dim); line-height: 1.7; margin-bottom: 10px; }
 .project-link { font-size: 11px; color: var(--text-muted); font-family: var(--mono); margin-right: 14px; }
