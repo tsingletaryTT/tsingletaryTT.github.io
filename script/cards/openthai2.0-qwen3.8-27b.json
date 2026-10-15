@@ -1,0 +1,80 @@
+{
+  "title": "episod/openthai2.0-qwen3.8-27b-p300 — draft acceptance (from the model card)",
+  "aria": "From the model card: the DFlash2 drafter was accepted 5.57 of 7 tokens per step on 16 coding prompts and 1.03 of 7 on 10 Thai prompts, committing 6.55 and 2.01 tokens per step; coding ran at 80.5 tokens per second per user at 1 user and 54.2 at 4 users, 179.3 aggregate.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-model serve episod/openthai2.0-qwen3.8-27b-p300",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "Workload                          ",
+        "c": "muted"
+      },
+      {
+        "t": "Accepted of 7   ",
+        "c": "muted"
+      },
+      {
+        "t": "Tokens committed per step",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "16 coding prompts (5507 tokens)   ",
+        "c": "body"
+      },
+      {
+        "t": "5.57            ",
+        "c": "teal"
+      },
+      {
+        "t": "6.55",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "10 Thai prompts (1504 tokens)     ",
+        "c": "body"
+      },
+      {
+        "t": "1.03            ",
+        "c": "teal"
+      },
+      {
+        "t": "2.01",
+        "c": "body"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "Coding, 1 user    ",
+        "c": "muted"
+      },
+      {
+        "t": "80.5 tok/s per user, TTFT mean 952 ms",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "Coding, 4 users   ",
+        "c": "muted"
+      },
+      {
+        "t": "54.2 tok/s per user, 179.3 tok/s aggregate",
+        "c": "body"
+      }
+    ]
+  ]
+}

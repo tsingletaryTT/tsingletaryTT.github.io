@@ -1,0 +1,74 @@
+{
+  "title": "episod/rag-gate-27b-p300 — the gate check, 2 chips (from the model card)",
+  "aria": "From the model card: gate accuracy 0.930 on 200 ChainCheck items on two chips; over-refusal 0.074 on 135 items with sufficient evidence; unsupported answers 0.062 on 65 items with insufficient evidence; the chip's label equalled the CPU label on 25 of 25 shared prompts; median 2.5 seconds per request with 4 in flight.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-model serve episod/rag-gate-27b-p300",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "gate accuracy, 200 ChainCheck items (2 chips)                ",
+        "c": "body"
+      },
+      {
+        "t": "0.930",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "over-refusal, P(not Answer given sufficient evidence)        ",
+        "c": "body"
+      },
+      {
+        "t": "0.074",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "unsupported answers, P(Answer given insufficient evidence)   ",
+        "c": "body"
+      },
+      {
+        "t": "0.062",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "chip label equals CPU label, 25 of the same prompts          ",
+        "c": "body"
+      },
+      {
+        "t": "25 of 25",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "time per request with 4 requests in flight, median           ",
+        "c": "body"
+      },
+      {
+        "t": "2.5 s",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "the action is the first token generated; ask for 1 token with logprobs",
+        "c": "muted"
+      }
+    ]
+  ]
+}

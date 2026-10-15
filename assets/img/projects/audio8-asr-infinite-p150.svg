@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 573 225" width="573" height="225" role="img" aria-label="From the model card: word error rate on 73 LibriSpeech validation utterances was 7.30% sent separately and 5.22% as one continuous 8.6-minute stream; on the first 39 utterances the CPU reference and this port both score 5.47%. First text 1.3 seconds after the stream starts, real time factor 0.66 to 0.68.">
+<rect x="0.5" y="0.5" width="572" height="224" rx="6" fill="#111318" stroke="#232730"/>
+<circle cx="28" cy="24" r="4" fill="#4FD1C5"/>
+<text x="42" y="28" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="11.5" fill="#607D8B">episod/audio8-asr-infinite-p150 — expected performance (from the model card)</text>
+<line x1="0" y1="36" x2="573" y2="36" stroke="#232730"/>
+<text y="59" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">$</tspan><tspan x="31.83" fill="#4FD1C5"> tt serve episod/audio8-asr-infinite-p150</tspan></text>
+<text y="91" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">word error rate, 73 LibriSpeech validation utterances (8.0 minutes)</tspan></text>
+<text y="107" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">  each utterance sent separately        </tspan><tspan x="337.14" fill="#4FD1C5">7.30%</tspan></text>
+<text y="123" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">  one continuous 8.6-minute stream      </tspan><tspan x="337.14" fill="#4FD1C5">5.22%</tspan></text>
+<text y="139" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">  first 39 utterances, CPU reference    </tspan><tspan x="337.14" fill="#4FD1C5">5.47%</tspan></text>
+<text y="155" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">  first 39 utterances, this port        </tspan><tspan x="337.14" fill="#4FD1C5">5.47%</tspan></text>
+<text y="187" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">first text 1.3 s after the stream starts</tspan></text>
+<text y="203" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">real time factor 0.66 to 0.68 on long streams</tspan></text>
+</svg>

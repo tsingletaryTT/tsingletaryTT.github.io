@@ -1,0 +1,152 @@
+{
+  "title": "episod/qwen3.8-27b-dflash2-p300 — passkey retrieval on the packaged server",
+  "aria": "From the model card: passkey retrieval on the packaged two-chip server succeeded at 2,075, 13,321, 132,784 and 255,924 prompt tokens, taking 5, 8, 46 and 111 seconds; the first 20 SPEED-Bench coding prompts ran at 86.9 tokens per second per user at 1 user and 57.2 at 4 users.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-model serve episod/qwen3.8-27b-dflash2-p300",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "prompt tokens",
+        "c": "muted"
+      },
+      {
+        "t": "   ",
+        "c": "muted"
+      },
+      {
+        "t": "passkey retrieved",
+        "c": "muted"
+      },
+      {
+        "t": "   ",
+        "c": "muted"
+      },
+      {
+        "t": "wall (prefill + 24 tokens)",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "        2,075",
+        "c": "body"
+      },
+      {
+        "t": "   ",
+        "c": "body"
+      },
+      {
+        "t": "yes              ",
+        "c": "teal"
+      },
+      {
+        "t": "   ",
+        "c": "body"
+      },
+      {
+        "t": "  5 s",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "       13,321",
+        "c": "body"
+      },
+      {
+        "t": "   ",
+        "c": "body"
+      },
+      {
+        "t": "yes              ",
+        "c": "teal"
+      },
+      {
+        "t": "   ",
+        "c": "body"
+      },
+      {
+        "t": "  8 s",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "      132,784",
+        "c": "body"
+      },
+      {
+        "t": "   ",
+        "c": "body"
+      },
+      {
+        "t": "yes              ",
+        "c": "teal"
+      },
+      {
+        "t": "   ",
+        "c": "body"
+      },
+      {
+        "t": " 46 s",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "      255,924",
+        "c": "body"
+      },
+      {
+        "t": "   ",
+        "c": "body"
+      },
+      {
+        "t": "yes              ",
+        "c": "teal"
+      },
+      {
+        "t": "   ",
+        "c": "body"
+      },
+      {
+        "t": "111 s",
+        "c": "body"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "the first 20 SPEED-Bench coding prompts on the packaged server:",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "86.9 tok/s per user",
+        "c": "teal"
+      },
+      {
+        "t": " at 1 user and ",
+        "c": "body"
+      },
+      {
+        "t": "57.2",
+        "c": "teal"
+      },
+      {
+        "t": " at 4 users (190.7 aggregate)",
+        "c": "body"
+      }
+    ]
+  ]
+}

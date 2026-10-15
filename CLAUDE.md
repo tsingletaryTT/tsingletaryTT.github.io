@@ -10,10 +10,17 @@ Jekyll on GitHub Pages, served at https://tsingletarytt.github.io.
   page.
 * `_data/projects.yml` — drives Selected Work. One entry per project:
   `name`, `lang` (free-text, e.g. `Python · MCP server`), `desc` (folded block scalar),
-  `url` (the canonical home — usually GitHub, but `ttsim-blackhole`'s is a Hugging Face
-  Space; the link label is just `url | remove: "https://"`, so any host renders fine), and
-  optional `site` (a live demo → renders a "Live site" link).
-  **Order is editorial, not chronological** — newest/most substantial first.
+  `url` (the canonical home — usually GitHub, but the model-package entries point at a
+  Hugging Face repo; the link label is just `url | remove: "https://"`, so any host renders
+  fine), and
+  optional `site` (a live demo → renders a "Live site" link), and optional `links` — a list
+  of `{label, url}` rendered as further `.project-link` anchors after `site` (added
+  2026-10-15 for Hugging Face weights/packages; labels are element text, so keep them
+  quote-free). Every entry also carries exactly one `category` key from the list in
+  `index.md` (`education`, `bringup`, `applied`, `demos`, `tools`); the page groups entries
+  by category and the filter pills show/hide whole category blocks.
+  **Order is editorial, not chronological** — newest/most substantial first *within a
+  category*; cross-category order in the file does not matter.
   Every entry also carries a figure: `media` (path under `assets/img/projects/`),
   `media_kind` (`clip` · `shot` · `card` · `chart` · `logo`), `media_alt`, `media_note`, and
   `poster` for clips. **`media_alt` is interpolated into an HTML attribute and goes through
@@ -55,6 +62,59 @@ also gets cleared, so expect to reinstall liquid in a fresh session.
 Installing a real Ruby 3.x would fix the build properly; nobody has done it yet.
 
 ## What happened
+
+**2026-10-15 — tt-orchard, seven Hugging Face model packages, and `links`.**
+Prompt: *"Let's update/suggest new repos in tsingletaryTT on GH and episod on HF for
+inclusion"*, then on the proposal: tt-orchard and the ttsim-blackhole URL move, the
+tt-animatediff Space as its `site`, and for the HF models *"expand the list of models for
+each model. they are all special."* `card-of-the-day-generator` was offered and not chosen.
+
+37 entries now. The diff was `gh repo list --visibility public` plus the HF API
+(`/api/{spaces,models,datasets}?author=episod`) against `projects.yml`.
+
+**tt-orchard** leads `bringup`: a local-only bring-up harness (299 of 346 commits Taylor's;
+ezietlowTT has the rest). No images and no Pages site, so its figure is a card of the
+README's "What it prints while it runs" log block, with two long lines wrapped onto an
+indented continuation line. Wrapping is layout; the words are the README's.
+
+**Seven model packages became their own entries**, all `bringup`, appended at the end of the
+file under a comment header: `qwen3.8-27b-dflash2`, `clef-p300`, `rag-gate-27b-p300`,
+`hemmingway-1`, `openthai2.0-qwen3.8-27b`, `audio8-asr-infinite-p150` and
+`tt-animatediff-container-v5.1`. The p150/p300 pairs share one entry: `url` is the two-chip
+build and `links` carries the one-chip sibling. Each figure is a card whose text is a
+measured-results table from that model card (passkey retrieval, draft acceptance, the gate
+check, the clef evidence table, WER, the AnimateDiff timing block). The clef, RAG-Gate,
+Hemmingway and OpenThai cards all say tt-orchard staged them, so tt-orchard's `desc` says so
+too. Specs live in `script/cards/<name>.json`; regenerate with `make_card.py` as before.
+
+**`links` is new in `index.md`**, and the existing bring-ups now use it to point at their HF
+repos: tt-tnt (two weights repos and the corpus-recipe dataset), tt-vjepa2 (the stripped
+2.6 GB checkpoint), tt-openvla, tt-skyreels and tt-waypoint (their packages).
+**tt-waypoint's `desc` said "not yet packaged or served"; it is now packaged on HF**, so that
+sentence was replaced with what the package card says (one chip, session-based HTTP API,
+about 1,400x below real time, no performance work yet). Check the HF card before
+describing any of these as unpackaged again.
+
+**tt-animatediff's `site` is now the Space** `episod/tt-animatediff-demo` (a capped CPU
+demo whose gallery shows real Blackhole output), with the docs site and the HF port moved
+to `links`. Per the Space's README, it only works while `episod/tt-animatediff` stays public.
+
+**ttsim-blackhole: the GitHub repo landed**, so `url` moved to
+`github.com/tsingletaryTT/ttsim-blackhole` and the Space stays as `site`, as the 2026-09-07
+note said to do. Its `desc` also claimed a pin to ttsim v1.10.1 for a wide-matmul
+regression; the README now pins v1.10.10 and says the regression no longer reproduces, so
+the sentence was reduced to "pinned to its latest release".
+
+**The grid is four columns at 1440px now** (`repeat(auto-fill, minmax(320px, 1fr))`, since
+6d01bea), so a ~600px card renders at roughly half scale in the grid, the same as the
+existing tt-skyreels card. Natural-size SVGs are crisp; the preview harness below needs
+`relative_url` to return a path *without* a leading slash, or every `file://` figure 404s
+against the filesystem root (the first screenshot this session showed alt text for all 13
+figures for exactly that reason).
+
+**Skipped on purpose:** `tt-cli` (intentional absence, see 2026-08-17), `tt-cli-upstream-fork`
+and `tt-studio` (forks), `tt-jukebox` (excluded before), `card-of-the-day-generator`
+(offered, not chosen; two agents' GTK apps from one prompt, has two screenshots if wanted).
 
 **2026-09-07 — tt-gozer gets its microsite, plus tt-cv-agency and a Hugging Face Space.**
 Prompt: *"tt-gozer now has a microsite to help make a good image from and link to as well as

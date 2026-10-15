@@ -1,0 +1,114 @@
+{
+  "title": "episod/tt-animatediff-container-v5.1 — every served mode, timed (from the model card)",
+  "aria": "From the model card: one Blackhole chip, 8 frames at 512x512, warm, median of 3: 15.3 seconds at 25 steps, 12.8 at 20, 8.7 at 12; the LCM variant runs 4 steps in 4.1 seconds, 3.7 times faster than 25 steps; a style LoRA costs half a second more and style plus LCM takes 4.3 seconds. The first request after start compiles kernels and took 119.6 seconds.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt serve episod/tt-animatediff-container-v5.1",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "8 frames at 512x512, warm, median of 3, one Blackhole chip",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "  25 steps                    ",
+        "c": "body"
+      },
+      {
+        "t": "15.3 s  ",
+        "c": "teal"
+      },
+      {
+        "t": "",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "  20 steps                    ",
+        "c": "body"
+      },
+      {
+        "t": "12.8 s  ",
+        "c": "teal"
+      },
+      {
+        "t": "",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "  12 steps                    ",
+        "c": "body"
+      },
+      {
+        "t": " 8.7 s  ",
+        "c": "teal"
+      },
+      {
+        "t": "",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "  LCM variant, 4 steps        ",
+        "c": "body"
+      },
+      {
+        "t": " 4.1 s  ",
+        "c": "teal"
+      },
+      {
+        "t": "3.7x faster than 25 steps",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "  a style LoRA costs          ",
+        "c": "body"
+      },
+      {
+        "t": "+0.5 s  ",
+        "c": "teal"
+      },
+      {
+        "t": "",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "  style + LCM                 ",
+        "c": "body"
+      },
+      {
+        "t": " 4.3 s  ",
+        "c": "teal"
+      },
+      {
+        "t": "",
+        "c": "muted"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "the first request after start compiles kernels and took 119.6 s",
+        "c": "muted"
+      }
+    ]
+  ]
+}

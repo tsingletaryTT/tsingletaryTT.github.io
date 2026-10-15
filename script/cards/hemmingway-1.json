@@ -1,0 +1,94 @@
+{
+  "title": "episod/hemmingway-1-p300 — draft acceptance (from the model card)",
+  "aria": "From the model card: the DFlash2 drafter was accepted 4.38 of 7 tokens per step (62.6%) on 80 coding prompts and 1.72 of 7 (24.6%) on 10 everyday-writing prompts, committing 5.36 and 2.69 tokens per step; coding ran at 54.1 tokens per second per user at 1 user and 28.5 at 4 users, 130.4 aggregate.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-model serve episod/hemmingway-1-p300",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "Workload                                 ",
+        "c": "muted"
+      },
+      {
+        "t": "Accepted of 7   ",
+        "c": "muted"
+      },
+      {
+        "t": "Tokens committed",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "                                         ",
+        "c": "muted"
+      },
+      {
+        "t": "                ",
+        "c": "muted"
+      },
+      {
+        "t": "per step",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "80 coding prompts (4,644 steps)          ",
+        "c": "body"
+      },
+      {
+        "t": "4.38 (62.6%)    ",
+        "c": "teal"
+      },
+      {
+        "t": "5.36",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "10 everyday-writing prompts (356 steps)  ",
+        "c": "body"
+      },
+      {
+        "t": "1.72 (24.6%)    ",
+        "c": "teal"
+      },
+      {
+        "t": "2.69",
+        "c": "body"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "Coding, 1 user    ",
+        "c": "muted"
+      },
+      {
+        "t": "54.1 tok/s per user, TTFT mean 232 ms",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "Coding, 4 users   ",
+        "c": "muted"
+      },
+      {
+        "t": "28.5 tok/s per user, 130.4 tok/s aggregate",
+        "c": "body"
+      }
+    ]
+  ]
+}

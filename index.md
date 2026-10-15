@@ -69,6 +69,12 @@ layout: default
         {% endif %}
         <a href="{{ project.url }}" class="project-link">{{ project.url | remove: "https://" }} ↗</a>
         {% if project.site %}<a href="{{ project.site }}" class="project-link">Live site ↗</a>{% endif %}
+        {%- comment -%}
+          Optional extra links (weights, packages, docs). Each is {label, url}; the label is
+          element text and the url is a bare attribute value, so neither needs a filter as long
+          as labels stay quote-free. Added 2026-10-15 for the Hugging Face model repos.
+        {%- endcomment -%}
+        {% for link in project.links %}<a href="{{ link.url }}" class="project-link">{{ link.label }} ↗</a>{% endfor %}
       </div>
       {% endfor %}
     </div>

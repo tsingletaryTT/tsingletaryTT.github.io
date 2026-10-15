@@ -1,0 +1,133 @@
+{
+  "title": "tt-orchard bringup — what it prints while it runs (from the README)",
+  "aria": "tt-orchard's run log as shown in its README: timestamped lines from the orchardist supervisor, the grafter coder agent and the sheepdog watchdog, through a stage 2 hardware test that failed with exit 4. The agent was not asked to retry; the stage was handed to the next tier.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-orchard bringup Cloudflare/clef",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "05:20:31  ",
+        "c": "muted"
+      },
+      {
+        "t": "orchardist    ",
+        "c": "teal"
+      },
+      {
+        "t": "stage 2 (graft): starting",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "05:20:31  ",
+        "c": "muted"
+      },
+      {
+        "t": "grafter       ",
+        "c": "teal"
+      },
+      {
+        "t": "Qwen/Qwen3-Coder-Next starts the prepare step",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "                        (weights-swap-check)",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "05:21:02  ",
+        "c": "muted"
+      },
+      {
+        "t": "grafter       ",
+        "c": "teal"
+      },
+      {
+        "t": "reads stages/2/evidence/swap-check.json",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "05:21:02  ",
+        "c": "muted"
+      },
+      {
+        "t": "grafter       ",
+        "c": "teal"
+      },
+      {
+        "t": "  got 5621 characters",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "05:33:12  ",
+        "c": "muted"
+      },
+      {
+        "t": "orchardist    ",
+        "c": "teal"
+      },
+      {
+        "t": "hardware test failed (exit 4)",
+        "c": "warn"
+      }
+    ],
+    [
+      {
+        "t": "05:37:42  ",
+        "c": "muted"
+      },
+      {
+        "t": "orchardist    ",
+        "c": "teal"
+      },
+      {
+        "t": "not asking the agent to retry:",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "                        the hardware test exited with code 4",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "05:41:10  ",
+        "c": "muted"
+      },
+      {
+        "t": "sheepdog      ",
+        "c": "teal"
+      },
+      {
+        "t": "stage 2 handed to the next tier.",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "                        watchdog repeated_tool_call: the same tool call ...",
+        "c": "muted"
+      }
+    ]
+  ]
+}

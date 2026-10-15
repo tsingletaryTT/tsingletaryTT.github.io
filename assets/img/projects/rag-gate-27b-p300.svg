@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 596 209" width="596" height="209" role="img" aria-label="From the model card: gate accuracy 0.930 on 200 ChainCheck items on two chips; over-refusal 0.074 on 135 items with sufficient evidence; unsupported answers 0.062 on 65 items with insufficient evidence; the chip's label equalled the CPU label on 25 of 25 shared prompts; median 2.5 seconds per request with 4 in flight.">
+<rect x="0.5" y="0.5" width="595" height="208" rx="6" fill="#111318" stroke="#232730"/>
+<circle cx="28" cy="24" r="4" fill="#4FD1C5"/>
+<text x="42" y="28" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="11.5" fill="#607D8B">episod/rag-gate-27b-p300 — the gate check, 2 chips (from the model card)</text>
+<line x1="0" y1="36" x2="596" y2="36" stroke="#232730"/>
+<text y="59" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">$</tspan><tspan x="31.83" fill="#4FD1C5"> tt-model serve episod/rag-gate-27b-p300</tspan></text>
+<text y="91" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">gate accuracy, 200 ChainCheck items (2 chips)                </tspan><tspan x="501.54" fill="#4FD1C5">0.930</tspan></text>
+<text y="107" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">over-refusal, P(not Answer given sufficient evidence)        </tspan><tspan x="501.54" fill="#4FD1C5">0.074</tspan></text>
+<text y="123" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">unsupported answers, P(Answer given insufficient evidence)   </tspan><tspan x="501.54" fill="#4FD1C5">0.062</tspan></text>
+<text y="139" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">chip label equals CPU label, 25 of the same prompts          </tspan><tspan x="501.54" fill="#4FD1C5">25 of 25</tspan></text>
+<text y="155" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">time per request with 4 requests in flight, median           </tspan><tspan x="501.54" fill="#4FD1C5">2.5 s</tspan></text>
+<text y="187" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">the action is the first token generated; ask for 1 token with logprobs</tspan></text>
+</svg>

@@ -1,0 +1,94 @@
+{
+  "title": "episod/clef-p300 — expected performance (from the model card)",
+  "aria": "From the model card: top-1 agreement with the CPU reference was 0.96875 both at stage 2 and on the installed package; the server was ready 236.1 seconds after start at stage 2 and 1484.3 seconds on a fresh install with an empty tensor cache. Every number is labelled measured. The sidecar head is not served.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-model serve episod/clef-p300",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "Number                                              ",
+        "c": "muted"
+      },
+      {
+        "t": "Value      ",
+        "c": "muted"
+      },
+      {
+        "t": "Label",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "top1 agreement with the CPU reference, stage 2      ",
+        "c": "body"
+      },
+      {
+        "t": "0.96875    ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "server ready after start, stage 2                   ",
+        "c": "body"
+      },
+      {
+        "t": "236.1 s    ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "top1 agreement with the CPU reference, this package ",
+        "c": "body"
+      },
+      {
+        "t": "0.96875    ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "server ready after start, this package              ",
+        "c": "body"
+      },
+      {
+        "t": "1484.3 s   ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "joint_head.safetensors is not served: the language-model backbone only",
+        "c": "muted"
+      }
+    ]
+  ]
+}

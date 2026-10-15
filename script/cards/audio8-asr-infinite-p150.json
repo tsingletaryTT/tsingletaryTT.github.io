@@ -1,0 +1,76 @@
+{
+  "title": "episod/audio8-asr-infinite-p150 — expected performance (from the model card)",
+  "aria": "From the model card: word error rate on 73 LibriSpeech validation utterances was 7.30% sent separately and 5.22% as one continuous 8.6-minute stream; on the first 39 utterances the CPU reference and this port both score 5.47%. First text 1.3 seconds after the stream starts, real time factor 0.66 to 0.68.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt serve episod/audio8-asr-infinite-p150",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "word error rate, 73 LibriSpeech validation utterances (8.0 minutes)",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "  each utterance sent separately        ",
+        "c": "body"
+      },
+      {
+        "t": "7.30%",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "  one continuous 8.6-minute stream      ",
+        "c": "body"
+      },
+      {
+        "t": "5.22%",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "  first 39 utterances, CPU reference    ",
+        "c": "body"
+      },
+      {
+        "t": "5.47%",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "  first 39 utterances, this port        ",
+        "c": "body"
+      },
+      {
+        "t": "5.47%",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "first text 1.3 s after the stream starts",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "real time factor 0.66 to 0.68 on long streams",
+        "c": "muted"
+      }
+    ]
+  ]
+}

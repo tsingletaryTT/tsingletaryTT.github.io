@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 635 193" width="635" height="193" role="img" aria-label="From the model card: the DFlash2 drafter was accepted 5.57 of 7 tokens per step on 16 coding prompts and 1.03 of 7 on 10 Thai prompts, committing 6.55 and 2.01 tokens per step; coding ran at 80.5 tokens per second per user at 1 user and 54.2 at 4 users, 179.3 aggregate.">
+<rect x="0.5" y="0.5" width="634" height="192" rx="6" fill="#111318" stroke="#232730"/>
+<circle cx="28" cy="24" r="4" fill="#4FD1C5"/>
+<text x="42" y="28" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="11.5" fill="#607D8B">episod/openthai2.0-qwen3.8-27b-p300 — draft acceptance (from the model card)</text>
+<line x1="0" y1="36" x2="635" y2="36" stroke="#232730"/>
+<text y="59" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">$</tspan><tspan x="31.83" fill="#4FD1C5"> tt-model serve episod/openthai2.0-qwen3.8-27b-p300</tspan></text>
+<text y="91" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">Workload                          </tspan><tspan x="290.17" fill="#607D8B">Accepted of 7   </tspan><tspan x="415.43" fill="#607D8B">Tokens committed per step</tspan></text>
+<text y="107" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">16 coding prompts (5507 tokens)   </tspan><tspan x="290.17" fill="#4FD1C5">5.57            </tspan><tspan x="415.43" fill="#aaa">6.55</tspan></text>
+<text y="123" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#aaa">10 Thai prompts (1504 tokens)     </tspan><tspan x="290.17" fill="#4FD1C5">1.03            </tspan><tspan x="415.43" fill="#aaa">2.01</tspan></text>
+<text y="155" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">Coding, 1 user    </tspan><tspan x="164.91" fill="#aaa">80.5 tok/s per user, TTFT mean 952 ms</tspan></text>
+<text y="171" font-family="ui-monospace,Menlo,Consolas,'DejaVu Sans Mono',monospace" font-size="13" xml:space="preserve"><tspan x="24.00" fill="#607D8B">Coding, 4 users   </tspan><tspan x="164.91" fill="#aaa">54.2 tok/s per user, 179.3 tok/s aggregate</tspan></text>
+</svg>
