@@ -204,6 +204,39 @@
     Phase 1, before any model: evenly-spaced control values produce evenly-spaced audio.
     Proof the loop is really closed.
 
+- name: tensixinet
+  category: demos
+  lang: Python · numpy · TT-Lang kernels
+  desc: >
+    Your Tenstorrent chips, playing in a band. Every chip reports its temperature, clock,
+    power, current, memory temperatures, DDR status and more, and tensixinet turns those
+    readings into music: each chip joins a band of eleven synthesizers inspired by
+    Ciat-Lonbarde instruments, and the band trades solos. A cool chip and a hot chip sound
+    different, a busy chip gets more solos, and uneven memory temperatures make the melody
+    wander. Prompt a local language model first and you can hear it think as its work heats
+    the chips. The gong, shimmer, drone ripple, AVDog, delay mix and mixer can run as TT-Lang
+    kernels on the chips themselves. Every choice is logged with its reason, each run draws a
+    different patch, and any run can be replayed exactly. No hardware needed: it plays any
+    number of synthetic chips, and the Hugging Face Space does exactly that with a live chart
+    of the mix.
+  url: https://github.com/tsingletaryTT/tensixinet
+  site: https://tsingletarytt.github.io/tensixinet/
+  links:
+    - label: Play it on Hugging Face
+      url: https://huggingface.co/spaces/episod/tensixinet-demo
+  media: assets/img/projects/tensixinet.mp4
+  poster: assets/img/projects/tensixinet.webp
+  media_kind: clip
+  media_alt: >-
+    Ten seconds of the repo's demo: on the left, the run log coloured like Ciat-Lonbarde
+    jacks, each line naming which device solos on which chip and why; on the right,
+    tt-toplike's panels for four Blackhole chips with temperature, power and memory flow.
+  media_note: >-
+    From the repo's own 100-second demo, muted here: the run log on the left, tt-toplike
+    watching the same four chips on the right. Each chip runs its own gong, shimmer, drone
+    ripple, AVDog and delay mix as TT-Lang kernels. The soundtrack is what the chips made;
+    the site has it with sound.
+
 - name: tt-bio-demo
   category: demos
   lang: Python · GTK4 + OpenGL

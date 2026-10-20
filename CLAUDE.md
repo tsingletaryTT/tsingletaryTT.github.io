@@ -63,6 +63,16 @@ Installing a real Ruby 3.x would fix the build properly; nobody has done it yet.
 
 ## What happened
 
+**2026-10-20 — tensixinet.** Prompt: *"tensixinet is cool enough to link to already. GH
+repo, site, HF space"*. 38 entries. Leads `demos`: chip telemetry played as a band of eleven
+Ciat-Lonbarde-style synthesizers, with TT-Lang kernels for six of the devices. All three
+surfaces are linked: `url` is the repo, `site` the microsite (routing diagrams, cable
+explorer, audio), and `links` carries the Space `episod/tensixinet-demo` (synthetic chips
+only; it says so). The figure is a `clip`: ten seconds (14 s to 24 s) of the repo's own
+100-second `demo/assets/kernels.final.mp4`, scaled to 1002px, muted, 349 KB, poster from
+mid-clip via `cwebp` (this ffmpeg has no libwebp encoder and `sips` cannot write WebP).
+The README's hero frame is the same demo, so this is the figure the repo chose for itself.
+
 **2026-10-15 — tt-orchard, seven Hugging Face model packages, and `links`.**
 Prompt: *"Let's update/suggest new repos in tsingletaryTT on GH and episod on HF for
 inclusion"*, then on the proposal: tt-orchard and the ttsim-blackhole URL move, the
