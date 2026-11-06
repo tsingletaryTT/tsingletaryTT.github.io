@@ -1,0 +1,7 @@
+# Writing published somewhere other than this site. Each entry renders in the Writing
+# list on the homepage and on /writing/ after the Jekyll posts, newest first, with the
+# host shown beside the title. Keys: title, date (the date it went live there), url.
+# The 2026-06-23 AnimateDiff draft in _drafts/ was rewritten into the first entry here.
+- title: Generating Spooky Loops with AnimateDiff on Blackhole
+  date: 2026-10-27
+  url: https://tenstorrent.com/developers/blog/generating-spooky-loops-with-animatediff-on-tenstorrent-blackhole

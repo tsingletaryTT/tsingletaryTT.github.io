@@ -104,12 +104,19 @@ layout: default
 <section class="section prose" id="writing">
   <div class="section-label">Writing</div>
   {% assign recent_posts = site.posts | limit: 3 %}
-  {% if recent_posts.size > 0 %}
+  {% if site.data.writing %}{% assign external_posts = site.data.writing | sort: "date" | reverse | limit: 3 %}{% else %}{% assign external_posts = "" | split: "" %}{% endif %}
+  {% if recent_posts.size > 0 or external_posts.size > 0 %}
   <ul class="post-list">
     {% for post in recent_posts %}
     <li class="post-item">
       <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
       <a href="{{ post.url | relative_url }}" class="post-title-link">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+    {% for post in external_posts %}
+    <li class="post-item">
+      <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+      <a href="{{ post.url }}" class="post-title-link">{{ post.title }} <span class="post-host">{{ post.url | remove: "https://" | split: "/" | first }} ↗</span></a>
     </li>
     {% endfor %}
   </ul>

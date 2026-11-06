@@ -137,6 +137,8 @@ a:focus-visible,
 .post-date { font-size: 11px; color: var(--text-muted); font-family: var(--mono); white-space: nowrap; min-width: 85px; }
 .post-title-link { font-size: 14px; color: var(--text); }
 .post-title-link:hover { color: var(--teal); }
+.post-host { font-size: 11px; color: var(--text-muted); font-family: var(--mono); white-space: nowrap; margin-left: 6px; }
+.post-title-link:hover .post-host { color: var(--teal); }
 .post-placeholder { color: var(--border-mid); font-size: 13px; font-style: italic; }
 .view-all {
   display: inline-block; margin-top: 16px;
