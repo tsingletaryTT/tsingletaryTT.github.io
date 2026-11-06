@@ -1,0 +1,164 @@
+{
+  "title": "episod/sensenova-6.8-code2video-p300 — expected performance (from the model card)",
+  "aria": "From the model card: top-1 agreement with the CPU reference 0.90625 at stage 2 and on the installed package; server ready 138.1 s after start at stage 2 and 1576.3 s on a fresh install with an empty tensor cache; decode speed 18.8 tokens per second greedy and 17.6 sampled; time to first token 0.29 to 0.38 s on a 72-token prompt and 1.84 s on a 6,432-token prompt; four requests at once total 28.5 tokens per second.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-model serve episod/sensenova-6.8-code2video-p300",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "Number                                           ",
+        "c": "muted"
+      },
+      {
+        "t": "Value             ",
+        "c": "muted"
+      },
+      {
+        "t": "Label",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "top1 agreement with the CPU reference, stage 2   ",
+        "c": "body"
+      },
+      {
+        "t": "0.90625           ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "top1 agreement, this package (stage 7)           ",
+        "c": "body"
+      },
+      {
+        "t": "0.90625           ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "server ready after start, stage 2                ",
+        "c": "body"
+      },
+      {
+        "t": "138.1 s           ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "server ready, fresh install, empty tensor cache  ",
+        "c": "body"
+      },
+      {
+        "t": "1576.3 s          ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "decode speed, greedy request                     ",
+        "c": "body"
+      },
+      {
+        "t": "18.8 tokens/s     ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "decode speed, sampled request                    ",
+        "c": "body"
+      },
+      {
+        "t": "17.6 tokens/s     ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "time to first token, 72-token prompt, greedy     ",
+        "c": "body"
+      },
+      {
+        "t": "0.29 to 0.38 s    ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "time to first token, 6,432-token prompt          ",
+        "c": "body"
+      },
+      {
+        "t": "1.84 s            ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "four requests at once, 256 tokens out each       ",
+        "c": "body"
+      },
+      {
+        "t": "28.5 tokens/s total  ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "No film has been produced on this package.",
+        "c": "muted"
+      }
+    ]
+  ]
+}

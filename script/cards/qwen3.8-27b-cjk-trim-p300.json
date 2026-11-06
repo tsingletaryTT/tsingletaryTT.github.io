@@ -1,0 +1,164 @@
+{
+  "title": "episod/qwen3.8-27b-cjk-trim-p300 — expected performance (from the model card)",
+  "aria": "From the model card: top-1 agreement with the CPU reference 0.9375; GSM8K on the first 100 items 0.95 against 0.94 for the nearest model; BFCL simple and multiple at one request at a time 0.88 against 0.88 and 0.94 against 0.92, at four requests at once 0.74 against 0.76 and 0.75 against 0.84; decode speed 17.0 against 16.8 tokens per second on a short chat prompt and 15.7 against 13.3 on a 15457-token prompt; Chinese, Japanese and Korean prompts answered in the asked script 0 of 40 against 32 of 40.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-model serve episod/qwen3.8-27b-cjk-trim-p300",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "Number                                        ",
+        "c": "muted"
+      },
+      {
+        "t": "this model  ",
+        "c": "muted"
+      },
+      {
+        "t": "nearest model",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "top1 agreement with the CPU reference         ",
+        "c": "body"
+      },
+      {
+        "t": "0.9375      ",
+        "c": "teal"
+      },
+      {
+        "t": "",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "GSM8K score, first 100 items                  ",
+        "c": "body"
+      },
+      {
+        "t": "0.95        ",
+        "c": "teal"
+      },
+      {
+        "t": "0.94",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "bfcl_simple_c1 score, one request at a time   ",
+        "c": "body"
+      },
+      {
+        "t": "0.88        ",
+        "c": "teal"
+      },
+      {
+        "t": "0.88",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "bfcl_multiple_c1 score                        ",
+        "c": "body"
+      },
+      {
+        "t": "0.94        ",
+        "c": "teal"
+      },
+      {
+        "t": "0.92",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "bfcl_simple_c4 score, four requests at once   ",
+        "c": "body"
+      },
+      {
+        "t": "0.74        ",
+        "c": "teal"
+      },
+      {
+        "t": "0.76",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "bfcl_multiple_c4 score                        ",
+        "c": "body"
+      },
+      {
+        "t": "0.75        ",
+        "c": "teal"
+      },
+      {
+        "t": "0.84",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "decode speed, short chat prompt, one request  ",
+        "c": "body"
+      },
+      {
+        "t": "17.0 tok/s  ",
+        "c": "teal"
+      },
+      {
+        "t": "16.8 tok/s",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "decode speed, long prompt (15457 tokens)      ",
+        "c": "body"
+      },
+      {
+        "t": "15.7 tok/s  ",
+        "c": "teal"
+      },
+      {
+        "t": "13.3 tok/s",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "CJK prompts answered in the asked script      ",
+        "c": "body"
+      },
+      {
+        "t": "0 of 40     ",
+        "c": "warn"
+      },
+      {
+        "t": "32 of 40",
+        "c": "body"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "Do not use this model for CJK text.",
+        "c": "muted"
+      }
+    ]
+  ]
+}

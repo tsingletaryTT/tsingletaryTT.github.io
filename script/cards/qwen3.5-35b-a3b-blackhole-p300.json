@@ -1,0 +1,136 @@
+{
+  "title": "episod/qwen3.5-35b-a3b-blackhole-p300 — expected performance (from the model card)",
+  "aria": "From the model card: decode speed 125.75 tokens per second for 128 greedy tokens, median of 5 runs, and 125.34 on the boot check; time to first token 102 to 136 ms on a short prompt; a 3,817-token prompt with a code word at the start answered PELICAN in 0.84 s; cold start with an empty kernel cache 2,334 s, a single sample; decode floor from datasheet bandwidth 428 tokens per second, an estimate, of which this is 29.4 percent.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-model serve episod/qwen3.5-35b-a3b-blackhole-p300",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "Number                                            ",
+        "c": "muted"
+      },
+      {
+        "t": "Value           ",
+        "c": "muted"
+      },
+      {
+        "t": "Label",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "decode speed, 128 greedy tokens, median of 5 runs ",
+        "c": "body"
+      },
+      {
+        "t": "125.75 tok/s    ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "decode speed, boot check, 128 streamed tokens     ",
+        "c": "body"
+      },
+      {
+        "t": "125.34 tok/s    ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "time to first token, short prompt, warm           ",
+        "c": "body"
+      },
+      {
+        "t": "102 to 136 ms   ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "3,817-token prompt, code word at the start        ",
+        "c": "body"
+      },
+      {
+        "t": "PELICAN, 0.84 s ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "cold start, empty kernel cache, to /health 200    ",
+        "c": "body"
+      },
+      {
+        "t": "2,334 s         ",
+        "c": "teal"
+      },
+      {
+        "t": "single sample",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "decode floor from datasheet bandwidth             ",
+        "c": "body"
+      },
+      {
+        "t": "428 tok/s       ",
+        "c": "teal"
+      },
+      {
+        "t": "estimate",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "share of the floor                                ",
+        "c": "body"
+      },
+      {
+        "t": "29.4 percent    ",
+        "c": "teal"
+      },
+      {
+        "t": "estimate",
+        "c": "muted"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "256 experts, 8 used per token; both dies of one p300 board",
+        "c": "muted"
+      }
+    ]
+  ]
+}

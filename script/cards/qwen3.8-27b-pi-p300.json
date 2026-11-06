@@ -1,0 +1,137 @@
+{
+  "title": "episod/qwen3.8-27b-pi-p300 — against the base model (from the model card)",
+  "aria": "From the model card, this model against the base Qwen/Qwen3.8-27B on the same bundle: HumanEval pass@1 0.976 against 0.963, MBPP 0.94 against 0.928, GSM8K 0.839 against 0.792, IFEval 0.885 against 0.863, BFCL v3 simple 0.932 against 0.93 and multiple 0.955 against 0.935. Decode speed on the pi-coding prompt with the drafter on: 53.0 tokens per second.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-model serve episod/qwen3.8-27b-pi-p300",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "Benchmark, same bundle, greedy                ",
+        "c": "muted"
+      },
+      {
+        "t": "this model   ",
+        "c": "muted"
+      },
+      {
+        "t": "base Qwen3.8-27B",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "HumanEval pass@1, all 164 problems            ",
+        "c": "body"
+      },
+      {
+        "t": "0.976        ",
+        "c": "teal"
+      },
+      {
+        "t": "0.963",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "MBPP pass@1, all 500 problems                 ",
+        "c": "body"
+      },
+      {
+        "t": "0.94         ",
+        "c": "teal"
+      },
+      {
+        "t": "0.928",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "GSM8K, all 1,319 problems, 5-shot             ",
+        "c": "body"
+      },
+      {
+        "t": "0.839        ",
+        "c": "teal"
+      },
+      {
+        "t": "0.792",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "IFEval prompt-level strict, all 541 prompts   ",
+        "c": "body"
+      },
+      {
+        "t": "0.885        ",
+        "c": "teal"
+      },
+      {
+        "t": "0.863",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "BFCL v3 simple tool calls, all 400 items      ",
+        "c": "body"
+      },
+      {
+        "t": "0.932        ",
+        "c": "teal"
+      },
+      {
+        "t": "0.93",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "BFCL v3 multiple tool calls, all 200 items    ",
+        "c": "body"
+      },
+      {
+        "t": "0.955        ",
+        "c": "teal"
+      },
+      {
+        "t": "0.935",
+        "c": "body"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "decode speed, pi-coding prompt, drafter on    ",
+        "c": "body"
+      },
+      {
+        "t": "53.0 tokens/s  ",
+        "c": "teal"
+      },
+      {
+        "t": "measured",
+        "c": "muted"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "HumanEval, MBPP, IFEval: empty replies asked again at 32768 tokens",
+        "c": "muted"
+      }
+    ]
+  ]
+}

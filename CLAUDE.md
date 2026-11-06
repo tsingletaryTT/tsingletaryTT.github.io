@@ -46,10 +46,16 @@ data-file change without a full build, render the Liquid loop directly against t
 
 ```bash
 GEM_HOME=/tmp/gems gem install liquid --no-document
-GEM_HOME=/tmp/gems ruby -ryaml -rliquid -e '
-  tpl = Liquid::Template.parse(File.read("index.md")[/{% for project.*?{% endfor %}/m])
-  puts tpl.render!("site" => {"data" => {"projects" => YAML.load_file("_data/projects.yml")}})'
+GEM_HOME=/tmp/gems ruby -ryaml -rliquid -rcgi -e '
+  src = File.readlines("index.md")[25..82].join   # the whole Selected Work block; the loop is nested
+  Liquid::Environment.default.register_filter(Module.new {
+    def relative_url(p) p.sub(%r{^/},"") end; def escape(s) CGI.escapeHTML(s.to_s) end
+    def where(a,k,v) a.select{|e| e[k]==v} end })
+  puts Liquid::Template.parse(src).render!("site" => {"data" => {"projects" => YAML.load_file("_data/projects.yml")}})'
 ```
+
+(Check the line numbers against `grep -n 'assign category_keys\|^  {% endfor %}' index.md`
+before trusting 26–83; see the 2026-11-06 note for why the old one-regex recipe no longer parses.)
 
 (Use a current `liquid` — the 4.0.3 that ships with Homebrew Ruby calls `String#tainted?`,
 removed in Ruby 3.2+, and every variable renders as `Liquid error: internal`.)
@@ -62,6 +68,80 @@ also gets cleared, so expect to reinstall liquid in a fresh session.
 Installing a real Ruby 3.x would fix the build properly; nobody has done it yet.
 
 ## What happened
+
+**2026-11-06 — refresh: two new microsites, two new repos, four descriptions.** Prompt:
+*"Let's do a refresh / up to date check on this. some new microsites."* 40 entries now.
+
+The diff was the same three probes as before (`gh repo list --visibility public`, the HF API
+for `episod`, and `curl` of every `tsingletarytt.github.io/<repo>/`), and that third probe is
+the one to keep running: **`homepageUrl` in the repo listing is set by hand and is not proof
+of a live site**, and a live site is not proof the listing points at it. Probing each URL
+found both changes this session.
+
+**tt-orchard and tt-demo-maker have microsites now**, and both gained `site:`. tt-orchard's
+figure is its microsite hero (a `shot`, replacing the README log card the same way tt-gozer's
+did on 2026-09-07): captured at 1264px, cropped to `1140:870:62:0` so the headline and the
+replay terminal plus the stages panel fill the frame. `assets/img/projects/tt-orchard.svg` was
+deleted; its spec `script/cards/tt-orchard.json` stays. tt-demo-maker keeps its ouroboros clip,
+since the site's own gallery leads with the same footage. tt-orchard's `desc` also caught up
+with the site: the class list grew (vocab-trim, restricted-head, stock-runtime), there is a
+control page (`tt-orchard ui`) and a canning step (`tt-orchard can`) that builds the tt-model
+bundles, and the site replays a real 47-minute run.
+
+**tt-vjepa2's `site` is a 404 and this session could not fix it.** The repo's Pages deploys
+all ran from `master`; the branch was renamed to `main` some time after the last deploy on 2026-09-08 and Pages was
+left pointing at a branch that no longer exists, so GitHub disabled it (`gh api
+repos/tsingletaryTT/tt-vjepa2/pages` returns 404). `docs/index.html` is still on `main`. The
+fix is one call in that repo, and the auto-mode classifier refused it here as creating a
+public surface, so Taylor runs it:
+
+    gh api -X POST repos/tsingletaryTT/tt-vjepa2/pages \
+      --input - <<< '{"source":{"branch":"main","path":"/docs"}}'
+
+The `site:` line was left in place on purpose; remove it only if the site is not coming back.
+**Rename a branch and Pages silently stops** is the general lesson. The global CLAUDE.md says
+to migrate `master` to `main`; do the Pages source in the same breath.
+
+**Two new repos, both public, both only Taylor's commits (35 and 8):**
+
+* **tt-arex2-agent** leads `applied`: a Gradio "research lab" for BAAI/AREX-2 on two chips
+  that runs the propose/measure/reflect/revise loop and shows every step. Figure is the
+  README's own dark-theme capture (`docs/research-done-dark.png`, a 1400×2866 full-page
+  shot) cropped to its top 1250px so the title, mission, meters and first steps are the
+  frame. `links` carries the `episod/arex-2-p300` package.
+* **tt-minimax-music-blackhole** sits under `bringup` right after tt-orchard: launcher and
+  Gradio page for MiniMax-Music3 with the fiona-crapple adapter merged in. Figure is the
+  README's `docs/gradio-done.png` cropped to the result panel (`930:355:960:140`): the
+  waveform and the compute readout. The four untracked files Taylor left in the repo root
+  (`tt-minimax-gradio*.png`, `clip-seed57393907.{mp3,flac}`) are the same run (seed
+  57393907 matches the screenshot); the 5-second song is on disk if an audio figure is ever
+  wanted, but `index.md` has no audio kind, so they were not used and are not committed.
+
+**Descriptions refreshed from current READMEs:** tensixinet (the choir is a TT-Lang kernel
+now, and `--tui` exists), tt-gozer (Debian package, `gozer names` and the `by-name` udev
+rules). tt-station and tt-bio-demo were checked and left alone; their descs still match.
+
+**Seven more Hugging Face packages, all `bringup`, appended after the 2026-10-15 block**
+(Taylor's answer to the proposal: add them all; `minimax-music3-fiona-crapple{,-blackhole}`
+and `arex-2-p300` were skipped because the two new repo entries already link them):
+`qwen3.8-27b-pi-p300`, `qwen3.8-27b-cjk-trim-p300`, `granite-4.0-h-1b-blackhole`,
+`minicpm3-4b-blackhole`, `qwen3.5-35b-a3b-blackhole-p300`, `ace-step-1.5-turbo-blackhole`,
+`sensenova-6.8-code2video-p300`. 47 entries, 22 of them bringup. Cards as before, specs in
+`script/cards/<name>.json`, values verbatim from each card's measured table; row names drop
+their parentheticals, nothing else changes. Two cards have no Expected performance table:
+granite's figure is its Numbers paragraph laid out as rows (the card says those are the
+recipe package's numbers, and the note says so), and minicpm3's is the card's own p150
+profile table. The pi card's figure is its benchmark table, since the benchmark is that card's point. `desc` facts come from the card only; the microsite's "9.8
+hours of chip time" for the pi benchmark was dropped for that reason.
+
+**Harness note:** the preview recipe's `[/{% for project.*?{% endfor %}/m]` regex has been
+wrong since the category grouping landed (2026-09-10): the project loop is nested, so the lazy
+match stops at the inner `links` loop's `endfor` and Liquid reports an unclosed `for`. Render
+`index.md` lines 26–83 instead (`File.readlines("index.md")[25..82].join`) and register a
+`where` filter alongside `relative_url` and `escape`. Liquid 5.14 wants
+`Liquid::Environment.default.register_filter`, not `Template.register_filter`.
+
+**Skipped on purpose:** `xpustat` (fork), `card-of-the-day-generator` and `tt-cli` (as before).
 
 **2026-10-20 — tensixinet.** Prompt: *"tensixinet is cool enough to link to already. GH
 repo, site, HF space"*. 38 entries. Leads `demos`: chip telemetry played as a band of eleven

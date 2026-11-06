@@ -1,0 +1,159 @@
+{
+  "title": "episod/minicpm3-4b-blackhole — p150, warm kernel cache (from the model card)",
+  "aria": "From the model card, one chip with a warm kernel cache: the chat profile, 21 prompt tokens and 64 out, 633 ms to the first token, 33.2 tokens per second prefill, 32.7 tokens per second decode, 2.60 s end to end; the long-prompt profile, 494 tokens in and 1 out, 15158 ms to the first token. Server ready after start: 68.1 s on an empty kernel cache, 50.1 s on a warm one.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-model serve episod/minicpm3-4b-blackhole",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "profile      ",
+        "c": "muted"
+      },
+      {
+        "t": "ISL   ",
+        "c": "muted"
+      },
+      {
+        "t": "OSL  ",
+        "c": "muted"
+      },
+      {
+        "t": "conc  ",
+        "c": "muted"
+      },
+      {
+        "t": "N  ",
+        "c": "muted"
+      },
+      {
+        "t": "TTFT (ms)  ",
+        "c": "muted"
+      },
+      {
+        "t": "prefill tok/s/u  ",
+        "c": "muted"
+      },
+      {
+        "t": "decode tok/s/u  ",
+        "c": "muted"
+      },
+      {
+        "t": "E2EL (s)",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "chat         ",
+        "c": "body"
+      },
+      {
+        "t": "21    ",
+        "c": "body"
+      },
+      {
+        "t": "64   ",
+        "c": "body"
+      },
+      {
+        "t": "1     ",
+        "c": "body"
+      },
+      {
+        "t": "3  ",
+        "c": "body"
+      },
+      {
+        "t": "633        ",
+        "c": "body"
+      },
+      {
+        "t": "33.2             ",
+        "c": "body"
+      },
+      {
+        "t": "32.7            ",
+        "c": "teal"
+      },
+      {
+        "t": "2.60",
+        "c": "body"
+      }
+    ],
+    [
+      {
+        "t": "long prompt  ",
+        "c": "body"
+      },
+      {
+        "t": "494   ",
+        "c": "body"
+      },
+      {
+        "t": "1    ",
+        "c": "body"
+      },
+      {
+        "t": "1     ",
+        "c": "body"
+      },
+      {
+        "t": "2  ",
+        "c": "body"
+      },
+      {
+        "t": "15158      ",
+        "c": "body"
+      },
+      {
+        "t": "32.6             ",
+        "c": "body"
+      },
+      {
+        "t": "-               ",
+        "c": "body"
+      },
+      {
+        "t": "15.2",
+        "c": "body"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "server ready after start, empty kernel cache  ",
+        "c": "body"
+      },
+      {
+        "t": "68.1 s   measured",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "server ready after start, warm kernel cache   ",
+        "c": "body"
+      },
+      {
+        "t": "50.1 s   measured",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "the prompt goes through the chip one token per step",
+        "c": "muted"
+      }
+    ]
+  ]
+}

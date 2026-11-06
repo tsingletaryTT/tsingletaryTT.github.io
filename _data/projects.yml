@@ -106,28 +106,61 @@
   lang: Python · agent harness · tt-gozer
   desc: >
     A local-only harness that brings a new Hugging Face model up on Blackhole hardware and
-    stops at a review bundle for a person to read. Give it a model id and it downloads the
-    weights, sorts the model into a class (weights only, weights plus a sidecar, or a full
-    port), writes and runs the tests, brings it up on the chips, checks the output against a
-    CPU reference, and tries it on 1, 2 and 4 chips. The agents doing that work are open-source
-    models served on the same QuietBox 2, so nothing calls out to a hosted model, and every chip
-    is leased through tt-gozer. Each step goes into an append-only ledger, so a run can be
-    paused, resumed, and recovered after a crash. The harness never publishes anything.
-    Cloudflare/clef went from one command to "ready for operator review" in about 3 hours of
-    ledger time; the clef, RAG-Gate, Hemmingway and OpenThai packages below are its output.
+    stops at a review bundle for a person to read. Give it a model id and it reads the
+    model's config and weight headers before it touches a chip, sorts it into a class
+    (weights only, weights plus a sidecar, a vocabulary trim, a restricted head, a stock
+    runtime, or a full port), writes and runs the tests, brings it up on the chips, checks the
+    output against a CPU reference, and tries it on 1, 2 and 4 chips. The agents doing that
+    work are open-source models served on the same QuietBox 2, so nothing calls out to a
+    hosted model, and every chip is leased through tt-gozer. Each step goes into an
+    append-only ledger, so a run can be paused, resumed, and recovered after a crash, and a
+    control page on the box shows every run. The harness never publishes anything; its
+    canning step builds the tt-model bundles. Cloudflare/clef went from one command to
+    "ready for operator review" in about 3 hours of ledger time, and the clef, RAG-Gate,
+    Hemmingway and OpenThai packages on this page are its output, as are the AREX-2 and
+    MiniMax-Music3 bundles behind the two pages that use them. The microsite replays a real
+    47-minute run from its own ledger.
   url: https://github.com/tsingletaryTT/tt-orchard
-  media: assets/img/projects/tt-orchard.svg
-  media_kind: card
+  site: https://tsingletarytt.github.io/tt-orchard/
+  media: assets/img/projects/tt-orchard.webp
+  media_kind: shot
   media_alt: >-
-    tt-orchard's run log as shown in its README: timestamped lines from the orchardist
-    supervisor, the grafter coder agent and the sheepdog watchdog, through a stage 2 hardware
-    test that failed with exit 4. The agent was not asked to retry; the stage was handed
-    to the next tier.
+    The tt-orchard microsite hero: "A model lands on Hugging Face. Watch it come up." above a
+    replay of a real bring-up of ProprietaryLegal/Qwen3.8-27B-CJK-Trim, with the orchardist's
+    first log lines on the left and the nine stages, from intake to operator bundle, listed
+    beside them.
   media_note: >-
-    What a run prints, from the README. The orchardist (the supervisor), the grafter (the
-    coder) and the sheepdog (the watchdog) each log what they did and when. Here a stage 2
-    hardware test fails. The agent is not asked to retry; the stage is handed to the next
-    tier.
+    The project's microsite. The terminal is a replay of a real 47-minute run from its own
+    ledger, and the panel beside it lists the nine stages, from intake to the operator bundle.
+
+- name: tt-minimax-music-blackhole
+  category: bringup
+  lang: Python · Gradio · tt-model
+  desc: >
+    MiniMax-Music3 on one Blackhole chip: write lyrics, describe the music, get a song. A
+    launcher and a Gradio page for the model with the fiona crapple language-model adapter
+    merged into the weights, a rank-64 LoRA trained on nine tracks in one style that answers
+    to its trigger phrase. The merged weights are on Hugging Face, and a tt-model thin bundle
+    built by tt-orchard's canning step serves them. About 3.3 seconds of compute per second
+    of audio, one song at a time, 32 kHz stereo. The launcher passes only the leased chips
+    into the container, probes the image for a host problem that hangs the boot and applies
+    the fix only when the probe shows it, and always stops the container. Over a hundred
+    tests, none of which needs a chip.
+  url: https://github.com/tsingletaryTT/tt-minimax-music-blackhole
+  links:
+    - label: Merged weights on Hugging Face
+      url: https://huggingface.co/episod/minimax-music3-fiona-crapple
+    - label: Blackhole package on Hugging Face
+      url: https://huggingface.co/episod/minimax-music3-fiona-crapple-blackhole
+  media: assets/img/projects/tt-minimax-music-blackhole.webp
+  media_kind: shot
+  media_alt: >-
+    The result panel of the MiniMax-Music3 Gradio page: the waveform of a 5.2-second song,
+    then the readout: 16 seconds of compute for 5.2 seconds of audio, 3.1 seconds per second,
+    and the time spent in each stage.
+  media_note: >-
+    A finished song, from the README. The lyrics were two sentences, so the song ended at
+    5.2 s of the 20 s asked for, and the page says so.
 
 - name: tt-tnt
   category: bringup
@@ -181,6 +214,34 @@
     The project's own microsite — the bring-up written up as a story, from the RoPE bug
     to the dancing arm.
 
+- name: tt-arex2-agent
+  category: applied
+  lang: Python · Gradio · vLLM
+  desc: >
+    A research lab page for BAAI/AREX-2, a 27B agent model served on two Blackhole chips from
+    its tt-orchard package. The model is trained to work in loops: propose, measure, reflect,
+    revise, with tools. A chat box shows one reply; this page runs the loop and shows every
+    step, with its reasoning, the tool it called, the result, the tokens and the seconds.
+    Research missions search Wikipedia and arXiv and answer with sources, and an evidence
+    board marks each claim in the answer as backed, computed or not backed. The improvement
+    lab gives the model a coding task with hidden tests, scores each submission in a sandbox,
+    and charts the score per round. Every run also goes to the same model as plain chat, with
+    no tools, so the scorecard compares the two. An offline corpus runs the preset missions
+    with no network, and a scripted stand-in model shows the page with no chip at all.
+  url: https://github.com/tsingletaryTT/tt-arex2-agent
+  links:
+    - label: AREX-2 package on Hugging Face
+      url: https://huggingface.co/episod/arex-2-p300
+  media: assets/img/projects/tt-arex2-agent.webp
+  media_kind: shot
+  media_alt: >-
+    The AREX-2 Research Lab page in its dark theme: a research mission about the Sydney Opera
+    House architect, finished with an answer after 4 of 12 steps, 423 tokens and 13 seconds,
+    with the step, token and time meters under the Run button.
+  media_note: >-
+    A real run from the README, against the published package on two chips: the agent
+    searched Wikipedia, read two pages, ran one calculation, and answered in 13 seconds.
+
 - name: tt-cv-agency
   category: applied
   lang: Python · TTNN · VCV Rack
@@ -214,9 +275,11 @@
     Ciat-Lonbarde instruments, and the band trades solos. A cool chip and a hot chip sound
     different, a busy chip gets more solos, and uneven memory temperatures make the melody
     wander. Prompt a local language model first and you can hear it think as its work heats
-    the chips. The gong, shimmer, drone ripple, AVDog, delay mix and mixer can run as TT-Lang
-    kernels on the chips themselves. Every choice is logged with its reason, each run draws a
-    different patch, and any run can be replayed exactly. No hardware needed: it plays any
+    the chips. The gong, shimmer, drone ripple, AVDog, delay mix, mixer and the choir (a chip
+    as a singer, its pitch snapped to the patch's scale) can run as TT-Lang kernels on the
+    chips themselves, and a --tui mode draws the patch and the log full screen as it plays.
+    Every choice is logged with its reason, each run draws a different patch, and any run can
+    be replayed exactly. No hardware needed: it plays any
     number of synthetic chips, and the Hugging Face Space does exactly that with a live chart
     of the mix.
   url: https://github.com/tsingletaryTT/tensixinet
@@ -264,8 +327,10 @@
     Cooperative chip leasing for Tenstorrent boxes, so several agents — Claude Code
     sessions, aider, shell scripts, cron jobs — can share one machine without corrupting
     each other's runs. A lease says who is using which chips and why; the kernel says
-    whether that's actually true, and when the two disagree the kernel wins. Let go and
-    let Gozer.
+    whether that's actually true, and when the two disagree the kernel wins. Ships as a
+    Debian package with a man page and its Claude skills, and gives boards and chips stable
+    names, with udev rules for /dev/tenstorrent/by-name/, so "board 0" means the same board
+    whichever tool answers. Let go and let Gozer.
   url: https://github.com/tsingletaryTT/tt-gozer
   site: https://tsingletarytt.github.io/tt-gozer/
   media: assets/img/projects/tt-gozer.webp
@@ -330,6 +395,7 @@
     each directive with the reaction it caused — so the recording machinery isn't
     reinvented per project.
   url: https://github.com/tsingletaryTT/tt-demo-maker
+  site: https://tsingletarytt.github.io/tt-demo-maker/
   media: assets/img/projects/tt-demo-maker.mp4
   poster: assets/img/projects/tt-demo-maker.webp
   media_kind: clip
@@ -805,3 +871,176 @@
   media_note: >-
     Every served mode, timed through this container image. The LCM variant defaults to 4
     steps and guidance 1.5 when a request leaves them out.
+
+- name: qwen3.8-27b-pi-p300
+  category: bringup
+  lang: tt-model v6 thin bundle · vLLM · Blackhole p300
+  desc: >
+    bytkim/Qwen3.8-27B-pi, a fine-tune of Qwen3.8-27B, on two Blackhole chips, staged by
+    tt-orchard. It reuses the Qwen3.8-27B model code from the DFlash2 bundle with the DFlash2
+    drafter on, a 262,144-token context and up to four sequences at a time; only the weights
+    differ. The card carries a six-set benchmark against the base model, served one after the
+    other through the same bundle: this model scores at or above the base on every set,
+    GSM8K is the only clear difference, and once the cut-off replies are asked again with a
+    32,768-token limit the two are close on code and instruction following. Every score and speed names the evidence file it came from.
+  url: https://huggingface.co/episod/qwen3.8-27b-pi-p300
+  media: assets/img/projects/qwen3.8-27b-pi-p300.svg
+  media_kind: card
+  media_alt: >-
+    From the model card, this model against the base Qwen/Qwen3.8-27B on the same bundle:
+    HumanEval pass@1 0.976 against 0.963, MBPP 0.94 against 0.928, GSM8K 0.839 against 0.792,
+    IFEval 0.885 against 0.863, BFCL v3 simple 0.932 against 0.93 and multiple 0.955 against
+    0.935. Decode speed on the pi-coding prompt with the drafter on: 53.0 tokens per second.
+  media_note: >-
+    The card's benchmark against the base model. The GSM8K lead is the lead the card calls
+    clear; the paired tests do not separate the two models on the other sets once replies
+    are given room to finish.
+
+- name: qwen3.8-27b-cjk-trim-p300
+  category: bringup
+  lang: tt-model v6 thin bundle · vLLM · Blackhole p300
+  desc: >
+    ProprietaryLegal/Qwen3.8-27B-CJK-Trim on two Blackhole chips: a Qwen3.8-27B with 66,560
+    vocabulary rows removed, so the token ids are renumbered and the drafter cannot be used.
+    This is the run the tt-orchard microsite replays, 47 minutes from its ledger, and the one
+    that taught the harness its vocab-trim class. The card's small benchmark says what the
+    trim changes: on English and code sets no difference from the base was found, and
+    Chinese, Japanese and Korean input does not work at all, since the tokenizer splits those
+    characters into byte pieces the model does not read. The base model answered 32 of 40
+    CJK prompts in the asked script; this one answered 0.
+  url: https://huggingface.co/episod/qwen3.8-27b-cjk-trim-p300
+  media: assets/img/projects/qwen3.8-27b-cjk-trim-p300.svg
+  media_kind: card
+  media_alt: >-
+    From the model card: top-1 agreement with the CPU reference 0.9375; GSM8K on the first
+    100 items 0.95 against 0.94 for the nearest model; BFCL simple and multiple at one
+    request at a time 0.88 against 0.88 and 0.94 against 0.92, at four requests at once 0.74
+    against 0.76 and 0.75 against 0.84; decode speed 17.0 against 16.8 tokens per second on
+    a short chat prompt and 15.7 against 13.3 on a 15457-token prompt; Chinese, Japanese and
+    Korean prompts answered in the asked script 0 of 40 against 32 of 40.
+  media_note: >-
+    The card's Expected performance table beside the nearest model. The last row is the
+    finding: the trim costs the model every CJK script.
+
+- name: granite-4.0-h-1b-blackhole
+  category: bringup
+  lang: tt-model v6 thin bundle · ttnn · Blackhole p150
+  desc: >
+    IBM's Granite-4.0-H-1B on one Blackhole chip: a 1.5B-parameter hybrid of 36 Mamba-2
+    layers and 4 attention layers, as a ttnn port with an OpenAI-compatible chat server
+    written as an ASGI app. Built by tt-orchard's canning step, so tt-model installs it into
+    its own venv from exact pins, with ttnn 0.80.0 from PyPI, and serves it with no Docker
+    image. One request at a time, greedy decoding, a 2,048-token context by default. The same
+    code ships as a recipe package with a plain run.sh, and three optional TT-Lang kernels
+    ride along, off by default.
+  url: https://huggingface.co/episod/granite-4.0-h-1b-blackhole
+  media: assets/img/projects/granite-4.0-h-1b-blackhole.svg
+  media_kind: card
+  media_alt: >-
+    From the model card, on one Blackhole p300c chip with tt-metal v0.80.0: about 34 tokens
+    per second traced decode, 0.32 seconds to the first token after a short prompt, 123, 406
+    and 651 tokens per second prefill for prompts of 128, 512 and 1,024 tokens, and top-1
+    agreement with the fp32 CPU reference of 0.979 on four short prompts.
+  media_note: >-
+    The card's Numbers paragraph as a table. They are the recipe package's numbers, which
+    runs the same code; this bundle's own run log is in the tt-orchard repository.
+
+- name: minicpm3-4b-blackhole
+  category: bringup
+  lang: tt-model v6 thin bundle · ttnn · Blackhole p150
+  desc: >
+    OpenBMB's MiniCPM3-4B on one Blackhole chip: 62 layers of multi-latent attention in its
+    absorbed form, a paged cache, and the decode step captured as a trace. The ttnn port
+    lives in tt-orchard's scripts and the canning step staged it as a bundle. The prompt goes
+    through the decode step one token at a time, about 30 ms each, so a long prompt waits
+    about a minute before the first token; the batched prefill hung the chip in the recipe
+    server and was left out. Beta: installed and served from a local copy on one chip of a
+    p300c board, not yet from the Hub. Function calls, the code interpreter and the 32k
+    window the authors describe are not tested.
+  url: https://huggingface.co/episod/minicpm3-4b-blackhole
+  media: assets/img/projects/minicpm3-4b-blackhole.svg
+  media_kind: card
+  media_alt: >-
+    From the model card, one chip with a warm kernel cache: the chat profile, 21 prompt
+    tokens and 64 out, 633 ms to the first token, 33.2 tokens per second prefill, 32.7 tokens
+    per second decode, 2.60 s end to end; the long-prompt profile, 494 tokens in and 1 out,
+    15158 ms to the first token. Server ready after start: 68.1 s on an empty kernel cache,
+    50.1 s on a warm one.
+  media_note: >-
+    The card's p150 profile table. The long-prompt row is the one-token-per-step prefill
+    made visible: 494 tokens in, 15 seconds to the first token out.
+
+- name: qwen3.5-35b-a3b-blackhole-p300
+  category: bringup
+  lang: tt-model v6 thin bundle · vLLM · Blackhole p300
+  desc: >
+    Qwen3.5-35B-A3B, a mixture of experts with 256 experts and 8 used per token, on both dies
+    of one Blackhole p300 board. The bundle holds a tt-metal development build with the MoE
+    ops, the model code, the vLLM plugin and a launcher, and no weights or container image;
+    it carries its own SFPI compiler because the kernels do not build with the newer one a
+    host may have. Text only, one sequence at a time, a 4,096-token context. 125.75 tokens
+    per second decode, which the card puts at 29.4 percent of the datasheet bandwidth floor.
+    Not yet on the Hub through tt-model pull: it was installed with tt-model's installer from
+    a local directory.
+  url: https://huggingface.co/episod/qwen3.5-35b-a3b-blackhole-p300
+  media: assets/img/projects/qwen3.5-35b-a3b-blackhole-p300.svg
+  media_kind: card
+  media_alt: >-
+    From the model card: decode speed 125.75 tokens per second for 128 greedy tokens, median
+    of 5 runs, and 125.34 on the boot check; time to first token 102 to 136 ms on a short
+    prompt; a 3,817-token prompt with a code word at the start answered PELICAN in 0.84 s;
+    cold start with an empty kernel cache 2,334 s, a single sample; decode floor from
+    datasheet bandwidth 428 tokens per second, an estimate, of which this is 29.4 percent.
+  media_note: >-
+    The card's Expected performance table. Each row carries its label: measured, a single
+    sample, or an estimate.
+
+- name: ace-step-1.5-turbo-blackhole
+  category: bringup
+  lang: tt-model v6 thin bundle · ttnn · Blackhole p150
+  desc: >
+    ACE-Step 1.5 turbo, a text-to-music model, on one Blackhole chip: a 48 kHz stereo clip
+    of 5 to 480 seconds from a caption and optional lyrics, through a local HTTP server. The
+    24-layer diffusion transformer, the VAE decoder, the text encoder and the lyric encoder
+    run on the chip; the tokenizer and sampler update run on the host. The bundle ships no
+    weights and no ACE-Step code: the server fetches both at start and checks every file
+    against pinned sizes and hashes. A warm 10-second clip takes about a second, and the
+    same request gives the same samples every time. The planner language model and the XL
+    transformer are not included.
+  url: https://huggingface.co/episod/ace-step-1.5-turbo-blackhole
+  media: assets/img/projects/ace-step-1.5-turbo-blackhole.svg
+  media_kind: card
+  media_alt: >-
+    From the model card, one Blackhole chip: server ready 310 s after a cold start through
+    tt-model serve and 32 s on a warm kernel cache; the first 10-second request after those
+    starts took 121 s and 5.7 s; a repeated 10-second clip took 0.92 s twice and a 30-second
+    clip 1.20, 1.25 and 1.85 s; waveform correlation with the recipe package 0.990 at 10 s
+    and 0.983 at 30 s.
+  media_note: >-
+    The card's Expected performance table. A cold first request is kernel compilation; the
+    repeated-request rows are the model's own speed.
+
+- name: sensenova-6.8-code2video-p300
+  category: bringup
+  lang: tt-model v6 thin bundle · vLLM · Blackhole p300
+  desc: >
+    SenseNova 6.8 Code2Video on two Blackhole chips: a 27B fine-tune of Qwen3.8-27B that
+    makes short videos by writing the program that draws them, running it, and revising the
+    code. This bundle serves the text half through an OpenAI-compatible endpoint, reusing
+    the AREX-2 bundle's model code since only the weights differ, with a 262,144-token
+    context. The vision tower is skipped, so the step where the upstream loop looks at
+    rendered frames has to be done by you or by another model, and the card says plainly
+    that no film has been produced on this package: its checks are token agreement with a
+    CPU reference and decode speed.
+  url: https://huggingface.co/episod/sensenova-6.8-code2video-p300
+  media: assets/img/projects/sensenova-6.8-code2video-p300.svg
+  media_kind: card
+  media_alt: >-
+    From the model card: top-1 agreement with the CPU reference 0.90625 at stage 2 and on
+    the installed package; server ready 138.1 s after start at stage 2 and 1576.3 s on a
+    fresh install with an empty tensor cache; decode speed 18.8 tokens per second greedy
+    and 17.6 sampled; time to first token 0.29 to 0.38 s on a 72-token prompt and 1.84 s on
+    a 6,432-token prompt; four requests at once total 28.5 tokens per second.
+  media_note: >-
+    The card's Expected performance table, with the sentence the card leads with: no film
+    has been produced on this package.

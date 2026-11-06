@@ -1,0 +1,136 @@
+{
+  "title": "episod/ace-step-1.5-turbo-blackhole — expected performance (from the model card)",
+  "aria": "From the model card, one Blackhole chip: server ready 310 s after a cold start through tt-model serve and 32 s on a warm kernel cache; the first 10-second request after those starts took 121 s and 5.7 s; a repeated 10-second clip took 0.92 s twice and a 30-second clip 1.20, 1.25 and 1.85 s; waveform correlation with the recipe package 0.990 at 10 s and 0.983 at 30 s.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-model serve episod/ace-step-1.5-turbo-blackhole",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "Number                                          ",
+        "c": "muted"
+      },
+      {
+        "t": "Value               ",
+        "c": "muted"
+      },
+      {
+        "t": "Label",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "server ready, cold kernel cache, tt-model serve ",
+        "c": "body"
+      },
+      {
+        "t": "310 s               ",
+        "c": "teal"
+      },
+      {
+        "t": "measured, n=1",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "first 10 s request after that start             ",
+        "c": "body"
+      },
+      {
+        "t": "121 s               ",
+        "c": "teal"
+      },
+      {
+        "t": "measured, n=1",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "server ready, warm kernel cache                 ",
+        "c": "body"
+      },
+      {
+        "t": "32 s                ",
+        "c": "teal"
+      },
+      {
+        "t": "measured, n=1",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "first 10 s request after that start             ",
+        "c": "body"
+      },
+      {
+        "t": "5.7 s               ",
+        "c": "teal"
+      },
+      {
+        "t": "measured, n=1",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "10 s clip, repeated request, warm               ",
+        "c": "body"
+      },
+      {
+        "t": "0.92 and 0.92 s     ",
+        "c": "teal"
+      },
+      {
+        "t": "measured, n=2",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "30 s clip, repeated request, warm               ",
+        "c": "body"
+      },
+      {
+        "t": "1.20, 1.25, 1.85 s  ",
+        "c": "teal"
+      },
+      {
+        "t": "measured, n=3",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "agreement with the recipe package, waveform     ",
+        "c": "body"
+      },
+      {
+        "t": "0.990 (10 s)        ",
+        "c": "teal"
+      },
+      {
+        "t": "0.983 (30 s)",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "the same request gives the same samples every time",
+        "c": "muted"
+      }
+    ]
+  ]
+}

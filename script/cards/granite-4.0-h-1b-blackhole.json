@@ -1,0 +1,90 @@
+{
+  "title": "episod/granite-4.0-h-1b-blackhole — numbers (from the model card)",
+  "aria": "From the model card, on one Blackhole p300c chip with tt-metal v0.80.0: about 34 tokens per second traced decode, 0.32 seconds to the first token after a short prompt, 123, 406 and 651 tokens per second prefill for prompts of 128, 512 and 1,024 tokens, and top-1 agreement with the fp32 CPU reference of 0.979 on four short prompts.",
+  "lines": [
+    [
+      {
+        "t": "$",
+        "c": "muted"
+      },
+      {
+        "t": " tt-model serve episod/granite-4.0-h-1b-blackhole",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "one Blackhole p300c chip, tt-metal v0.80.0",
+        "c": "muted"
+      }
+    ],
+    [
+      {
+        "t": "traced decode                                           ",
+        "c": "body"
+      },
+      {
+        "t": "about 34 tok/s",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "time to the first token, short prompt                   ",
+        "c": "body"
+      },
+      {
+        "t": "0.32 s",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "prefill, 128-token prompt                               ",
+        "c": "body"
+      },
+      {
+        "t": "123 tok/s",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "prefill, 512-token prompt                               ",
+        "c": "body"
+      },
+      {
+        "t": "406 tok/s",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "prefill, 1,024-token prompt                             ",
+        "c": "body"
+      },
+      {
+        "t": "651 tok/s",
+        "c": "teal"
+      }
+    ],
+    [
+      {
+        "t": "top-1 agreement with the fp32 CPU reference, 4 prompts  ",
+        "c": "body"
+      },
+      {
+        "t": "0.979",
+        "c": "teal"
+      }
+    ],
+    [],
+    [
+      {
+        "t": "36 Mamba-2 layers and 4 attention layers; one request at a time",
+        "c": "muted"
+      }
+    ]
+  ]
+}
